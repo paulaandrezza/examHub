@@ -1,0 +1,14 @@
+package model.enums;
+
+public enum EspecialidadeMedica {
+	CARDIOLOGIA,
+    DERMATOLOGIA,
+    ENDOCRINOLOGIA,
+    GASTROENTEROLOGIA,
+    GINECOLOGIA,
+    NEUROLOGIA,
+    ORTOPEDIA,
+    PEDIATRIA,
+    PSIQUIATRIA,
+    UROLOGIA;
+}

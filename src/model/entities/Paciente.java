@@ -1,6 +1,9 @@
 package model.entities;
 
-public class Paciente extends BaseEntity {
-
-	
+public abstract class Paciente extends BaseEntity {
+	float altura;
+	boolean fumante;
+	boolean marcaPasso;
+	Convenio convenio;
+	HistoricoMedico historicoMedico;
 }
