@@ -1,4 +1,7 @@
-package model.entities;
+package model.entities.exames;
+
+import model.entities.BaseEntity;
+import model.entities.Paciente;
 
 public class HorarioExame extends BaseEntity {
 

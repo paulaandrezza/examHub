@@ -1,4 +1,6 @@
-package model.entities;
+package model.entities.exames;
+
+import model.entities.BaseEntity;
 
 public class Exame extends BaseEntity {
 
