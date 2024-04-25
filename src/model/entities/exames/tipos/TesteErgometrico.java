@@ -5,7 +5,7 @@ import model.entities.exames.Exame;
 import model.enums.Diagnostico;
 
 
-public class Holter extends BaseEntity {
+public class TesteErgometrico extends BaseEntity {
 	int ritmo;
 	int fc;
 	String detalhes;
