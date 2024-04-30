@@ -77,3 +77,97 @@ CREATE TABLE HorarioAtendimento (
 );
 
 
+-- table Exame
+CREATE TABLE Exame (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    peso FLOAT NOT NULL,
+    medicoResponsavel_id INT NOT NULL,
+    conclusoes TEXT,
+    detalhes TEXT,
+    diagnosticoClinico INT
+     FOREIGN KEY (medicoResponsavel_id) REFERENCES Medico(id)
+);
+
+-- table HorarioExame 
+CREATE TABLE HorarioExame (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    dataEhorario DATETIME NOT NULL,
+    paciente_id INT NOT NULL,
+    medicoSolicitante_id INT NOT NULL,
+    FOREIGN KEY (paciente_id) REFERENCES Paciente(id),
+    FOREIGN KEY (medicoSolicitante_id) REFERENCES Medico(id)
+);
+
+-- table ControleEntrega
+CREATE TABLE ControleEntrega (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    dataEHorario DATETIME NOT NULL,
+    retiradoPor VARCHAR(255) NOT NULL,
+    entreguePor_id INT NOT NULL,
+    exame_id INT NOT NULL,
+    FOREIGN KEY (entreguePor_id) REFERENCES Funcionario(id),
+    FOREIGN KEY (exame_id) REFERENCES Exame(id)
+);
+
+-- table Ecocardiograma
+CREATE TABLE Ecocardiograma (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    raizAorta INT NOT NULL,
+    atrioEsquerdo INT NOT NULL,
+    vdDiastolico INT NOT NULL,
+    veSistolico INT NOT NULL,
+    vePosterior INT NOT NULL,
+    septoIntraventricular INT NOT NULL,
+    fracaoEncurtamento INT NOT NULL,
+    fracaoEjecao FLOAT NOT NULL,
+    exame_id INT NOT NULL,
+    FOREIGN KEY (exame_id) REFERENCES Exame(id)
+);
+
+-- table Eletrocardiograma
+CREATE TABLE Eletrocardiograma (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    ritmo VARCHAR(255) NOT NULL,
+    fc INT NOT NULL,
+    ondaP FLOAT NOT NULL,
+    complexoQRS INT NOT NULL,
+    eixoEletrico INT NOT NULL,
+    exame_id INT NOT NULL,
+    FOREIGN KEY (exame_id) REFERENCES Exame(id)
+);
+
+-- table Holter
+CREATE TABLE Holter (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    arritmia INT NOT NULL,
+    isquemiaCardiaca INT NOT NULL,
+    dcIntravicular INT NOT NULL,
+    dcAtriovencular INT NOT NULL,
+    apneiaSono BOOLEAN NOT NULL,
+    exame_id INT NOT NULL,
+    FOREIGN KEY (exame_id) REFERENCES Exame(id)
+);
+
+-- table Mapa
+CREATE TABLE Mapa (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    mediaHoras VARCHAR(255) NOT NULL,
+    paVirgula VARCHAR(255) NOT NULL,
+    paSono VARCHAR(255) NOT NULL,
+    exame_id INT NOT NULL,
+    FOREIGN KEY (exame_id) REFERENCES Exame(id)
+);
+
+-- table TesteErgometrico
+CREATE TABLE TesteErgometrico (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    ritmo INT NOT NULL,
+    fc INT NOT NULL,
+    detalhes TEXT,
+    conclusoes TEXT,
+    diagnosticoClinico INT NOT NULL,
+    exame_id INT NOT NULL,
+    FOREIGN KEY (exame_id) REFERENCES Exame(id),
+    FOREIGN KEY (diagnosticoClinico) REFERENCES Diagnostico(id)
+);
+

@@ -10,7 +10,7 @@ public class Ecocardiograma extends BaseEntity {
 	int veSistolico;
 	int vePosterior;
 	int septoIntraventricular;
-	int fracaoEncustamento;
+	int fracaoEncurtamento;
 	float fracaoEjecao;
 	Exame exame;
 }
