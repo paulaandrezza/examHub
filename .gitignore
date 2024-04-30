@@ -30,3 +30,6 @@ replay_pid*
 *.iws
 *.ipr
 out/
+
+# database
+*.db
