@@ -1,0 +1,10 @@
+-- table Pessoa
+CREATE TABLE IF NOT EXISTS Pessoa (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome VARCHAR(255) NOT NULL,
+    cpf VARCHAR(14) NOT NULL UNIQUE,
+    dataNascimento DATE NOT NULL,
+    celular BIGINT,
+    email VARCHAR(255) UNIQUE,
+    genero INTEGER NOT NULL
+);
