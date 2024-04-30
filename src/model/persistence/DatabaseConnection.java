@@ -17,8 +17,18 @@ public class DatabaseConnection {
 		try {
 			connection = DriverManager.getConnection("jdbc:sqlite:./examHub.db");
 			Statement statement = connection.createStatement();
-			String sql = new String(Files.readAllBytes(Paths.get("resources/sql/create_tables.sql")));
-			statement.executeUpdate(sql);
+			
+			String create_tables = new String(Files.readAllBytes(Paths.get("resources/sql/create_tables.sql")));
+			statement.executeUpdate(create_tables);
+			
+			ResultSet rs = statement.executeQuery("SELECT COUNT(*) AS rowcount FROM Pessoa");
+	        rs.next();
+	        int count = rs.getInt("rowcount");
+	        if (count == 0) {
+	        	String insert_data = new String(Files.readAllBytes(Paths.get("resources/sql/insert_data.sql")));
+	        	statement.executeUpdate(insert_data);	        	
+	        }
+			
 			System.out.println("Tabelas criadas com sucesso.");
 		} catch (SQLException | IOException e) {
 			System.err.println(e.getMessage());
