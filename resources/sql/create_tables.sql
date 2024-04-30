@@ -1,6 +1,6 @@
 -- table Endereco
-CREATE TABLE Endereco (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS Endereco (
+    id INTEGER PRIMARY KEY,
     cep INT NOT NULL,
     estado VARCHAR(2) NOT NULL,
     cidade VARCHAR(100) NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE Endereco (
 
 -- table Pessoa
 CREATE TABLE IF NOT EXISTS Pessoa (
-    id INT PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
     cpf VARCHAR(14) NOT NULL UNIQUE,
     dataNascimento DATE NOT NULL,
@@ -24,24 +24,24 @@ CREATE TABLE IF NOT EXISTS Pessoa (
 );
 
 -- table Convenio
-CREATE TABLE Convenio (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS Convenio (
+    id INTEGER PRIMARY KEY,
     numeroCarteirinha INT NOT NULL,
     prestadora VARCHAR(255) NOT NULL,
     plano VARCHAR(255) NOT NULL
 );
 
 -- table HistoricoMedico
-CREATE TABLE HistoricoMedico (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS HistoricoMedico (
+    id INTEGER PRIMARY KEY,
     alergias TEXT,
     medicamentos TEXT,
     prescricao TEXT
 );
 
 -- table Paciente
-CREATE TABLE Paciente (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS Paciente (
+    id INTEGER PRIMARY KEY,
     altura FLOAT NOT NULL,
     fumante BOOLEAN NOT NULL,
     marcaPasso BOOLEAN NOT NULL,
@@ -52,23 +52,23 @@ CREATE TABLE Paciente (
 );
 
 -- table Funcionario
-CREATE TABLE Funcionario (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS Funcionario (
+    id INTEGER PRIMARY KEY,
     emailCorporativo VARCHAR(50) NOT NULL,
-    senha VARCHAR(100) NOT NULL,
+    senha VARCHAR(100) NOT NULL
 );
 
 -- table Medico
-CREATE TABLE Medico (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS Medico (
+    id INTEGER PRIMARY KEY,
     funcionario_id INT,
     especialidade INT NOT NULL,
     FOREIGN KEY (funcionario_id) REFERENCES Funcionario(id)
 );
 
 -- table HorarioAtendimento
-CREATE TABLE HorarioAtendimento (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS HorarioAtendimento (
+    id INTEGER PRIMARY KEY,
     medico_id INT,
     diaDaSemana INT NOT NULL,
     horarioInicio TIME NOT NULL,
@@ -78,19 +78,19 @@ CREATE TABLE HorarioAtendimento (
 
 
 -- table Exame
-CREATE TABLE Exame (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS Exame (
+    id INTEGER PRIMARY KEY,
     peso FLOAT NOT NULL,
     medicoResponsavel_id INT NOT NULL,
     conclusoes TEXT,
     detalhes TEXT,
-    diagnosticoClinico INT
-     FOREIGN KEY (medicoResponsavel_id) REFERENCES Medico(id)
+    diagnosticoClinico INT,
+    FOREIGN KEY (medicoResponsavel_id) REFERENCES Medico(id)
 );
 
 -- table HorarioExame 
-CREATE TABLE HorarioExame (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS HorarioExame (
+    id INTEGER PRIMARY KEY,
     dataEhorario DATETIME NOT NULL,
     paciente_id INT NOT NULL,
     medicoSolicitante_id INT NOT NULL,
@@ -99,8 +99,8 @@ CREATE TABLE HorarioExame (
 );
 
 -- table ControleEntrega
-CREATE TABLE ControleEntrega (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS ControleEntrega (
+    id INTEGER PRIMARY KEY,
     dataEHorario DATETIME NOT NULL,
     retiradoPor VARCHAR(255) NOT NULL,
     entreguePor_id INT NOT NULL,
@@ -110,8 +110,8 @@ CREATE TABLE ControleEntrega (
 );
 
 -- table Ecocardiograma
-CREATE TABLE Ecocardiograma (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS Ecocardiograma (
+    id INTEGER PRIMARY KEY,
     raizAorta INT NOT NULL,
     atrioEsquerdo INT NOT NULL,
     vdDiastolico INT NOT NULL,
@@ -125,8 +125,8 @@ CREATE TABLE Ecocardiograma (
 );
 
 -- table Eletrocardiograma
-CREATE TABLE Eletrocardiograma (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS Eletrocardiograma (
+    id INTEGER PRIMARY KEY,
     ritmo VARCHAR(255) NOT NULL,
     fc INT NOT NULL,
     ondaP FLOAT NOT NULL,
@@ -137,8 +137,8 @@ CREATE TABLE Eletrocardiograma (
 );
 
 -- table Holter
-CREATE TABLE Holter (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS Holter (
+    id INTEGER PRIMARY KEY,
     arritmia INT NOT NULL,
     isquemiaCardiaca INT NOT NULL,
     dcIntravicular INT NOT NULL,
@@ -149,8 +149,8 @@ CREATE TABLE Holter (
 );
 
 -- table Mapa
-CREATE TABLE Mapa (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS Mapa (
+    id INTEGER PRIMARY KEY,
     mediaHoras VARCHAR(255) NOT NULL,
     paVirgula VARCHAR(255) NOT NULL,
     paSono VARCHAR(255) NOT NULL,
@@ -159,8 +159,8 @@ CREATE TABLE Mapa (
 );
 
 -- table TesteErgometrico
-CREATE TABLE TesteErgometrico (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS TesteErgometrico (
+    id INTEGER PRIMARY KEY,
     ritmo INT NOT NULL,
     fc INT NOT NULL,
     detalhes TEXT,
