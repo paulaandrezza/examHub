@@ -1,10 +1,9 @@
-package model.persistence.dao.interfaces;
+package model.persistence.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.entities.Endereco;
-import model.persistence.dao.GenericDAO;
 
 public class EnderecoDAO extends GenericDAO<Endereco> {
 

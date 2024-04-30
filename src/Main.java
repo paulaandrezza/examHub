@@ -1,5 +1,5 @@
 import model.persistence.DatabaseConnection;
-import model.persistence.dao.interfaces.EnderecoDAO;
+import model.persistence.dao.EnderecoDAO;
 
 public class Main {
 
