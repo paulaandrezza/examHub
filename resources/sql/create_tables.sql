@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS Pessoa (
     celular BIGINT,
     email VARCHAR(255) UNIQUE,
     genero INT NOT NULL,
-    endereco_id INT,
+    endereco_id INT NOT NULL,
     FOREIGN KEY (endereco_id) REFERENCES Endereco(id)
 );
 
@@ -45,8 +45,8 @@ CREATE TABLE IF NOT EXISTS Paciente (
     altura FLOAT NOT NULL,
     fumante BOOLEAN NOT NULL,
     marcaPasso BOOLEAN NOT NULL,
-    convenio_id INT,
-    historicoMedico_id INT,
+    convenio_id INT NOT NULL,
+    historicoMedico_id INT NOT NULL,
     FOREIGN KEY (convenio_id) REFERENCES Convenio(id),
     FOREIGN KEY (historicoMedico_id) REFERENCES HistoricoMedico(id)
 );
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS Paciente (
 -- table Funcionario
 CREATE TABLE IF NOT EXISTS Funcionario (
     id INTEGER PRIMARY KEY,
-    pessoa_id INT,
+    pessoa_id INT NOT NULL,
     emailCorporativo VARCHAR(50) NOT NULL,
     senha VARCHAR(100) NOT NULL,
     FOREIGN KEY (pessoa_id) REFERENCES Pessoa(id)
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS Funcionario (
 -- table Medico
 CREATE TABLE IF NOT EXISTS Medico (
     id INTEGER PRIMARY KEY,
-    funcionario_id INT,
+    funcionario_id INT NOT NULL,
     especialidade INT NOT NULL,
     FOREIGN KEY (funcionario_id) REFERENCES Funcionario(id)
 );
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS Medico (
 -- table HorarioAtendimento
 CREATE TABLE IF NOT EXISTS HorarioAtendimento (
     id INTEGER PRIMARY KEY,
-    medico_id INT,
+    medico_id INT NOT NULL,
     diaDaSemana INT NOT NULL,
     horarioInicio TIME NOT NULL,
     horarioFim TIME NOT NULL,
