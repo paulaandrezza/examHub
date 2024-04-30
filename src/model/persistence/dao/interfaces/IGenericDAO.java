@@ -6,7 +6,7 @@ import java.util.Optional;
 public interface IGenericDAO<T> {
 	Optional<T> get(int id);
     List<T> getAll();
-    void save(T t);
+    int save(T t);
     void update(int id, String[] params);
     void delete(int id);
 }

@@ -6,4 +6,7 @@ public class BaseEntity {
 	public BaseEntity(int id) {
 		this.id = id;
 	}
+	
+	public BaseEntity() {
+	}
 }

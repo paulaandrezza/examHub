@@ -20,6 +20,17 @@ public class Endereco extends BaseEntity {
 		this.numero = numero;
 		this.complemento = complemento;
 	}
+	
+	public Endereco(int cep, String estado, String cidade, String bairro, String rua, String numero,
+			String complemento) {
+		this.cep = cep;
+		this.estado = estado;
+		this.cidade = cidade;
+		this.bairro = bairro;
+		this.rua = rua;
+		this.numero = numero;
+		this.complemento = complemento;
+	}
 
 	@Override
 	public String toString() {
