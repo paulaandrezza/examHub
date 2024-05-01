@@ -11,4 +11,10 @@ public class Convenio extends BaseEntity {
 		this.prestadora = prestadora;
 		this.plano = plano;
 	}
+	
+	public Convenio(int numeroCarteirinha, String prestadora, String plano) {
+		this.numeroCarteirinha = numeroCarteirinha;
+		this.prestadora = prestadora;
+		this.plano = plano;
+	}
 }
