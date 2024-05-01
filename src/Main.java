@@ -1,4 +1,7 @@
+import javax.swing.JOptionPane;
+
 import model.entities.Endereco;
+import model.exceptions.EntityNotFoundException;
 import model.persistence.DatabaseConnection;
 import model.persistence.dao.EnderecoDAO;
 
@@ -16,7 +19,16 @@ public class Main {
         end.delete(id);
         System.out.println(end.getAll());
         
-        System.out.println(end.get(1));
+        try {
+            System.out.println(end.get(1));
+        	Endereco endeee = end.get(100);
+        } catch (EntityNotFoundException e) {
+        	JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+        	JOptionPane.showMessageDialog(null, "Erro de acesso ao banco de dados: " + e.getMessage(), "Erro no Banco de Dados", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        System.out.println(end.getAll());
 
 	}
 

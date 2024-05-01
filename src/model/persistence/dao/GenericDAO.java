@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import model.exceptions.EntityNotFoundException;
 import model.persistence.DatabaseConnection;
 import model.persistence.dao.interfaces.IGenericDAO;
 
@@ -22,20 +23,21 @@ public abstract class GenericDAO<T> implements IGenericDAO<T> {
     }
 
 	@Override
-	public Optional<T> get(int id) {
-		String sql = "SELECT * FROM " + tableName + " WHERE id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, id);
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                T entity = convertToEntity(resultSet);
-                return Optional.of(entity);
-            }
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-        }
-        return Optional.empty();
+	public T get(int id) throws EntityNotFoundException {
+	    String sql = "SELECT * FROM " + tableName + " WHERE id = ?";
+	    try (PreparedStatement statement = connection.prepareStatement(sql)) {
+	        statement.setInt(1, id);
+	        ResultSet resultSet = statement.executeQuery();
+	        if (resultSet.next()) {
+	            return convertToEntity(resultSet);
+	        } else {
+	            throw new EntityNotFoundException(id, tableName);
+	        }
+	    } catch (SQLException e) {
+	        throw new RuntimeException("Erro ao acessar o banco de dados: " + e.getMessage(), e);
+	    }
 	}
+
 
 	@Override
 	public List<T> getAll() {
