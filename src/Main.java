@@ -29,6 +29,14 @@ public class Main {
         }
         
         System.out.println(end.getAll());
+        
+        
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                TelaCadastroPaciente tela = new TelaCadastroPaciente();
+                tela.setVisible(true);
+            }
+        });
 
 	}
 

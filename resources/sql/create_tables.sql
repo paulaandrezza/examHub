@@ -54,9 +54,10 @@ CREATE TABLE IF NOT EXISTS Paciente (
 -- table Funcionario
 CREATE TABLE IF NOT EXISTS Funcionario (
     id INTEGER PRIMARY KEY,
-    pessoa_id INT NOT NULL,
+    pessoa_id INT,
     emailCorporativo VARCHAR(50) NOT NULL,
     senha VARCHAR(100) NOT NULL,
+    tipoFuncionario INT NOT NULL,
     FOREIGN KEY (pessoa_id) REFERENCES Pessoa(id)
 );
 

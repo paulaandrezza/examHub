@@ -89,7 +89,7 @@ public abstract class GenericDAO<T> implements IGenericDAO<T> {
 
 	        try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
 	            if (generatedKeys.next()) {
-	                return generatedKeys.getInt(1);  // Retorna o ID gerado para o objeto criado
+	                return generatedKeys.getInt(1);
 	            } else {
 	                throw new SQLException("Creating user failed, no ID obtained.");
 	            }
