@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS Pessoa (
     cpf VARCHAR(14) NOT NULL UNIQUE,
     dataNascimento DATE NOT NULL,
     celular BIGINT,
+    telefone BIGINT,
     email VARCHAR(255) UNIQUE,
     genero INT NOT NULL,
     endereco_id INT NOT NULL,
@@ -47,8 +48,10 @@ CREATE TABLE IF NOT EXISTS Paciente (
     marcaPasso BOOLEAN NOT NULL,
     convenio_id INT NOT NULL,
     historicoMedico_id INT NOT NULL,
+    pessoa_id INT NOT NULL,
     FOREIGN KEY (convenio_id) REFERENCES Convenio(id),
     FOREIGN KEY (historicoMedico_id) REFERENCES HistoricoMedico(id)
+    FOREIGN KEY (pessoa_id) REFERENCES Pessoa(id)
 );
 
 -- table Funcionario
