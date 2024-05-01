@@ -12,4 +12,15 @@ public class TesteErgometrico extends BaseEntity {
 	String conclusoes;
 	Diagnostico diagnosticoClinico;
 	Exame exame;
+	
+	public TesteErgometrico(int id, int ritmo, int fc, String detalhes, String conclusoes,
+			Diagnostico diagnosticoClinico, Exame exame) {
+		super(id);
+		this.ritmo = ritmo;
+		this.fc = fc;
+		this.detalhes = detalhes;
+		this.conclusoes = conclusoes;
+		this.diagnosticoClinico = diagnosticoClinico;
+		this.exame = exame;
+	}
 }
