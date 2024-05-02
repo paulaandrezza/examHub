@@ -1,20 +1,20 @@
 package model.entities;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import model.enums.Genero;
 
 public class Pessoa extends BaseEntity {
 	String nome;
 	String cpf;
-	Date dataNascimento;
+	LocalDate dataNascimento;
 	long celular;
 	long telefone;
 	String email;
 	Genero genero;
 	Endereco endereco;
 
-	public Pessoa(int id, String nome, String cpf, Date dataNascimento, long celular, long telefone, String email,
+	public Pessoa(int id, String nome, String cpf, LocalDate dataNascimento, long celular, long telefone, String email,
 			Genero genero, Endereco endereco) {
 		super(id);
 		this.nome = nome;
@@ -27,7 +27,7 @@ public class Pessoa extends BaseEntity {
 		this.endereco = endereco;
 	}
 
-	public Pessoa(String nome, String cpf, Date dataNascimento, long celular, long telefone, String email,
+	public Pessoa(String nome, String cpf, LocalDate dataNascimento, long celular, long telefone, String email,
 			Genero genero, Endereco endereco) {
 		this.nome = nome;
 		this.cpf = cpf;
@@ -61,11 +61,11 @@ public class Pessoa extends BaseEntity {
 		this.cpf = cpf;
 	}
 
-	public Date getDataNascimento() {
+	public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 

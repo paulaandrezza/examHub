@@ -2,6 +2,7 @@ package model.persistence.dao.paciente;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 import model.entities.Paciente;
 import model.enums.Genero;
@@ -28,7 +29,7 @@ public class PacienteDAO extends GenericDAO<PacienteFullDTO> implements ICommonD
 					paciente.getPessoa().getTelefone(), paciente.getPessoa().getEmail(),
 					paciente.getPessoa().getGenero().getValue(), enderecoId);
 			int pessoaId = super.save(pessoaDTO, "pessoa");
-			
+
 			PacienteDTO pacienteDAO = new PacienteDTO(paciente.getAltura(), paciente.isFumante(),
 					paciente.isMarcaPasso(), convenioId, historicoMedicoId, pessoaId);
 			int pacienteId = super.save(pacienteDAO, "paciente");
@@ -65,7 +66,8 @@ public class PacienteDAO extends GenericDAO<PacienteFullDTO> implements ICommonD
 
 		String nome = resultSet.getString("nome");
 		String cpf = resultSet.getString("cpf");
-		java.util.Date dataNascimento = new java.util.Date();
+		Object dbSqlDate = resultSet.getObject("dataNascimento");
+		LocalDate dataNascimento = LocalDate.parse(dbSqlDate.toString());
 		long celular = resultSet.getLong("celular");
 		long telefone = resultSet.getLong("telefone");
 		String email = resultSet.getString("email");

@@ -1,18 +1,18 @@
 package model.persistence.dao.paciente;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class PessoaDTO {
 	String nome;
 	String cpf;
-	Date dataNascimento;
+	LocalDate dataNascimento;
 	long celular;
 	long telefone;
 	String email;
 	int genero;
 	int endereco_id;
-	
-	public PessoaDTO(String nome, String cpf, Date dataNascimento, long celular, long telefone, String email,
+
+	public PessoaDTO(String nome, String cpf, LocalDate dataNascimento, long celular, long telefone, String email,
 			int genero, int endereco_id) {
 		super();
 		this.nome = nome;

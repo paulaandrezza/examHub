@@ -1,6 +1,6 @@
 package model.persistence.dao.paciente;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import model.enums.Genero;
 
@@ -9,7 +9,7 @@ public class PacienteFullDTO {
 
 	private String nome;
 	private String cpf;
-	private Date dataNascimento;
+	private LocalDate dataNascimento;
 	private long celular;
 	private long telefone;
 	private String email;
@@ -35,10 +35,11 @@ public class PacienteFullDTO {
 	private String medicamentos;
 	private String prescricao;
 
-	public PacienteFullDTO(int idPaciente, String nome, String cpf, Date dataNascimento, long celular, long telefone,
-			String email, Genero genero, int cep, String estado, String cidade, String bairro, String rua,
-			String numero, String complemento, float altura, boolean fumante, boolean marcaPasso, int numeroCarteirinha,
-			String prestadora, String plano, String alergias, String medicamentos, String prescricao) {
+	public PacienteFullDTO(int idPaciente, String nome, String cpf, LocalDate dataNascimento, long celular,
+			long telefone, String email, Genero genero, int cep, String estado, String cidade, String bairro,
+			String rua, String numero, String complemento, float altura, boolean fumante, boolean marcaPasso,
+			int numeroCarteirinha, String prestadora, String plano, String alergias, String medicamentos,
+			String prescricao) {
 		this.idPaciente = idPaciente;
 		this.nome = nome;
 		this.cpf = cpf;
@@ -65,7 +66,7 @@ public class PacienteFullDTO {
 		this.prescricao = prescricao;
 	}
 
-	public PacienteFullDTO(String nome, String cpf, Date dataNascimento, long celular, long telefone, String email,
+	public PacienteFullDTO(String nome, String cpf, LocalDate dataNascimento, long celular, long telefone, String email,
 			Genero genero, int cep, String estado, String cidade, String bairro, String rua, String numero,
 			String complemento, float altura, boolean fumante, boolean marcaPasso, int numeroCarteirinha,
 			String prestadora, String plano, String alergias, String medicamentos, String prescricao) {
@@ -129,11 +130,11 @@ public class PacienteFullDTO {
 		this.cpf = cpf;
 	}
 
-	public Date getDataNascimento() {
+	public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 

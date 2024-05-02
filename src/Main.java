@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 
 import controller.PacienteController;
@@ -13,15 +16,21 @@ public class Main {
 		dbConnection.connectAndExecute();
 
 		PacienteController pacienteController = new PacienteController();
-		PacienteFullDTO pacienteFullDTO = new PacienteFullDTO("João Silva", "123.456.789-00", new Date(), 11987654321L,
-				1132109876L, "joao@example.com", Genero.MASCULINO, 123456, "SP", "São Paulo", "Centro", "Rua A", "100",
-				"Apt 101", 1.75f, false, false, 987654321, "Saúde Plena", "Plano Premium", "Nenhum", "Paracetamol",
-				"Tomar 1 vez ao dia");
+		PacienteFullDTO pacienteFullDTO = new PacienteFullDTO("João Silva", "123.456.789-00", LocalDate.of(2000, 3, 25),
+				11987654321L, 1132109876L, "joao@example.com", Genero.MASCULINO, 123456, "SP", "São Paulo", "Centro",
+				"Rua A", "100", "Apt 101", 1.75f, false, false, 987654321, "Saúde Plena", "Plano Premium", "Nenhum",
+				"Paracetamol", "Tomar 1 vez ao dia");
 
 		pacienteController.create(pacienteFullDTO);
 		System.out.println(pacienteController.getAll());
 		System.out.println("\nJoão Silva: " + pacienteController.searchByField("nome", "João Silva"));
 		System.out.println("\nNão Fumantes: " + pacienteController.searchByField("fumante", false));
+
+		// System.out.println("\n\njava.util.Date: " + new Date(2000, 03, 25));
+		// System.out.println("sql.date: " + new java.sql.Date(2000, 03, 25));
+		// System.out.println("java.time.LocalDate: " + LocalDate.of(2000, 3, 25));
+		// System.out.println("java.time.LocalTime: " + LocalTime.of(10, 20));
+		// System.out.println("java.time.LocalDateTime: " + LocalDateTime.of(200, 03, 25, 10, 20));
 
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
