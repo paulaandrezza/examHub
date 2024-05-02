@@ -11,7 +11,7 @@ import java.util.List;
 import model.persistence.DatabaseConnection;
 import model.persistence.dao.interfaces.IGenericDAO;
 
-public abstract class GenericDAO<T> implements IGenericDAO<T> {
+public abstract class GenericDAO<DTO> implements IGenericDAO<DTO> {
 	protected Connection connection;
 	private String sqlQuery;
 	private String fileName;
@@ -23,12 +23,12 @@ public abstract class GenericDAO<T> implements IGenericDAO<T> {
 	}
 
 	@Override
-	public List<T> getAll() {
-		List<T> list = new ArrayList<>();
+	public List<DTO> getAll() {
+		List<DTO> list = new ArrayList<>();
 		try (PreparedStatement statement = connection.prepareStatement(sqlQuery);
 				ResultSet resultSet = statement.executeQuery()) {
 			while (resultSet.next()) {
-				T entity = convertResultSetToEntity(resultSet);
+				DTO entity = convertResultSetToEntityDTO(resultSet);
 				list.add(entity);
 			}
 		} catch (SQLException e) {
@@ -79,14 +79,14 @@ public abstract class GenericDAO<T> implements IGenericDAO<T> {
 	}
 
 	@Override
-	public List<T> findByField(String fieldName, Object fieldValue) throws SQLException {
-		List<T> resultList = new ArrayList<>();
+	public List<DTO> findByField(String fieldName, Object fieldValue) throws SQLException {
+		List<DTO> resultList = new ArrayList<>();
 		String query = sqlQuery + " WHERE " + fieldName + " = ?";
 		try (PreparedStatement statement = connection.prepareStatement(query)) {
 			statement.setObject(1, fieldValue);
 			try (ResultSet resultSet = statement.executeQuery()) {
 				while (resultSet.next()) {
-					T entity = convertResultSetToEntity(resultSet);
+					DTO entity = convertResultSetToEntityDTO(resultSet);
 					resultList.add(entity);
 				}
 			}
@@ -97,5 +97,5 @@ public abstract class GenericDAO<T> implements IGenericDAO<T> {
 		return resultList;
 	}
 
-	protected abstract T convertResultSetToEntity(ResultSet resultSet) throws SQLException;
+	protected abstract DTO convertResultSetToEntityDTO(ResultSet resultSet) throws SQLException;
 }

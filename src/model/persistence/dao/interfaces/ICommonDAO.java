@@ -13,5 +13,5 @@ public interface ICommonDAO<DTO, Entity> {
 
 	void delete(int id);
 
-	DTO convertResultSetToEntity(ResultSet resultSet) throws SQLException;
+	DTO convertResultSetToEntityDTO(ResultSet resultSet) throws SQLException;
 }

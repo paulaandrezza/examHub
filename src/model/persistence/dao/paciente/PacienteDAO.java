@@ -28,7 +28,7 @@ public class PacienteDAO extends GenericDAO<PacienteFullDTO> implements ICommonD
 					paciente.getPessoa().getTelefone(), paciente.getPessoa().getEmail(),
 					paciente.getPessoa().getGenero().getValue(), enderecoId);
 			int pessoaId = super.save(pessoaDTO, "pessoa");
-
+			
 			PacienteDTO pacienteDAO = new PacienteDTO(paciente.getAltura(), paciente.isFumante(),
 					paciente.isMarcaPasso(), convenioId, historicoMedicoId, pessoaId);
 			int pacienteId = super.save(pacienteDAO, "paciente");
@@ -60,7 +60,7 @@ public class PacienteDAO extends GenericDAO<PacienteFullDTO> implements ICommonD
 	}
 
 	@Override
-	public PacienteFullDTO convertResultSetToEntity(ResultSet resultSet) throws SQLException {
+	public PacienteFullDTO convertResultSetToEntityDTO(ResultSet resultSet) throws SQLException {
 		int idPaciente = resultSet.getInt("paciente_id");
 
 		String nome = resultSet.getString("nome");
