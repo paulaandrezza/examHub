@@ -41,7 +41,7 @@ public abstract class GenericDAO<T> implements IGenericDAO<T> {
     }
 	
 	@Override
-	public int save(Object entity, String tableName) {
+	public int save(Object entity, String tableName) throws SQLException {
 		StringBuilder columns = new StringBuilder();
 	    StringBuilder values = new StringBuilder();
 	    List<Object> valueList = new ArrayList<>();
@@ -63,27 +63,22 @@ public abstract class GenericDAO<T> implements IGenericDAO<T> {
 	    }
 
 	    String sql = "INSERT INTO " + tableName + " (" + columns.toString() + ") VALUES (" + values.toString() + ")";
-	    System.out.println(sql);
-	    try (PreparedStatement statement = connection.prepareStatement(sql)) {
-	        for (int i = 0; i < valueList.size(); i++) {
-	            statement.setObject(i + 1, valueList.get(i));
-	        }
-	        int affectedRows = statement.executeUpdate();
-	        if (affectedRows == 0) {
-	            throw new SQLException("Creating" + tableName + "failed, no rows affected.");
-	        }
+	    PreparedStatement statement = connection.prepareStatement(sql);
+        for (int i = 0; i < valueList.size(); i++) {
+            statement.setObject(i + 1, valueList.get(i));
+        }
+        int affectedRows = statement.executeUpdate();
+        if (affectedRows == 0) {
+            throw new SQLException("Creating" + tableName + "failed, no rows affected.");
+        }
 
-	        try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
-	            if (generatedKeys.next()) {
-	                return generatedKeys.getInt(1);
-	            } else {
-	                throw new SQLException("Creating" + tableName + "failed, no ID obtained.");
-	            }
-	        }
-	    } catch (SQLException e) {
-	        System.err.println("Erro ao salvar o objeto: " + e.getMessage());
-	        return -1;
-	    }
+        try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+            if (generatedKeys.next()) {
+                return generatedKeys.getInt(1);
+            } else {
+                throw new SQLException("Creating" + tableName + "failed, no ID obtained.");
+            }
+        }
 	}
     
 	protected abstract T convertToEntity(ResultSet resultSet) throws SQLException;

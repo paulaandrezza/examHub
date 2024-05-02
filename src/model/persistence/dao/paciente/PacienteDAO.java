@@ -51,7 +51,7 @@ public class PacienteDAO extends GenericDAO<PacienteFullDTO> implements ICommonD
 	    } catch (SQLException e) {
 	        System.err.println("Erro ao salvar paciente: " + e.getMessage());
 	        try {
-	            connection.rollback();  // Em caso de erro, reverta toda a transação
+	            connection.rollback();
 	        } catch (SQLException ex) {
 	            System.err.println("Erro ao reverter transação: " + ex.getMessage());
 	        }

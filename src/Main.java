@@ -17,7 +17,7 @@ public class Main {
         dbConnection.connectAndExecute();
         
        PacienteDAO pacienteDao = new PacienteDAO();
-       System.out.print(pacienteDao.getAll());
+       System.out.println(pacienteDao.getAll());
        
        Endereco endereco = new Endereco(
                123456,
@@ -62,7 +62,7 @@ public class Main {
            );
        
        pacienteDao.save(endereco, convenio, historicoMedico, pessoa, paciente);
-       System.out.print(pacienteDao.getAll());
+       System.out.println(pacienteDao.getAll());
 
        javax.swing.SwingUtilities.invokeLater(new Runnable() {
            public void run() {
