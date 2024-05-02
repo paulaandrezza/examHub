@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 
 import controller.PacienteController;
-import model.enums.Genero;
+import model.enums.EnumGenero;
 import model.persistence.DatabaseConnection;
 import model.persistence.dao.paciente.PacienteFullDTO;
 import view.TelaCadastroPaciente;
@@ -14,7 +14,7 @@ public class Main {
 
 		PacienteController pacienteController = new PacienteController();
 		PacienteFullDTO pacienteFullDTO = new PacienteFullDTO("João Silva", "123.456.789-00", LocalDate.of(2000, 3, 25),
-				11987654321L, 1132109876L, "joao@example.com", Genero.MASCULINO, 123456, "SP", "São Paulo", "Centro",
+				11987654321L, 1132109876L, "joao@example.com", EnumGenero.MASCULINO, 123456, "SP", "São Paulo", "Centro",
 				"Rua A", "100", "Apt 101", 1.75f, false, false, 987654321, "Saúde Plena", "Plano Premium", "Nenhum",
 				"Paracetamol", "Tomar 1 vez ao dia");
 

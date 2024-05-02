@@ -2,7 +2,7 @@ package model.entities.exames.tipos;
 
 import model.entities.BaseEntity;
 import model.entities.exames.Exame;
-import model.enums.Diagnostico;
+import model.enums.EnumDiagnostico;
 
 
 public class TesteErgometrico extends BaseEntity {
@@ -10,11 +10,11 @@ public class TesteErgometrico extends BaseEntity {
 	int fc;
 	String detalhes;
 	String conclusoes;
-	Diagnostico diagnosticoClinico;
+	EnumDiagnostico diagnosticoClinico;
 	Exame exame;
 	
 	public TesteErgometrico(int id, int ritmo, int fc, String detalhes, String conclusoes,
-			Diagnostico diagnosticoClinico, Exame exame) {
+			EnumDiagnostico diagnosticoClinico, Exame exame) {
 		super(id);
 		this.ritmo = ritmo;
 		this.fc = fc;
