@@ -19,6 +19,7 @@ public class Main {
 				"Tomar 1 vez ao dia");
 
 		pacienteController.create(pacienteFullDTO);
+		System.out.println(pacienteController.getAll());
 
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {

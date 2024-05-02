@@ -13,7 +13,7 @@ public class Pessoa extends BaseEntity {
 	String email;
 	Genero genero;
 	Endereco endereco;
-	
+
 	public Pessoa(int id, String nome, String cpf, Date dataNascimento, long celular, long telefone, String email,
 			Genero genero, Endereco endereco) {
 		super(id);
@@ -26,6 +26,7 @@ public class Pessoa extends BaseEntity {
 		this.genero = genero;
 		this.endereco = endereco;
 	}
+
 	public Pessoa(String nome, String cpf, Date dataNascimento, long celular, long telefone, String email,
 			Genero genero, Endereco endereco) {
 		this.nome = nome;
@@ -37,54 +38,75 @@ public class Pessoa extends BaseEntity {
 		this.genero = genero;
 		this.endereco = endereco;
 	}
+
+	@Override
+	public String toString() {
+		return "Pessoa [nome=" + nome + ", cpf=" + cpf + ", dataNascimento=" + dataNascimento + ", celular=" + celular
+				+ ", telefone=" + telefone + ", email=" + email + ", genero=" + genero + ", endereco=" + endereco + "]";
+	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public String getCpf() {
 		return cpf;
 	}
+
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+
 	public Date getDataNascimento() {
 		return dataNascimento;
 	}
+
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
+
 	public long getCelular() {
 		return celular;
 	}
+
 	public void setCelular(long celular) {
 		this.celular = celular;
 	}
+
 	public long getTelefone() {
 		return telefone;
 	}
+
 	public void setTelefone(long telefone) {
 		this.telefone = telefone;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public Genero getGenero() {
 		return genero;
 	}
+
 	public void setGenero(Genero genero) {
 		this.genero = genero;
 	}
+
 	public Endereco getEndereco() {
 		return endereco;
 	}
+
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-	
-	
+
 }

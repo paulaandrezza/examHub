@@ -7,7 +7,7 @@ public class Paciente extends BaseEntity {
 	Convenio convenio;
 	HistoricoMedico historicoMedico;
 	Pessoa pessoa;
-	
+
 	public Paciente(int id, float altura, boolean fumante, boolean marcaPasso, Convenio convenio,
 			HistoricoMedico historicoMedico, Pessoa pessoa) {
 		super(id);
@@ -18,7 +18,7 @@ public class Paciente extends BaseEntity {
 		this.historicoMedico = historicoMedico;
 		this.pessoa = pessoa;
 	}
-	
+
 	public Paciente(float altura, boolean fumante, boolean marcaPasso, Convenio convenio,
 			HistoricoMedico historicoMedico, Pessoa pessoa) {
 		this.altura = altura;
@@ -27,6 +27,12 @@ public class Paciente extends BaseEntity {
 		this.convenio = convenio;
 		this.historicoMedico = historicoMedico;
 		this.pessoa = pessoa;
+	}
+
+	@Override
+	public String toString() {
+		return "Paciente [altura=" + altura + ", fumante=" + fumante + ", marcaPasso=" + marcaPasso + ", convenio="
+				+ convenio + ", historicoMedico=" + historicoMedico + ", pessoa=" + pessoa + ", id=" + id + "]";
 	}
 
 	public float getAltura() {
@@ -76,6 +82,5 @@ public class Paciente extends BaseEntity {
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
-	
-	
+
 }

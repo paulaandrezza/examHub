@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.entities.Convenio;
@@ -41,8 +42,15 @@ public class PacienteController implements IController<PacienteFullDTO, Paciente
 
 	@Override
 	public List<Paciente> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<PacienteFullDTO> pacientesFullDTO = pacienteDao.getAll();
+		List<Paciente> pacientes = new ArrayList<Paciente>();
+
+		for (PacienteFullDTO dto : pacientesFullDTO) {
+			Paciente paciente = convertDtoToEntity(dto);
+			pacientes.add(paciente);
+		}
+
+		return pacientes;
 	}
 
 	@Override
