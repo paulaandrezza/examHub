@@ -5,7 +5,7 @@ import java.util.List;
 import model.entities.Paciente;
 
 public interface IController<DTO, Entity> {
-	void create(DTO dto);
+	int create(DTO dto);
 
 	// void update(T entity);
 	void delete(int id);

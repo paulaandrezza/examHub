@@ -14,12 +14,12 @@ import model.persistence.dao.interfaces.IGenericDAO;
 public abstract class GenericDAO<DTO> implements IGenericDAO<DTO> {
 	protected Connection connection;
 	private String sqlQuery;
-	private String fileName;
+	private String tableName;
 
-	public GenericDAO(String fileName) {
+	public GenericDAO(String tableName) {
 		this.connection = DatabaseConnection.getConnection();
-		this.fileName = fileName;
-		this.sqlQuery = DatabaseConnection.loadSQL("resources/sql/querys/" + fileName + ".sql");
+		this.tableName = tableName;
+		this.sqlQuery = DatabaseConnection.loadSQL("resources/sql/querys/" + tableName + ".sql");
 	}
 
 	@Override
@@ -95,6 +95,20 @@ public abstract class GenericDAO<DTO> implements IGenericDAO<DTO> {
 			throw e;
 		}
 		return resultList;
+	}
+
+	@Override
+	public void delete(int id) throws SQLException {
+		String sql = "DELETE FROM " + tableName + " WHERE id = ?";
+		try (PreparedStatement statement = connection.prepareStatement(sql)) {
+			connection.setAutoCommit(false);
+			statement.setInt(1, id);
+			int affectedRows = statement.executeUpdate();
+			connection.commit();
+			if (affectedRows == 0) {
+				throw new SQLException("Deleting failed, no rows affected.");
+			}
+		}
 	}
 
 	protected abstract DTO convertResultSetToEntityDTO(ResultSet resultSet) throws SQLException;

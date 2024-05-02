@@ -9,4 +9,6 @@ public interface IGenericDAO<DTO> {
 	List<DTO> findByField(String fieldName, Object fieldValue) throws SQLException;
 
 	<E> int save(E entity, String tableName) throws SQLException;
+
+	void delete(int id) throws SQLException;
 }

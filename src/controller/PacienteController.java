@@ -20,19 +20,24 @@ public class PacienteController implements IController<PacienteFullDTO, Paciente
 	}
 
 	@Override
-	public void create(PacienteFullDTO dto) {
+	public int create(PacienteFullDTO dto) {
 		Paciente paciente = convertDtoToEntity(dto);
 		try {
-			pacienteDao.save(paciente);
+			return pacienteDao.save(paciente);
 		} catch (Exception e) {
 			System.out.println("Erro ao adicionar paciente: " + e.getMessage());
+			throw e;
 		}
 	}
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
-
+		try {
+			pacienteDao.delete(id);
+			System.out.println("Entity deleted successfully.");
+		} catch (SQLException e) {
+			System.err.println("Error during entity deletion: " + e.getMessage());
+		}
 	}
 
 	@Override

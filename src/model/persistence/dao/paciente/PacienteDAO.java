@@ -55,12 +55,6 @@ public class PacienteDAO extends GenericDAO<PacienteFullDTO> implements ICommonD
 	}
 
 	@Override
-	public void delete(int id) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public PacienteFullDTO convertResultSetToEntityDTO(ResultSet resultSet) throws SQLException {
 		int idPaciente = resultSet.getInt("paciente_id");
 

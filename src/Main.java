@@ -18,10 +18,15 @@ public class Main {
 				"Rua A", "100", "Apt 101", 1.75f, false, false, 987654321, "Saúde Plena", "Plano Premium", "Nenhum",
 				"Paracetamol", "Tomar 1 vez ao dia");
 
-		pacienteController.create(pacienteFullDTO);
+		int pacienteId = pacienteController.create(pacienteFullDTO);
 		System.out.println(pacienteController.getAll());
 		System.out.println("\nJoão Silva: " + pacienteController.searchByField("nome", "João Silva"));
 		System.out.println("\nNão Fumantes: " + pacienteController.searchByField("fumante", false));
+
+		// TODO: Delete não está funcionando em cascade mode, só apaga o registro em
+		// Paciente.
+		// pacienteController.delete(2);
+		// System.out.println("\n" + pacienteController.getAll());
 
 		// System.out.println("\n\njava.util.Date: " + new Date(2000, 03, 25));
 		// System.out.println("sql.date: " + new java.sql.Date(2000, 03, 25));
