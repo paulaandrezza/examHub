@@ -17,4 +17,28 @@ public class Convenio extends BaseEntity {
 		this.prestadora = prestadora;
 		this.plano = plano;
 	}
+
+	public long getNumeroCarteirinha() {
+		return numeroCarteirinha;
+	}
+
+	public void setNumeroCarteirinha(long numeroCarteirinha) {
+		this.numeroCarteirinha = numeroCarteirinha;
+	}
+
+	public String getPrestadora() {
+		return prestadora;
+	}
+
+	public void setPrestadora(String prestadora) {
+		this.prestadora = prestadora;
+	}
+
+	public String getPlano() {
+		return plano;
+	}
+
+	public void setPlano(String plano) {
+		this.plano = plano;
+	}
 }
