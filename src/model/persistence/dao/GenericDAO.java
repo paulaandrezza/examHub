@@ -70,14 +70,14 @@ public abstract class GenericDAO<T> implements IGenericDAO<T> {
 	        }
 	        int affectedRows = statement.executeUpdate();
 	        if (affectedRows == 0) {
-	            throw new SQLException("Creating user failed, no rows affected.");
+	            throw new SQLException("Creating" + tableName + "failed, no rows affected.");
 	        }
 
 	        try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
 	            if (generatedKeys.next()) {
 	                return generatedKeys.getInt(1);
 	            } else {
-	                throw new SQLException("Creating user failed, no ID obtained.");
+	                throw new SQLException("Creating" + tableName + "failed, no ID obtained.");
 	            }
 	        }
 	    } catch (SQLException e) {
