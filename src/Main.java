@@ -1,7 +1,4 @@
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.Date;
 
 import controller.PacienteController;
 import model.enums.Genero;
@@ -30,7 +27,10 @@ public class Main {
 		// System.out.println("sql.date: " + new java.sql.Date(2000, 03, 25));
 		// System.out.println("java.time.LocalDate: " + LocalDate.of(2000, 3, 25));
 		// System.out.println("java.time.LocalTime: " + LocalTime.of(10, 20));
-		// System.out.println("java.time.LocalDateTime: " + LocalDateTime.of(200, 03, 25, 10, 20));
+		// System.out.println("java.time.LocalDateTime: " + LocalDateTime.of(200, 03,
+		// 25, 10, 20));
+		// System.out.println("java.sql.Timestamp: " + new java.sql.Timestamp(2000, 03,
+		// 25, 10, 20, 0, 0));
 
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
