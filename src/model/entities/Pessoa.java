@@ -2,7 +2,7 @@ package model.entities;
 
 import java.time.LocalDate;
 
-import model.enums.Genero;
+import model.enums.EnumGenero;
 
 public class Pessoa extends BaseEntity {
 	String nome;
@@ -11,11 +11,11 @@ public class Pessoa extends BaseEntity {
 	long celular;
 	long telefone;
 	String email;
-	Genero genero;
+	EnumGenero genero;
 	Endereco endereco;
 
 	public Pessoa(int id, String nome, String cpf, LocalDate dataNascimento, long celular, long telefone, String email,
-			Genero genero, Endereco endereco) {
+			EnumGenero genero, Endereco endereco) {
 		super(id);
 		this.nome = nome;
 		this.cpf = cpf;
@@ -28,7 +28,7 @@ public class Pessoa extends BaseEntity {
 	}
 
 	public Pessoa(String nome, String cpf, LocalDate dataNascimento, long celular, long telefone, String email,
-			Genero genero, Endereco endereco) {
+			EnumGenero genero, Endereco endereco) {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.dataNascimento = dataNascimento;
@@ -93,11 +93,11 @@ public class Pessoa extends BaseEntity {
 		this.email = email;
 	}
 
-	public Genero getGenero() {
+	public EnumGenero getGenero() {
 		return genero;
 	}
 
-	public void setGenero(Genero genero) {
+	public void setGenero(EnumGenero genero) {
 		this.genero = genero;
 	}
 

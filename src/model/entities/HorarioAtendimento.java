@@ -2,14 +2,14 @@ package model.entities;
 
 import java.time.LocalTime;
 
-import model.enums.DiaDaSemana;
+import model.enums.EnumDiaDaSemana;
 
 public class HorarioAtendimento extends BaseEntity {
-	DiaDaSemana diaDaSemana;
+	EnumDiaDaSemana diaDaSemana;
 	LocalTime horarioInicio;
 	LocalTime horarioFim;
 	
-	public HorarioAtendimento(int id, DiaDaSemana diaDaSemana, LocalTime horarioInicio, LocalTime horarioFim) {
+	public HorarioAtendimento(int id, EnumDiaDaSemana diaDaSemana, LocalTime horarioInicio, LocalTime horarioFim) {
 		super(id);
 		this.diaDaSemana = diaDaSemana;
 		this.horarioInicio = horarioInicio;

@@ -64,14 +64,6 @@ CREATE TABLE IF NOT EXISTS Funcionario (
     FOREIGN KEY (pessoa_id) REFERENCES Pessoa(id) ON DELETE CASCADE
 );
 
--- table Medico
-CREATE TABLE IF NOT EXISTS Medico (
-    id INTEGER PRIMARY KEY,
-    funcionario_id INT NOT NULL,
-    especialidade INT NOT NULL,
-    FOREIGN KEY (funcionario_id) REFERENCES Funcionario(id) ON DELETE CASCADE
-);
-
 -- table HorarioAtendimento
 CREATE TABLE IF NOT EXISTS HorarioAtendimento (
     id INTEGER PRIMARY KEY,
@@ -79,7 +71,7 @@ CREATE TABLE IF NOT EXISTS HorarioAtendimento (
     diaDaSemana INT NOT NULL,
     horarioInicio TIME NOT NULL,
     horarioFim TIME NOT NULL,
-    FOREIGN KEY (medico_id) REFERENCES Medico(id) ON DELETE CASCADE
+    FOREIGN KEY (medico_id) REFERENCES Funcionario(id) ON DELETE CASCADE
 );
 
 
