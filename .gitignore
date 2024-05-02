@@ -32,3 +32,5 @@ out/
 
 # database
 *.db
+
+.meta
