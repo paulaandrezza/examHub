@@ -25,8 +25,9 @@ public class Main {
 
 		// TODO: Delete não está funcionando em cascade mode, só apaga o registro em
 		// Paciente.
-		// pacienteController.delete(2);
 		// System.out.println("\n" + pacienteController.getAll());
+		// pacienteController.delete(2);
+		System.out.println("\n" + pacienteController.getAll());
 
 		// System.out.println("\n\njava.util.Date: " + new Date(2000, 03, 25));
 		// System.out.println("sql.date: " + new java.sql.Date(2000, 03, 25));
