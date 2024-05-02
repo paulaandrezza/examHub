@@ -9,10 +9,6 @@
 	<classpathentry kind="lib" path="jarFiles/slf4j-api-2.0.13.jar"/>
 	<classpathentry kind="lib" path="jarFiles/slf4j-simple-2.0.13.jar"/>
 	<classpathentry kind="lib" path="jarFiles/sqlite-jdbc-3.45.3.0.jar"/>
-	<classpathentry kind="lib" path="com.jgoodies.forms_1.9.0.v20240327-0800.jar"/>
-	<classpathentry kind="lib" path="com.jgoodies.common_1.8.1.v20240327-0800.jar"/>
-	<classpathentry kind="lib" path="com.miglayout.swing_11.3.0.jar"/>
-	<classpathentry kind="lib" path="com.miglayout.core_11.3.0.jar"/>
 	<classpathentry kind="lib" path="jarFiles/com.jgoodies.common_1.8.1.v20240327-0800.jar"/>
 	<classpathentry kind="lib" path="jarFiles/com.jgoodies.forms_1.9.0.v20240327-0800.jar"/>
 	<classpathentry kind="lib" path="jarFiles/com.miglayout.swing_11.3.0.jar"/>

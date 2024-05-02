@@ -6,6 +6,7 @@ public abstract class Paciente extends BaseEntity {
 	boolean marcaPasso;
 	Convenio convenio;
 	HistoricoMedico historicoMedico;
+	Pessoa pessoa;
 	
 	public Paciente(int id, float altura, boolean fumante, boolean marcaPasso, Convenio convenio,
 			HistoricoMedico historicoMedico) {

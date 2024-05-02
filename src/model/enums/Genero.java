@@ -15,4 +15,13 @@ public enum Genero {
     public int getValue() {
         return this.value;
     }
+    
+    public static Genero fromInt(int value) {
+        for (Genero g : Genero.values()) {
+            if (g.getValue() == value) {
+                return g;
+            }
+        }
+        throw new IllegalArgumentException("Valor desconhecido para Genero: " + value);
+    }
 }

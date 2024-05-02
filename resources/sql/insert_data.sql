@@ -30,5 +30,5 @@ VALUES (NULL, 'Ibuprofeno', NULL);
 INSERT INTO Pessoa (nome, cpf, dataNascimento, celular, email, genero, endereco_id)
 VALUES ('Michele Nonato', '123.456.789-01', '1985-04-12', 11999887766, 'michele.nonato@example.com', 2, 2);
 
-INSERT INTO Paciente (altura, fumante, marcaPasso, convenio_id, historicoMedico_id)
-VALUES (1.65, FALSE, FALSE, 1, 1);
+INSERT INTO Paciente (altura, fumante, marcaPasso, convenio_id, historicoMedico_id, pessoa_id)
+VALUES (1.65, FALSE, FALSE, 1, 1, 2);
