@@ -16,8 +16,8 @@ public class Main {
 		DatabaseConnection dbConnection = new DatabaseConnection();
         dbConnection.connectAndExecute();
         
-       PacienteDAO pacienteFulldao = new PacienteDAO();
-       System.out.print(pacienteFulldao.getAll());
+       PacienteDAO pacienteDao = new PacienteDAO();
+       System.out.print(pacienteDao.getAll());
        
        Endereco endereco = new Endereco(
                123456,
@@ -61,8 +61,8 @@ public class Main {
                pessoa
            );
        
-       pacienteFulldao.save(endereco, convenio, historicoMedico, pessoa, paciente);
-       System.out.print(pacienteFulldao.getAll());
+       pacienteDao.save(endereco, convenio, historicoMedico, pessoa, paciente);
+       System.out.print(pacienteDao.getAll());
 
        javax.swing.SwingUtilities.invokeLater(new Runnable() {
            public void run() {
