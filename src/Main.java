@@ -20,6 +20,8 @@ public class Main {
 
 		pacienteController.create(pacienteFullDTO);
 		System.out.println(pacienteController.getAll());
+		System.out.println("\nJoão Silva: " + pacienteController.searchByField("nome", "João Silva"));
+		System.out.println("\nNão Fumantes: " + pacienteController.searchByField("fumante", false));
 
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {

@@ -78,5 +78,24 @@ public abstract class GenericDAO<T> implements IGenericDAO<T> {
 		}
 	}
 
+	@Override
+	public List<T> findByField(String fieldName, Object fieldValue) throws SQLException {
+		List<T> resultList = new ArrayList<>();
+		String query = sqlQuery + " WHERE " + fieldName + " = ?";
+		try (PreparedStatement statement = connection.prepareStatement(query)) {
+			statement.setObject(1, fieldValue);
+			try (ResultSet resultSet = statement.executeQuery()) {
+				while (resultSet.next()) {
+					T entity = convertResultSetToEntity(resultSet);
+					resultList.add(entity);
+				}
+			}
+		} catch (SQLException e) {
+			System.err.println("Erro ao executar consulta: " + e.getMessage());
+			throw e;
+		}
+		return resultList;
+	}
+
 	protected abstract T convertResultSetToEntity(ResultSet resultSet) throws SQLException;
 }

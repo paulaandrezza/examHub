@@ -1,5 +1,6 @@
 package controller;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,22 +36,21 @@ public class PacienteController implements IController<PacienteFullDTO, Paciente
 	}
 
 	@Override
-	public Paciente get(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Paciente> getAll() {
+		List<PacienteFullDTO> pacientesFullDTO = pacienteDao.getAll();
+
+		return convertDtoListToEntityList(pacientesFullDTO);
 	}
 
 	@Override
-	public List<Paciente> getAll() {
-		List<PacienteFullDTO> pacientesFullDTO = pacienteDao.getAll();
-		List<Paciente> pacientes = new ArrayList<Paciente>();
-
-		for (PacienteFullDTO dto : pacientesFullDTO) {
-			Paciente paciente = convertDtoToEntity(dto);
-			pacientes.add(paciente);
+	public List<Paciente> searchByField(String fieldName, Object fieldValue) {
+		try {
+			List<PacienteFullDTO> pacientesFullDTO = pacienteDao.findByField(fieldName, fieldValue);
+			return convertDtoListToEntityList(pacientesFullDTO);
+		} catch (SQLException e) {
+			System.err.println("Erro ao buscar pacientes: " + e.getMessage());
+			return null;
 		}
-
-		return pacientes;
 	}
 
 	@Override
@@ -70,5 +70,16 @@ public class PacienteController implements IController<PacienteFullDTO, Paciente
 				historicoMedico, pessoa);
 
 		return paciente;
+	}
+
+	public List<Paciente> convertDtoListToEntityList(List<PacienteFullDTO> pacientesFullDTO) {
+		List<Paciente> pacientes = new ArrayList<Paciente>();
+
+		for (PacienteFullDTO dto : pacientesFullDTO) {
+			Paciente paciente = convertDtoToEntity(dto);
+			pacientes.add(paciente);
+		}
+
+		return pacientes;
 	}
 }
