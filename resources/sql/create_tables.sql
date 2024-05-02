@@ -91,9 +91,8 @@ CREATE TABLE IF NOT EXISTS HorarioExame (
     id INTEGER PRIMARY KEY,
     dataEhorario DATETIME NOT NULL,
     paciente_id INT NOT NULL,
-    medicoSolicitante_id INT NOT NULL,
-    FOREIGN KEY (paciente_id) REFERENCES Paciente(id),
-    FOREIGN KEY (medicoSolicitante_id) REFERENCES Medico(id)
+    medicoSolicitante VARCHAR(255) NOT NULL,
+    FOREIGN KEY (paciente_id) REFERENCES Paciente(id)
 );
 
 -- table ControleEntrega
