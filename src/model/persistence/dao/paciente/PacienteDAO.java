@@ -11,24 +11,55 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.entities.Convenio;
+import model.entities.Endereco;
+import model.entities.HistoricoMedico;
+import model.entities.Paciente;
+import model.entities.Pessoa;
 import model.enums.Genero;
 import model.exceptions.EntityNotFoundException;
 import model.persistence.DatabaseConnection;
 import model.persistence.dao.GenericDAO;
 import model.persistence.dao.interfaces.ICommonDAO;
 import model.persistence.dao.interfaces.IGenericDAO;
+import model.persistence.dao.interfaces.IPacienteDAO;
 
-public class PacienteDAO extends GenericDAO<PacienteDTO> implements ICommonDAO<PacienteDTO> {
+public class PacienteDAO extends GenericDAO<PacienteFullDTO> implements ICommonDAO<PacienteFullDTO>, IPacienteDAO {
 
 	public PacienteDAO() {
 		super("paciente");
 	}
-
+	
 	@Override
-	public int save(PacienteDTO t) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int save(Endereco endereco, Convenio convenio, HistoricoMedico historicoMedico, Pessoa pessoa, Paciente paciente) {
+	    try {
+	        connection.setAutoCommit(false);
+
+	        int enderecoId = super.save(endereco, "endereco");
+	        int convenioId = super.save(convenio, "convenio");
+	        int historicoMedicoId = super.save(historicoMedico, "historicoMedico");
+	        
+	        PessoaDTO pessoaDTO = new PessoaDTO(pessoa.getNome(), pessoa.getCpf(), pessoa.getDataNascimento(), pessoa.getCelular(), pessoa.getTelefone(), pessoa.getEmail(), pessoa.getGenero().getValue(), enderecoId);
+	        int pessoaId = super.save(pessoaDTO, "pessoa");
+	        
+	        PacienteDTO pacienteDAO = new PacienteDTO(paciente.getAltura(), paciente.isFumante(), paciente.isMarcaPasso(), convenioId, historicoMedicoId, pessoaId);
+	        int pacienteId = super.save(pacienteDAO, "paciente");
+
+	        connection.commit();
+
+	        return pacienteId;
+	    } catch (SQLException e) {
+	        System.err.println("Erro ao salvar paciente: " + e.getMessage());
+	        try {
+	            connection.rollback();  // Em caso de erro, reverta toda a transação
+	        } catch (SQLException ex) {
+	            System.err.println("Erro ao reverter transação: " + ex.getMessage());
+	        }
+	        return -1;
+	    }
 	}
+	
+
 
 	@Override
 	public void update(int id, String[] params) {
@@ -43,7 +74,7 @@ public class PacienteDAO extends GenericDAO<PacienteDTO> implements ICommonDAO<P
 	}
 
 	@Override
-	public PacienteDTO convertToEntity(ResultSet resultSet) throws SQLException {
+	public PacienteFullDTO convertToEntity(ResultSet resultSet) throws SQLException {
 		int idPaciente = resultSet.getInt("paciente_id");
 		
         String nome = resultSet.getString("nome");
@@ -74,7 +105,7 @@ public class PacienteDAO extends GenericDAO<PacienteDTO> implements ICommonDAO<P
         String medicamentos = resultSet.getString("medicamentos");
         String prescricao = resultSet.getString("prescricao");
 
-        return new PacienteDTO(
+        return new PacienteFullDTO(
             idPaciente, nome, cpf, dataNascimento, celular, telefone, email, genero,
             cep, estado, cidade, bairro, rua, numero, complemento, altura, fumante,
             marcaPasso, numeroCarteirinha, prestadora, plano, alergias, medicamentos, prescricao

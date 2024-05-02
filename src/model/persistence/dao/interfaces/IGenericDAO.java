@@ -10,4 +10,5 @@ import model.exceptions.EntityNotFoundException;
 public interface IGenericDAO<T> {
 	// T get(int id) throws EntityNotFoundException;
     List<T> getAll();
+    <E> int save(E entity, String tableName);
 }
