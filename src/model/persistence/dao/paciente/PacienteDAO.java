@@ -14,31 +14,15 @@ import java.util.List;
 import model.enums.Genero;
 import model.exceptions.EntityNotFoundException;
 import model.persistence.DatabaseConnection;
+import model.persistence.dao.GenericDAO;
+import model.persistence.dao.interfaces.ICommonDAO;
 import model.persistence.dao.interfaces.IGenericDAO;
 
-public class PacienteDAO implements IGenericDAO<PacienteDTO> {
-	protected Connection connection;
-	private String sqlQuery;
-	
-	public PacienteDAO() {
-		this.connection = DatabaseConnection.getConnection();
-		this.sqlQuery = DatabaseConnection.loadSQL("resources/sql/querys/paciente.sql");
-	}
+public class PacienteDAO extends GenericDAO<PacienteDTO> implements ICommonDAO<PacienteDTO> {
 
-	@Override
-	public List<PacienteDTO> getAll() {
-        List<PacienteDTO> list = new ArrayList<>();
-        try (PreparedStatement statement = connection.prepareStatement(sqlQuery);
-             ResultSet resultSet = statement.executeQuery()) {
-            while (resultSet.next()) {
-                PacienteDTO entity = convertToEntity(resultSet);
-                list.add(entity);
-            }
-        } catch (SQLException e) {
-            System.err.println("Erro ao executar consulta: " + e.getMessage());
-        }
-        return list;
-    }
+	public PacienteDAO() {
+		super("paciente");
+	}
 
 	@Override
 	public int save(PacienteDTO t) {
