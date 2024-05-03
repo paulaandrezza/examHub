@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 import model.entities.Paciente;
-import model.enums.Genero;
+import model.enums.EnumGenero;
 import model.persistence.dao.GenericDAO;
 import model.persistence.dao.interfaces.ICommonDAO;
 
@@ -65,7 +65,7 @@ public class PacienteDAO extends GenericDAO<PacienteFullDTO> implements ICommonD
 		long celular = resultSet.getLong("celular");
 		long telefone = resultSet.getLong("telefone");
 		String email = resultSet.getString("email");
-		Genero genero = Genero.fromInt(resultSet.getInt("genero"));
+		EnumGenero genero = EnumGenero.fromInt(resultSet.getInt("genero"));
 
 		int cep = resultSet.getInt("cep");
 		String estado = resultSet.getString("estado");

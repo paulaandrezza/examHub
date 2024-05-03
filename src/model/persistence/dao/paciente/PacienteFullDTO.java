@@ -2,7 +2,7 @@ package model.persistence.dao.paciente;
 
 import java.time.LocalDate;
 
-import model.enums.Genero;
+import model.enums.EnumGenero;
 
 public class PacienteFullDTO {
 	private int idPaciente;
@@ -13,7 +13,7 @@ public class PacienteFullDTO {
 	private long celular;
 	private long telefone;
 	private String email;
-	private Genero genero;
+	private EnumGenero genero;
 
 	private int cep;
 	private String estado;
@@ -36,7 +36,7 @@ public class PacienteFullDTO {
 	private String prescricao;
 
 	public PacienteFullDTO(int idPaciente, String nome, String cpf, LocalDate dataNascimento, long celular,
-			long telefone, String email, Genero genero, int cep, String estado, String cidade, String bairro,
+			long telefone, String email, EnumGenero genero, int cep, String estado, String cidade, String bairro,
 			String rua, String numero, String complemento, float altura, boolean fumante, boolean marcaPasso,
 			int numeroCarteirinha, String prestadora, String plano, String alergias, String medicamentos,
 			String prescricao) {
@@ -67,7 +67,7 @@ public class PacienteFullDTO {
 	}
 
 	public PacienteFullDTO(String nome, String cpf, LocalDate dataNascimento, long celular, long telefone, String email,
-			Genero genero, int cep, String estado, String cidade, String bairro, String rua, String numero,
+			EnumGenero genero, int cep, String estado, String cidade, String bairro, String rua, String numero,
 			String complemento, float altura, boolean fumante, boolean marcaPasso, int numeroCarteirinha,
 			String prestadora, String plano, String alergias, String medicamentos, String prescricao) {
 		this.nome = nome;
@@ -162,11 +162,11 @@ public class PacienteFullDTO {
 		this.email = email;
 	}
 
-	public Genero getGenero() {
+	public EnumGenero getGenero() {
 		return genero;
 	}
 
-	public void setGenero(Genero genero) {
+	public void setGenero(EnumGenero genero) {
 		this.genero = genero;
 	}
 

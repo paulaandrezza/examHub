@@ -1,16 +1,16 @@
 package model.entities.exames;
 
 import model.entities.BaseEntity;
-import model.entities.Medico;
+import model.entities.Funcionario;
 
 public class Exame extends BaseEntity {
 	float peso;
-	Medico medicoResponsavel;
+	Funcionario medicoResponsavel;
 	String conclusoes;
 	String detalhes;
 	int diagnosticoClinico;
-	
-	public Exame(int id, float peso, Medico medicoResponsavel, String conclusoes, String detalhes,
+
+	public Exame(int id, float peso, Funcionario medicoResponsavel, String conclusoes, String detalhes,
 			int diagnosticoClinico) {
 		super(id);
 		this.peso = peso;
@@ -19,4 +19,14 @@ public class Exame extends BaseEntity {
 		this.detalhes = detalhes;
 		this.diagnosticoClinico = diagnosticoClinico;
 	}
+
+	public Exame(float peso, Funcionario medicoResponsavel, String conclusoes, String detalhes,
+			int diagnosticoClinico) {
+		this.peso = peso;
+		this.medicoResponsavel = medicoResponsavel;
+		this.conclusoes = conclusoes;
+		this.detalhes = detalhes;
+		this.diagnosticoClinico = diagnosticoClinico;
+	}
+
 }
