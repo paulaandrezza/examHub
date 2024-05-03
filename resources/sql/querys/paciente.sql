@@ -33,4 +33,4 @@ FROM
     INNER JOIN Pessoa pe ON p.pessoa_id = pe.id
     LEFT JOIN Endereco e ON pe.endereco_id = e.id
     LEFT JOIN Convenio c ON p.convenio_id = c.id
-    LEFT JOIN HistoricoMedico h ON p.historicoMedico_id = h.id;
+    LEFT JOIN HistoricoMedico h ON p.historicoMedico_id = h.id

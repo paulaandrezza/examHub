@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS Pessoa (
     email VARCHAR(255) UNIQUE,
     genero INT NOT NULL,
     endereco_id INT NOT NULL,
-    FOREIGN KEY (endereco_id) REFERENCES Endereco(id)
+    FOREIGN KEY (endereco_id) REFERENCES Endereco(id) ON DELETE CASCADE
 );
 
 -- table Convenio
@@ -49,9 +49,9 @@ CREATE TABLE IF NOT EXISTS Paciente (
     convenio_id INT NOT NULL,
     historicoMedico_id INT NOT NULL,
     pessoa_id INT NOT NULL,
-    FOREIGN KEY (convenio_id) REFERENCES Convenio(id),
-    FOREIGN KEY (historicoMedico_id) REFERENCES HistoricoMedico(id)
-    FOREIGN KEY (pessoa_id) REFERENCES Pessoa(id)
+    FOREIGN KEY (convenio_id) REFERENCES Convenio(id) ON DELETE CASCADE,
+    FOREIGN KEY (historicoMedico_id) REFERENCES HistoricoMedico(id) ON DELETE CASCADE,
+    FOREIGN KEY (pessoa_id) REFERENCES Pessoa(id) ON DELETE CASCADE
 );
 
 -- table Funcionario
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS Funcionario (
     emailCorporativo VARCHAR(50) NOT NULL,
     senha VARCHAR(100) NOT NULL,
     tipoFuncionario INT NOT NULL,
-    FOREIGN KEY (pessoa_id) REFERENCES Pessoa(id)
+    FOREIGN KEY (pessoa_id) REFERENCES Pessoa(id) ON DELETE CASCADE
 );
 
 -- table Medico
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS Medico (
     id INTEGER PRIMARY KEY,
     funcionario_id INT NOT NULL,
     especialidade INT NOT NULL,
-    FOREIGN KEY (funcionario_id) REFERENCES Funcionario(id)
+    FOREIGN KEY (funcionario_id) REFERENCES Funcionario(id) ON DELETE CASCADE
 );
 
 -- table HorarioAtendimento
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS HorarioAtendimento (
     diaDaSemana INT NOT NULL,
     horarioInicio TIME NOT NULL,
     horarioFim TIME NOT NULL,
-    FOREIGN KEY (medico_id) REFERENCES Medico(id)
+    FOREIGN KEY (medico_id) REFERENCES Medico(id) ON DELETE CASCADE
 );
 
 

@@ -34,3 +34,4 @@ out/
 *.db
 
 .meta
+*.db-journal
