@@ -270,8 +270,24 @@ public class PacientePanel extends JPanel {
 		lblMedicamentos.setAlignmentX(0.5f);
 		medicamentosBox.add(lblMedicamentos);
 
-		TextArea textAreaAlergias_1 = new TextArea();
-		medicamentosBox.add(textAreaAlergias_1);
+		TextArea textMedicamentos = new TextArea();
+		medicamentosBox.add(textMedicamentos);
+
+		Component verticalStrut_1_2 = Box.createHorizontalStrut(20);
+		historicoMedicoBox.add(verticalStrut_1_2);
+
+		Box condicaoMedicaBox = Box.createVerticalBox();
+		condicaoMedicaBox.setMinimumSize(new Dimension(200, 32));
+		condicaoMedicaBox.setAlignmentY(0.5f);
+		historicoMedicoBox.add(condicaoMedicaBox);
+
+		JLabel lblcondicaoMedica = new JLabel("Condição Médica:");
+		lblcondicaoMedica.setFont(new Font("Verdana", Font.BOLD, 16));
+		lblcondicaoMedica.setAlignmentX(0.5f);
+		condicaoMedicaBox.add(lblcondicaoMedica);
+
+		TextArea textAreacondicaoMedica = new TextArea();
+		condicaoMedicaBox.add(textAreacondicaoMedica);
 
 		Component verticalStrut_1_1 = Box.createVerticalStrut(20);
 		historicoMedicoBox.add(verticalStrut_1_1);
