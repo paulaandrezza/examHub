@@ -1,23 +1,7 @@
 package view.gui;
 
-import java.awt.Component;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.TextArea;
-import java.awt.TextField;
-
-import javax.swing.Box;
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JSeparator;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.SwingConstants;
-import javax.swing.UIManager;
+import java.awt.*;
+import javax.swing.*;
 
 public class PacientePanel extends JPanel {
 
@@ -55,7 +39,8 @@ public class PacientePanel extends JPanel {
 		JSpinner spinnerAltura = new JSpinner();
 		alturaBox.add(spinnerAltura);
 		spinnerAltura.setFont(new Font("Verdana", Font.PLAIN, 12));
-		spinnerAltura.setModel(new SpinnerNumberModel(Float.valueOf(0), null, null, Float.valueOf(1)));
+		spinnerAltura.setModel(
+				new SpinnerNumberModel(Float.valueOf(0), Float.valueOf(0), Float.valueOf(3), Float.valueOf(1)));
 
 		Box fumanteBox = Box.createHorizontalBox();
 		fumanteBox.setMinimumSize(new Dimension(200, 32));
@@ -165,7 +150,6 @@ public class PacientePanel extends JPanel {
 
 		JLabel lblNumeroCar = new JLabel("Número da Carteirinha:");
 		lblNumeroCar.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblNumeroCar.setAlignmentX(0.5f);
 		numeroCarBox.add(lblNumeroCar);
 
 		Component horizontalStrut_4 = Box.createHorizontalStrut(20);
@@ -173,7 +157,8 @@ public class PacientePanel extends JPanel {
 		numeroCarBox.add(horizontalStrut_4);
 
 		JSpinner spinnerNumeroCar = new JSpinner();
-		spinnerNumeroCar.setModel(new SpinnerNumberModel(Integer.valueOf(0), null, null, Integer.valueOf(1)));
+		spinnerNumeroCar
+				.setModel(new SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
 		spinnerNumeroCar.setFont(new Font("Verdana", Font.PLAIN, 12));
 		numeroCarBox.add(spinnerNumeroCar);
 
@@ -294,7 +279,7 @@ public class PacientePanel extends JPanel {
 
 		Box acaoBox = Box.createHorizontalBox();
 		acaoBox.setAlignmentY(Component.CENTER_ALIGNMENT);
-		acaoBox.setBounds(598, 569, 160, 32);
+		acaoBox.setBounds(592, 569, 166, 32);
 		add(acaoBox);
 
 		JButton btnCancelar = new JButton("Cancelar");
