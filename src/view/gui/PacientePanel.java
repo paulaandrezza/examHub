@@ -3,43 +3,27 @@ package view.gui;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.TextArea;
 import java.awt.TextField;
 
 import javax.swing.Box;
 import javax.swing.ButtonGroup;
-import javax.swing.JFrame;
+import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSeparator;
 import javax.swing.JSpinner;
-import javax.swing.JToggleButton;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
-public class PacientePanel extends JFrame {
+public class PacientePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private final ButtonGroup buttonGroup = new ButtonGroup();
-	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PacientePanel frame = new PacientePanel();
-					frame.setVisible(true);
-					// Centralize a janela ao iniciar
-					frame.setLocationRelativeTo(null);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private final ButtonGroup fumanteGroup = new ButtonGroup();
+	private final ButtonGroup marcaPassoGroup = new ButtonGroup();
 
 	/**
 	 * Create the panel.
@@ -95,7 +79,7 @@ public class PacientePanel extends JFrame {
 		fumanteBox.add(radioFumanteBox);
 
 		JRadioButton rdbtnFumanteYes = new JRadioButton("Sim");
-		buttonGroup.add(rdbtnFumanteYes);
+		fumanteGroup.add(rdbtnFumanteYes);
 		radioFumanteBox.add(rdbtnFumanteYes);
 		rdbtnFumanteYes.setFont(new Font("Verdana", Font.PLAIN, 12));
 
@@ -103,7 +87,7 @@ public class PacientePanel extends JFrame {
 		radioFumanteBox.add(horizontalStrut_2);
 
 		JRadioButton rdbtnFumanteNo = new JRadioButton("Não");
-		buttonGroup.add(rdbtnFumanteNo);
+		fumanteGroup.add(rdbtnFumanteNo);
 		radioFumanteBox.add(rdbtnFumanteNo);
 		rdbtnFumanteNo.setFont(new Font("Verdana", Font.PLAIN, 12));
 
@@ -129,7 +113,7 @@ public class PacientePanel extends JFrame {
 		marcaPassoBox.add(radioMarcaPassoBox);
 
 		JRadioButton rdbtnMarcaPassoYes = new JRadioButton("Sim");
-		buttonGroup_1.add(rdbtnMarcaPassoYes);
+		marcaPassoGroup.add(rdbtnMarcaPassoYes);
 		rdbtnMarcaPassoYes.setFont(new Font("Verdana", Font.PLAIN, 12));
 		radioMarcaPassoBox.add(rdbtnMarcaPassoYes);
 
@@ -137,7 +121,7 @@ public class PacientePanel extends JFrame {
 		radioMarcaPassoBox.add(horizontalStrut_2_1);
 
 		JRadioButton rdbtnMarcaPassoNo = new JRadioButton("Não");
-		buttonGroup_1.add(rdbtnMarcaPassoNo);
+		marcaPassoGroup.add(rdbtnMarcaPassoNo);
 		rdbtnMarcaPassoNo.setFont(new Font("Verdana", Font.PLAIN, 12));
 		radioMarcaPassoBox.add(rdbtnMarcaPassoNo);
 
@@ -292,8 +276,18 @@ public class PacientePanel extends JFrame {
 		Component verticalStrut_1_1 = Box.createVerticalStrut(20);
 		historicoMedicoBox.add(verticalStrut_1_1);
 
-		JToggleButton tglbtnNewToggleButton = new JToggleButton("New toggle button");
-		tglbtnNewToggleButton.setBounds(645, 580, 115, 21);
-		add(tglbtnNewToggleButton);
+		Box acaoBox = Box.createHorizontalBox();
+		acaoBox.setAlignmentY(Component.CENTER_ALIGNMENT);
+		acaoBox.setBounds(598, 569, 160, 32);
+		add(acaoBox);
+
+		JButton btnCancelar = new JButton("Cancelar");
+		acaoBox.add(btnCancelar);
+
+		Component horizontalStrut_5 = Box.createHorizontalStrut(20);
+		acaoBox.add(horizontalStrut_5);
+
+		JButton btnProximo_1 = new JButton("Próximo");
+		acaoBox.add(btnProximo_1);
 	}
 }
