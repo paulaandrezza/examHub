@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS HistoricoMedico (
     id INTEGER PRIMARY KEY,
     alergias TEXT,
     medicamentos TEXT,
-    prescricao TEXT
+    condicaoMedica TEXT
 );
 
 -- table Paciente

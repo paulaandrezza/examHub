@@ -85,10 +85,10 @@ public class PacienteDAO extends GenericDAO<PacienteFullDTO> implements ICommonD
 
 		String alergias = resultSet.getString("alergias");
 		String medicamentos = resultSet.getString("medicamentos");
-		String prescricao = resultSet.getString("prescricao");
+		String condicaoMedica = resultSet.getString("condicaoMedica");
 
 		return new PacienteFullDTO(idPaciente, nome, cpf, dataNascimento, celular, telefone, email, genero, cep, estado,
 				cidade, bairro, rua, numero, complemento, altura, fumante, marcaPasso, numeroCarteirinha, prestadora,
-				plano, alergias, medicamentos, prescricao);
+				plano, alergias, medicamentos, condicaoMedica);
 	}
 }

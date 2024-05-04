@@ -1,9 +1,5 @@
 package model.persistence.dao.paciente;
 
-import model.entities.Convenio;
-import model.entities.HistoricoMedico;
-import model.entities.Pessoa;
-
 public class PacienteDTO {
 	float altura;
 	boolean fumante;

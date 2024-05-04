@@ -1,23 +1,17 @@
 package view;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
-import net.miginfocom.swing.MigLayout;
-import java.awt.GridLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import com.jgoodies.forms.layout.FormSpecs;
-import javax.swing.JLabel;
+import java.awt.EventQueue;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
+
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+import net.miginfocom.swing.MigLayout;
 
 public class TelaLogin {
 
@@ -58,41 +52,41 @@ public class TelaLogin {
 		frame.setBounds(100, 100, 1360, 720);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new MigLayout("", "[300px][800px][300px]", "[100px][600px][100px]"));
-		
+
 		JPanel panelLogin = new JPanel();
 		panelLogin.setBackground(new Color(249, 249, 249));
 		frame.getContentPane().add(panelLogin, "cell 1 1,grow");
 		panelLogin.setLayout(null);
-		
+
 		JLabel lblBemVindo = new JLabel("Bem-vindo!");
 		lblBemVindo.setForeground(new Color(36, 38, 55));
 		lblBemVindo.setBounds(330, 60, 140, 30);
 		lblBemVindo.setFont(new Font("Tahoma", Font.BOLD, 24));
 		panelLogin.add(lblBemVindo);
-		
+
 		textUsuario = new JTextField();
 		textUsuario.setForeground(new Color(178, 178, 178));
 		textUsuario.setText("Digite seu usuário...");
 		textUsuario.setBounds(160, 190, 500, 30);
 		panelLogin.add(textUsuario);
 		textUsuario.setColumns(10);
-		
+
 		JLabel lblUsuario = new JLabel("Usuário");
 		lblUsuario.setForeground(new Color(36, 38, 55));
 		lblUsuario.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblUsuario.setBounds(160, 165, 60, 14);
 		panelLogin.add(lblUsuario);
-		
+
 		passwordField = new JPasswordField();
 		passwordField.setBounds(160, 310, 500, 30);
 		panelLogin.add(passwordField);
-		
+
 		JLabel lblSenha = new JLabel("Senha");
 		lblSenha.setForeground(new Color(36, 38, 55));
 		lblSenha.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblSenha.setBounds(165, 285, 60, 14);
 		panelLogin.add(lblSenha);
-		
+
 		JButton btnEntrar = new JButton("Entrar");
 		btnEntrar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnEntrar.setForeground(new Color(244, 244, 244));
