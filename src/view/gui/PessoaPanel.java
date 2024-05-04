@@ -19,13 +19,13 @@ import model.enums.EnumGenero;
 public class PessoaPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textFieldNome;
 	private JTextField textFieldCPF;
 	private JTextField textFieldRG;
 	private JTextField textField;
 	private JTextField textCelular;
 	private JTextField textFieldTelefone;
 	private JTextField textFieldEmail;
+	private JTextField textField_1;
 
 	/**
 	 * Create the panel.
@@ -46,9 +46,12 @@ public class PessoaPanel extends JPanel {
 		JSeparator hr = new JSeparator();
 		pessoaTitulo.add(hr);
 
+		Box dadosPessoaisBox = Box.createHorizontalBox();
+		dadosPessoaisBox.setBounds(10, 65, 750, 32);
+		add(dadosPessoaisBox);
+
 		Box nomeBox = Box.createHorizontalBox();
-		nomeBox.setBounds(10, 65, 750, 32);
-		add(nomeBox);
+		dadosPessoaisBox.add(nomeBox);
 
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setFont(new Font("Verdana", Font.BOLD, 16));
@@ -57,10 +60,10 @@ public class PessoaPanel extends JPanel {
 		Component horizontalStrut_1 = Box.createHorizontalStrut(8);
 		nomeBox.add(horizontalStrut_1);
 
-		textFieldNome = new JTextField();
-		textFieldNome.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textFieldNome.setColumns(30);
-		nomeBox.add(textFieldNome);
+		textField_1 = new JTextField();
+		textField_1.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textField_1.setColumns(30);
+		nomeBox.add(textField_1);
 
 		Component horizontalStrut = Box.createHorizontalStrut(20);
 		horizontalStrut.setBounds(10, 97, 750, 32);
@@ -118,7 +121,7 @@ public class PessoaPanel extends JPanel {
 		rgBox.add(textFieldRG);
 
 		Box dataNascimentoBox = Box.createHorizontalBox();
-		nomeBox.add(dataNascimentoBox);
+		dadosPessoaisBox.add(dataNascimentoBox);
 
 		Component horizontalStrut_2_1_1 = Box.createHorizontalStrut(32);
 		dataNascimentoBox.add(horizontalStrut_2_1_1);
@@ -236,8 +239,8 @@ public class PessoaPanel extends JPanel {
 		Component horizontalStrut_2_2_1 = Box.createHorizontalStrut(8);
 		generoBox.add(horizontalStrut_2_2_1);
 
-		JComboBox comboBoxGenero = new JComboBox();
-		comboBoxGenero.setModel(new DefaultComboBoxModel(EnumGenero.values()));
+		JComboBox<Object> comboBoxGenero = new JComboBox<Object>();
+		comboBoxGenero.setModel(new DefaultComboBoxModel<Object>(EnumGenero.values()));
 		comboBoxGenero.setSelectedIndex(0);
 		generoBox.add(comboBoxGenero);
 
