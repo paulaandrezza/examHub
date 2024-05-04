@@ -1,7 +1,23 @@
 package view.gui;
 
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.TextArea;
+import java.awt.TextField;
+
+import javax.swing.Box;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JSeparator;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 
 public class PacientePanel extends JPanel {
 
@@ -32,7 +48,7 @@ public class PacientePanel extends JPanel {
 		lblAltura.setAlignmentX(Component.CENTER_ALIGNMENT);
 		lblAltura.setFont(new Font("Verdana", Font.BOLD, 16));
 
-		Component horizontalStrut = Box.createHorizontalStrut(20);
+		Component horizontalStrut = Box.createHorizontalStrut(8);
 		horizontalStrut.setMaximumSize(new Dimension(16, 32767));
 		alturaBox.add(horizontalStrut);
 
@@ -47,7 +63,7 @@ public class PacientePanel extends JPanel {
 		fumanteBox.setAlignmentY(Component.CENTER_ALIGNMENT);
 		pacienteBox.add(fumanteBox);
 
-		Component horizontalStrut_1_1 = Box.createHorizontalStrut(20);
+		Component horizontalStrut_1_1 = Box.createHorizontalStrut(32);
 		horizontalStrut_1_1.setMaximumSize(new Dimension(16, 32767));
 		fumanteBox.add(horizontalStrut_1_1);
 
@@ -56,11 +72,12 @@ public class PacientePanel extends JPanel {
 		lblFumante.setAlignmentX(0.5f);
 		fumanteBox.add(lblFumante);
 
-		Component horizontalStrut_1 = Box.createHorizontalStrut(20);
+		Component horizontalStrut_1 = Box.createHorizontalStrut(8);
 		horizontalStrut_1.setMaximumSize(new Dimension(16, 32767));
 		fumanteBox.add(horizontalStrut_1);
 
 		Box radioFumanteBox = Box.createHorizontalBox();
+		radioFumanteBox.setAlignmentY(Component.CENTER_ALIGNMENT);
 		fumanteBox.add(radioFumanteBox);
 
 		JRadioButton rdbtnFumanteYes = new JRadioButton("Sim");
@@ -68,7 +85,7 @@ public class PacientePanel extends JPanel {
 		radioFumanteBox.add(rdbtnFumanteYes);
 		rdbtnFumanteYes.setFont(new Font("Verdana", Font.PLAIN, 12));
 
-		Component horizontalStrut_2 = Box.createHorizontalStrut(20);
+		Component horizontalStrut_2 = Box.createHorizontalStrut(8);
 		radioFumanteBox.add(horizontalStrut_2);
 
 		JRadioButton rdbtnFumanteNo = new JRadioButton("Não");
@@ -81,7 +98,7 @@ public class PacientePanel extends JPanel {
 		marcaPassoBox.setAlignmentY(0.5f);
 		pacienteBox.add(marcaPassoBox);
 
-		Component horizontalStrut_1_1_1 = Box.createHorizontalStrut(20);
+		Component horizontalStrut_1_1_1 = Box.createHorizontalStrut(32);
 		horizontalStrut_1_1_1.setMaximumSize(new Dimension(16, 32767));
 		marcaPassoBox.add(horizontalStrut_1_1_1);
 
@@ -90,7 +107,7 @@ public class PacientePanel extends JPanel {
 		lblMarcaPasso.setAlignmentX(0.5f);
 		marcaPassoBox.add(lblMarcaPasso);
 
-		Component horizontalStrut_1_2 = Box.createHorizontalStrut(20);
+		Component horizontalStrut_1_2 = Box.createHorizontalStrut(8);
 		horizontalStrut_1_2.setMaximumSize(new Dimension(16, 32767));
 		marcaPassoBox.add(horizontalStrut_1_2);
 
@@ -102,7 +119,7 @@ public class PacientePanel extends JPanel {
 		rdbtnMarcaPassoYes.setFont(new Font("Verdana", Font.PLAIN, 12));
 		radioMarcaPassoBox.add(rdbtnMarcaPassoYes);
 
-		Component horizontalStrut_2_1 = Box.createHorizontalStrut(20);
+		Component horizontalStrut_2_1 = Box.createHorizontalStrut(8);
 		radioMarcaPassoBox.add(horizontalStrut_2_1);
 
 		JRadioButton rdbtnMarcaPassoNo = new JRadioButton("Não");
@@ -152,7 +169,7 @@ public class PacientePanel extends JPanel {
 		lblNumeroCar.setFont(new Font("Verdana", Font.BOLD, 16));
 		numeroCarBox.add(lblNumeroCar);
 
-		Component horizontalStrut_4 = Box.createHorizontalStrut(20);
+		Component horizontalStrut_4 = Box.createHorizontalStrut(8);
 		horizontalStrut_4.setMaximumSize(new Dimension(16, 32767));
 		numeroCarBox.add(horizontalStrut_4);
 
@@ -162,7 +179,7 @@ public class PacientePanel extends JPanel {
 		spinnerNumeroCar.setFont(new Font("Verdana", Font.PLAIN, 12));
 		numeroCarBox.add(spinnerNumeroCar);
 
-		Component verticalStrut = Box.createVerticalStrut(20);
+		Component verticalStrut = Box.createVerticalStrut(16);
 		verticalStrut.setBounds(139, 320, 1, 20);
 		convenioBox.add(verticalStrut);
 
@@ -176,7 +193,7 @@ public class PacientePanel extends JPanel {
 		lblPrestadora.setAlignmentX(0.5f);
 		prestadoraBox.add(lblPrestadora);
 
-		Component horizontalStrut_1_3 = Box.createHorizontalStrut(20);
+		Component horizontalStrut_1_3 = Box.createHorizontalStrut(8);
 		horizontalStrut_1_3.setMaximumSize(new Dimension(16, 32767));
 		prestadoraBox.add(horizontalStrut_1_3);
 
@@ -185,7 +202,7 @@ public class PacientePanel extends JPanel {
 		prestadoraField.setName("prestadora");
 		prestadoraBox.add(prestadoraField);
 
-		Component verticalStrut_1 = Box.createVerticalStrut(20);
+		Component verticalStrut_1 = Box.createVerticalStrut(16);
 		verticalStrut_1.setBounds(0, 336, 750, 20);
 		convenioBox.add(verticalStrut_1);
 
@@ -242,7 +259,7 @@ public class PacientePanel extends JPanel {
 		TextArea textAreaAlergias = new TextArea();
 		alergiasBox.add(textAreaAlergias);
 
-		Component verticalStrut_2 = Box.createHorizontalStrut(20);
+		Component verticalStrut_2 = Box.createHorizontalStrut(32);
 		historicoMedicoBox.add(verticalStrut_2);
 
 		Box medicamentosBox = Box.createVerticalBox();
@@ -258,7 +275,7 @@ public class PacientePanel extends JPanel {
 		TextArea textMedicamentos = new TextArea();
 		medicamentosBox.add(textMedicamentos);
 
-		Component verticalStrut_1_2 = Box.createHorizontalStrut(20);
+		Component verticalStrut_1_2 = Box.createHorizontalStrut(32);
 		historicoMedicoBox.add(verticalStrut_1_2);
 
 		Box condicaoMedicaBox = Box.createVerticalBox();
@@ -279,13 +296,13 @@ public class PacientePanel extends JPanel {
 
 		Box acaoBox = Box.createHorizontalBox();
 		acaoBox.setAlignmentY(Component.CENTER_ALIGNMENT);
-		acaoBox.setBounds(592, 569, 166, 32);
+		acaoBox.setBounds(605, 570, 154, 32);
 		add(acaoBox);
 
 		JButton btnCancelar = new JButton("Cancelar");
 		acaoBox.add(btnCancelar);
 
-		Component horizontalStrut_5 = Box.createHorizontalStrut(20);
+		Component horizontalStrut_5 = Box.createHorizontalStrut(8);
 		acaoBox.add(horizontalStrut_5);
 
 		JButton btnProximo_1 = new JButton("Próximo");
