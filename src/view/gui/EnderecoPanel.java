@@ -102,8 +102,11 @@ public class EnderecoPanel extends JPanel {
 		Component verticalStrut_2 = Box.createVerticalStrut(16);
 		enderecoBox.add(verticalStrut_2);
 
+		Box logradouroBox = Box.createHorizontalBox();
+		enderecoBox.add(logradouroBox);
+
 		Box bairroBox = Box.createHorizontalBox();
-		enderecoBox.add(bairroBox);
+		logradouroBox.add(bairroBox);
 
 		JLabel lblBairro = new JLabel("Bairro:");
 		lblBairro.setFont(new Font("Verdana", Font.BOLD, 16));
@@ -120,9 +123,12 @@ public class EnderecoPanel extends JPanel {
 		Component verticalStrut_3 = Box.createVerticalStrut(16);
 		enderecoBox.add(verticalStrut_3);
 
+		Component horizontalStrut_2 = Box.createHorizontalStrut(32);
+		logradouroBox.add(horizontalStrut_2);
+
 		Box ruaBox = Box.createHorizontalBox();
 		ruaBox.setBounds(0, 0, 750, 48);
-		enderecoBox.add(ruaBox);
+		logradouroBox.add(ruaBox);
 
 		JLabel lblRua = new JLabel("Rua:");
 		lblRua.setFont(new Font("Verdana", Font.BOLD, 16));
@@ -155,7 +161,7 @@ public class EnderecoPanel extends JPanel {
 
 		textFieldNumero = new JTextField();
 		textFieldNumero.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textFieldNumero.setColumns(10);
+		textFieldNumero.setColumns(1);
 		numeroBox.add(textFieldNumero);
 
 		Component horizontalStrut = Box.createHorizontalStrut(32);
@@ -179,7 +185,7 @@ public class EnderecoPanel extends JPanel {
 
 		Box acaoBox = Box.createHorizontalBox();
 		acaoBox.setAlignmentY(0.5f);
-		acaoBox.setBounds(605, 570, 154, 32);
+		acaoBox.setBounds(595, 570, 165, 32);
 		add(acaoBox);
 
 		JButton btnCancelar = new JButton("Cancelar");
@@ -190,6 +196,10 @@ public class EnderecoPanel extends JPanel {
 
 		JButton btnCadastrar = new JButton("Cadastrar");
 		acaoBox.add(btnCadastrar);
+
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.setBounds(10, 570, 75, 28);
+		add(btnVoltar);
 
 	}
 }
