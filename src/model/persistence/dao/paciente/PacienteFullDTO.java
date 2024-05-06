@@ -33,13 +33,13 @@ public class PacienteFullDTO {
 
 	private String alergias;
 	private String medicamentos;
-	private String prescricao;
+	private String condicaoMedica;
 
 	public PacienteFullDTO(int idPaciente, String nome, String cpf, LocalDate dataNascimento, long celular,
 			long telefone, String email, EnumGenero genero, int cep, String estado, String cidade, String bairro,
 			String rua, String numero, String complemento, float altura, boolean fumante, boolean marcaPasso,
 			int numeroCarteirinha, String prestadora, String plano, String alergias, String medicamentos,
-			String prescricao) {
+			String condicaoMedica) {
 		this.idPaciente = idPaciente;
 		this.nome = nome;
 		this.cpf = cpf;
@@ -63,13 +63,13 @@ public class PacienteFullDTO {
 		this.plano = plano;
 		this.alergias = alergias;
 		this.medicamentos = medicamentos;
-		this.prescricao = prescricao;
+		this.condicaoMedica = condicaoMedica;
 	}
 
 	public PacienteFullDTO(String nome, String cpf, LocalDate dataNascimento, long celular, long telefone, String email,
 			EnumGenero genero, int cep, String estado, String cidade, String bairro, String rua, String numero,
 			String complemento, float altura, boolean fumante, boolean marcaPasso, int numeroCarteirinha,
-			String prestadora, String plano, String alergias, String medicamentos, String prescricao) {
+			String prestadora, String plano, String alergias, String medicamentos, String condicaoMedica) {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.dataNascimento = dataNascimento;
@@ -92,7 +92,7 @@ public class PacienteFullDTO {
 		this.plano = plano;
 		this.alergias = alergias;
 		this.medicamentos = medicamentos;
-		this.prescricao = prescricao;
+		this.condicaoMedica = condicaoMedica;
 	}
 
 	@Override
@@ -103,7 +103,7 @@ public class PacienteFullDTO {
 				+ ", rua=" + rua + ", numero=" + numero + ", complemento=" + complemento + ", altura=" + altura
 				+ ", fumante=" + fumante + ", marcaPasso=" + marcaPasso + ", numeroCarteirinha=" + numeroCarteirinha
 				+ ", prestadora=" + prestadora + ", plano=" + plano + ", alergias=" + alergias + ", medicamentos="
-				+ medicamentos + ", prescricao=" + prescricao + "]";
+				+ medicamentos + ", condicaoMedica=" + condicaoMedica + "]";
 	}
 
 	public int getIdPaciente() {
@@ -290,12 +290,12 @@ public class PacienteFullDTO {
 		this.medicamentos = medicamentos;
 	}
 
-	public String getPrescricao() {
-		return prescricao;
+	public String getCondicaoMedica() {
+		return condicaoMedica;
 	}
 
-	public void setPrescricao(String prescricao) {
-		this.prescricao = prescricao;
+	public void setCondicaoMedica(String condicaoMedica) {
+		this.condicaoMedica = condicaoMedica;
 	}
 
 }

@@ -16,8 +16,8 @@ VALUES (123456, 'SP', 'São Paulo', 'Pinheiros', 'Rua dos Pinheiros', '1234', 'A
 INSERT INTO Convenio (numeroCarteirinha, prestadora, plano)
 VALUES (98765, 'Unimed', 'Plano Ouro');
 
-INSERT INTO HistoricoMedico (alergias, medicamentos, prescricao)
-VALUES (NULL, 'Ibuprofeno', NULL);
+INSERT INTO HistoricoMedico (alergias, medicamentos, condicaoMedica)
+VALUES (NULL, 'Ibuprofeno e Losartana', 'Hipertenssão');
 
 INSERT INTO Pessoa (nome, cpf, dataNascimento, celular, email, genero, endereco_id)
 VALUES ('Michele Nonato', '123.456.789-01', '2003-04-15', 11999887766, 'michele.nonato@example.com', 2, 2);

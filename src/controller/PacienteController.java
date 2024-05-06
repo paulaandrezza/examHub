@@ -69,7 +69,7 @@ public class PacienteController implements IController<PacienteFullDTO, Paciente
 		Convenio convenio = new Convenio(dto.getNumeroCarteirinha(), dto.getPrestadora(), dto.getPlano());
 
 		HistoricoMedico historicoMedico = new HistoricoMedico(dto.getAlergias(), dto.getMedicamentos(),
-				dto.getPrescricao());
+				dto.getCondicaoMedica());
 
 		Paciente paciente = new Paciente(dto.getAltura(), dto.isFumante(), dto.isMarcaPasso(), convenio,
 				historicoMedico, pessoa);

@@ -27,7 +27,7 @@ SELECT
 
     h.alergias,
     h.medicamentos,
-    h.prescricao
+    h.condicaoMedica
 FROM 
     Paciente p
     INNER JOIN Pessoa pe ON p.pessoa_id = pe.id

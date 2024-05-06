@@ -141,8 +141,8 @@ public class TelaCadastroPaciente extends JFrame {
 		textFieldTelefone.setBounds(84, 183, 86, 20);
 		contentPane.add(textFieldTelefone);
 
-		JComboBox comboBoxSexo = new JComboBox();
-		comboBoxSexo.setModel(new DefaultComboBoxModel(EnumGenero.values()));
+		JComboBox<Object> comboBoxSexo = new JComboBox<Object>();
+		comboBoxSexo.setModel(new DefaultComboBoxModel<Object>(EnumGenero.values()));
 		comboBoxSexo.setBounds(209, 140, 95, 22);
 		contentPane.add(comboBoxSexo);
 
@@ -159,8 +159,8 @@ public class TelaCadastroPaciente extends JFrame {
 		lblExame.setBounds(333, 186, 40, 14);
 		contentPane.add(lblExame);
 
-		JComboBox comboBoxExame = new JComboBox();
-		comboBoxExame.setModel(new DefaultComboBoxModel(EnumExame.values()));
+		JComboBox<Object> comboBoxExame = new JComboBox<Object>();
+		comboBoxExame.setModel(new DefaultComboBoxModel<Object>(EnumExame.values()));
 		comboBoxExame.setBounds(387, 182, 124, 22);
 		contentPane.add(comboBoxExame);
 
