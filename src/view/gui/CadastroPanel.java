@@ -50,17 +50,22 @@ public class CadastroPanel extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.X_AXIS));
 
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		JTabbedPane tabbedPanel = new JTabbedPane(JTabbedPane.TOP);
 		// PessoaPanel - Dados Pessoais
 		PessoaPanel pessoaPanel = new PessoaPanel();
-		tabbedPane.addTab("Dados Pessoais", pessoaPanel);
+		tabbedPanel.addTab("Dados Pessoais", pessoaPanel);
 		// PacientePanel - Dados médicos
 		PacientePanel pacientePanel = new PacientePanel();
-		tabbedPane.addTab("Dados Médicos", pacientePanel);
+		tabbedPanel.addTab("Dados Médicos", pacientePanel);
 		// EnderecoPanel - Endereço
 		EnderecoPanel enderecoPanel = new EnderecoPanel();
-		tabbedPane.addTab("Dados de Moradia", enderecoPanel);
-		contentPane.add(tabbedPane);
+		tabbedPanel.addTab("Dados de Moradia", enderecoPanel);
+		contentPane.add(tabbedPanel);
+
+		contentPane.add(tabbedPanel, BorderLayout.CENTER);
+
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 	}
 
 }
