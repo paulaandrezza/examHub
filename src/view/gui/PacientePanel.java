@@ -308,8 +308,12 @@ public class PacientePanel extends JPanel {
 		JButton btnProximo_1 = new JButton("Próximo");
 		acaoBox.add(btnProximo_1);
 
-		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setBounds(10, 570, 75, 28);
-		add(btnVoltar);
+		Box voltarBox = Box.createHorizontalBox();
+		voltarBox.setAlignmentY(0.5f);
+		voltarBox.setBounds(10, 570, 58, 32);
+		add(voltarBox);
+
+		JButton btnVoltar_1 = new JButton("Voltar");
+		voltarBox.add(btnVoltar_1);
 	}
 }

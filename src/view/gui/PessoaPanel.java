@@ -2,14 +2,11 @@ package view.gui;
 
 import java.awt.Component;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
@@ -261,22 +258,13 @@ public class PessoaPanel extends JPanel {
 		JButton btnProximo_1 = new JButton("Próximo");
 		acaoBox.add(btnProximo_1);
 
+		Box voltarBox = Box.createHorizontalBox();
+		voltarBox.setAlignmentY(0.5f);
+		voltarBox.setBounds(10, 570, 58, 32);
+		add(voltarBox);
+
 		JButton btnVoltar = new JButton("Voltar");
-
-		btnVoltar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JFrame novoFrame = new JFrame("Novo Frame"); // Crie um novo JFrame
-				novoFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Defina o comportamento de fechar
-				novoFrame.getContentPane().add(new PacientePanel()); // Adicione o painel desejado ao novo JFrame
-				novoFrame.pack(); // Ajuste o tamanho do novo JFrame com base no conteúdo
-				novoFrame.setLocationRelativeTo(null); // Centralize o novo JFrame na tela
-				novoFrame.setVisible(true); // Torne o novo JFrame visível
-				System.out.print("Botão clicado");
-			}
-		});
-
-		btnVoltar.setBounds(10, 570, 75, 28);
-		add(btnVoltar);
+		voltarBox.add(btnVoltar);
 
 	}
 
