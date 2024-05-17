@@ -9,6 +9,7 @@ public class PacienteFullDTO {
 
 	private String nome;
 	private String cpf;
+	private String rg;
 	private LocalDate dataNascimento;
 	private long celular;
 	private long telefone;
@@ -35,7 +36,7 @@ public class PacienteFullDTO {
 	private String medicamentos;
 	private String condicaoMedica;
 
-	public PacienteFullDTO(int idPaciente, String nome, String cpf, LocalDate dataNascimento, long celular,
+	public PacienteFullDTO(int idPaciente, String nome, String cpf, String rg, LocalDate dataNascimento, long celular,
 			long telefone, String email, EnumGenero genero, int cep, String estado, String cidade, String bairro,
 			String rua, String numero, String complemento, float altura, boolean fumante, boolean marcaPasso,
 			int numeroCarteirinha, String prestadora, String plano, String alergias, String medicamentos,
@@ -43,6 +44,7 @@ public class PacienteFullDTO {
 		this.idPaciente = idPaciente;
 		this.nome = nome;
 		this.cpf = cpf;
+		this.rg = rg;
 		this.dataNascimento = dataNascimento;
 		this.celular = celular;
 		this.telefone = telefone;
@@ -66,12 +68,13 @@ public class PacienteFullDTO {
 		this.condicaoMedica = condicaoMedica;
 	}
 
-	public PacienteFullDTO(String nome, String cpf, LocalDate dataNascimento, long celular, long telefone, String email,
-			EnumGenero genero, int cep, String estado, String cidade, String bairro, String rua, String numero,
-			String complemento, float altura, boolean fumante, boolean marcaPasso, int numeroCarteirinha,
+	public PacienteFullDTO(String nome, String cpf, String rg, LocalDate dataNascimento, long celular, long telefone,
+			String email, EnumGenero genero, int cep, String estado, String cidade, String bairro, String rua,
+			String numero, String complemento, float altura, boolean fumante, boolean marcaPasso, int numeroCarteirinha,
 			String prestadora, String plano, String alergias, String medicamentos, String condicaoMedica) {
 		this.nome = nome;
 		this.cpf = cpf;
+		this.rg = rg;
 		this.dataNascimento = dataNascimento;
 		this.celular = celular;
 		this.telefone = telefone;
@@ -93,17 +96,21 @@ public class PacienteFullDTO {
 		this.alergias = alergias;
 		this.medicamentos = medicamentos;
 		this.condicaoMedica = condicaoMedica;
+	}
+
+	public PacienteFullDTO() {
+		super();
 	}
 
 	@Override
 	public String toString() {
-		return "PacienteDTO [idPaciente=" + idPaciente + ", nome=" + nome + ", cpf=" + cpf + ", dataNascimento="
-				+ dataNascimento + ", celular=" + celular + ", telefone=" + telefone + ", email=" + email + ", genero="
-				+ genero + ", cep=" + cep + ", estado=" + estado + ", cidade=" + cidade + ", bairro=" + bairro
-				+ ", rua=" + rua + ", numero=" + numero + ", complemento=" + complemento + ", altura=" + altura
-				+ ", fumante=" + fumante + ", marcaPasso=" + marcaPasso + ", numeroCarteirinha=" + numeroCarteirinha
-				+ ", prestadora=" + prestadora + ", plano=" + plano + ", alergias=" + alergias + ", medicamentos="
-				+ medicamentos + ", condicaoMedica=" + condicaoMedica + "]";
+		return "PacienteFullDTO [idPaciente=" + idPaciente + ", nome=" + nome + ", cpf=" + cpf + ", rg=" + rg
+				+ ", dataNascimento=" + dataNascimento + ", celular=" + celular + ", telefone=" + telefone + ", email="
+				+ email + ", genero=" + genero + ", cep=" + cep + ", estado=" + estado + ", cidade=" + cidade
+				+ ", bairro=" + bairro + ", rua=" + rua + ", numero=" + numero + ", complemento=" + complemento
+				+ ", altura=" + altura + ", fumante=" + fumante + ", marcaPasso=" + marcaPasso + ", numeroCarteirinha="
+				+ numeroCarteirinha + ", prestadora=" + prestadora + ", plano=" + plano + ", alergias=" + alergias
+				+ ", medicamentos=" + medicamentos + ", condicaoMedica=" + condicaoMedica + "]";
 	}
 
 	public int getIdPaciente() {
@@ -128,6 +135,14 @@ public class PacienteFullDTO {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	public String getRg() {
+		return rg;
+	}
+
+	public void setRg(String rg) {
+		this.rg = rg;
 	}
 
 	public LocalDate getDataNascimento() {

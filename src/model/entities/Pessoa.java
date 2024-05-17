@@ -7,6 +7,7 @@ import model.enums.EnumGenero;
 public class Pessoa extends BaseEntity {
 	String nome;
 	String cpf;
+	String rg;
 	LocalDate dataNascimento;
 	long celular;
 	long telefone;
@@ -14,11 +15,12 @@ public class Pessoa extends BaseEntity {
 	EnumGenero genero;
 	Endereco endereco;
 
-	public Pessoa(int id, String nome, String cpf, LocalDate dataNascimento, long celular, long telefone, String email,
-			EnumGenero genero, Endereco endereco) {
+	public Pessoa(int id, String nome, String cpf, String rg, LocalDate dataNascimento, long celular, long telefone,
+			String email, EnumGenero genero, Endereco endereco) {
 		super(id);
 		this.nome = nome;
 		this.cpf = cpf;
+		this.rg = rg;
 		this.dataNascimento = dataNascimento;
 		this.celular = celular;
 		this.telefone = telefone;
@@ -27,10 +29,11 @@ public class Pessoa extends BaseEntity {
 		this.endereco = endereco;
 	}
 
-	public Pessoa(String nome, String cpf, LocalDate dataNascimento, long celular, long telefone, String email,
-			EnumGenero genero, Endereco endereco) {
+	public Pessoa(String nome, String cpf, String rg, LocalDate dataNascimento, long celular, long telefone,
+			String email, EnumGenero genero, Endereco endereco) {
 		this.nome = nome;
 		this.cpf = cpf;
+		this.rg = rg;
 		this.dataNascimento = dataNascimento;
 		this.celular = celular;
 		this.telefone = telefone;
@@ -41,8 +44,9 @@ public class Pessoa extends BaseEntity {
 
 	@Override
 	public String toString() {
-		return "Pessoa [nome=" + nome + ", cpf=" + cpf + ", dataNascimento=" + dataNascimento + ", celular=" + celular
-				+ ", telefone=" + telefone + ", email=" + email + ", genero=" + genero + ", endereco=" + endereco + "]";
+		return "Pessoa [nome=" + nome + ", cpf=" + cpf + ", rg=" + rg + ", dataNascimento=" + dataNascimento
+				+ ", celular=" + celular + ", telefone=" + telefone + ", email=" + email + ", genero=" + genero
+				+ ", endereco=" + endereco + "]";
 	}
 
 	public String getNome() {
@@ -59,6 +63,14 @@ public class Pessoa extends BaseEntity {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	public String getRg() {
+		return rg;
+	}
+
+	public void setRg(String rg) {
+		this.rg = rg;
 	}
 
 	public LocalDate getDataNascimento() {

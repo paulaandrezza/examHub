@@ -2,6 +2,8 @@ package view.gui;
 
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -11,6 +13,9 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+
+import controller.PacienteController;
+import model.persistence.dao.paciente.PacienteFullDTO;
 
 public class EnderecoPanel extends JPanel {
 
@@ -26,7 +31,7 @@ public class EnderecoPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public EnderecoPanel() {
+	public EnderecoPanel(PacienteController pacienteController, PacienteFullDTO pacienteFullDTO) {
 		setBackground(UIManager.getColor("menu"));
 		setLayout(null);
 
@@ -195,6 +200,21 @@ public class EnderecoPanel extends JPanel {
 		acaoBox.add(horizontalStrut_5);
 
 		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				pacienteFullDTO.setCep(148);
+				pacienteFullDTO.setEstado("SP");
+				pacienteFullDTO.setCidade("Bragança");
+				pacienteFullDTO.setRua("Rua 2");
+				pacienteFullDTO.setBairro("Bairro 2");
+				pacienteFullDTO.setNumero("ac1523");
+				pacienteFullDTO.setComplemento("lorem ipsum");
+
+				System.out.println(pacienteFullDTO);
+
+				pacienteController.create(pacienteFullDTO);
+			}
+		});
 		acaoBox.add(btnCadastrar);
 
 		Box voltarBox = Box.createHorizontalBox();

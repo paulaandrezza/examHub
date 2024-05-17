@@ -11,10 +11,16 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
 
+import controller.PacienteController;
+import model.persistence.dao.paciente.PacienteFullDTO;
+
 public class CadastroPanel extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+
+	PacienteController pacienteController = new PacienteController();
+	PacienteFullDTO pacienteFullDTO = new PacienteFullDTO();
 
 	/**
 	 * Launch the application.
@@ -52,13 +58,13 @@ public class CadastroPanel extends JFrame {
 
 		JTabbedPane tabbedPanel = new JTabbedPane(JTabbedPane.TOP);
 		// PessoaPanel - Dados Pessoais
-		PessoaPanel pessoaPanel = new PessoaPanel();
+		PessoaPanel pessoaPanel = new PessoaPanel(pacienteFullDTO);
 		tabbedPanel.addTab("Dados Pessoais", pessoaPanel);
 		// PacientePanel - Dados médicos
-		PacientePanel pacientePanel = new PacientePanel();
+		PacientePanel pacientePanel = new PacientePanel(pacienteFullDTO);
 		tabbedPanel.addTab("Dados Médicos", pacientePanel);
 		// EnderecoPanel - Endereço
-		EnderecoPanel enderecoPanel = new EnderecoPanel();
+		EnderecoPanel enderecoPanel = new EnderecoPanel(pacienteController, pacienteFullDTO);
 		tabbedPanel.addTab("Dados de Moradia", enderecoPanel);
 		contentPane.add(tabbedPanel);
 

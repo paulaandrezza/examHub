@@ -2,6 +2,9 @@ package view.gui;
 
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.LocalDate;
 
 import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
@@ -15,22 +18,23 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
 import model.enums.EnumGenero;
+import model.persistence.dao.paciente.PacienteFullDTO;
 
 public class PessoaPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textFieldCPF;
-	private JTextField textFieldRG;
-	private JTextField textField;
+	private JTextField textCPF;
+	private JTextField textRG;
+	private JTextField textDataNascimento;
 	private JTextField textCelular;
-	private JTextField textFieldTelefone;
-	private JTextField textFieldEmail;
-	private JTextField textField_1;
+	private JTextField textTelefone;
+	private JTextField textEmail;
+	private JTextField textNome;
 
 	/**
 	 * Create the panel.
 	 */
-	public PessoaPanel() {
+	public PessoaPanel(PacienteFullDTO pacienteFullDTO) {
 		setBackground(UIManager.getColor("menu"));
 		setLayout(null);
 
@@ -60,10 +64,10 @@ public class PessoaPanel extends JPanel {
 		Component horizontalStrut_1 = Box.createHorizontalStrut(8);
 		nomeBox.add(horizontalStrut_1);
 
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textField_1.setColumns(30);
-		nomeBox.add(textField_1);
+		textNome = new JTextField();
+		textNome.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textNome.setColumns(30);
+		nomeBox.add(textNome);
 
 		Component horizontalStrut = Box.createHorizontalStrut(20);
 		horizontalStrut.setBounds(10, 97, 750, 32);
@@ -96,10 +100,10 @@ public class PessoaPanel extends JPanel {
 		Component horizontalStrut_2 = Box.createHorizontalStrut(8);
 		cpfBox.add(horizontalStrut_2);
 
-		textFieldCPF = new JTextField();
-		textFieldCPF.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textFieldCPF.setColumns(10);
-		cpfBox.add(textFieldCPF);
+		textCPF = new JTextField();
+		textCPF.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textCPF.setColumns(10);
+		cpfBox.add(textCPF);
 
 		Component horizontalStrut_2_1 = Box.createHorizontalStrut(32);
 		cpfBox.add(horizontalStrut_2_1);
@@ -115,10 +119,10 @@ public class PessoaPanel extends JPanel {
 		Component horizontalStrut_3 = Box.createHorizontalStrut(8);
 		rgBox.add(horizontalStrut_3);
 
-		textFieldRG = new JTextField();
-		textFieldRG.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textFieldRG.setColumns(10);
-		rgBox.add(textFieldRG);
+		textRG = new JTextField();
+		textRG.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textRG.setColumns(10);
+		rgBox.add(textRG);
 
 		Box dataNascimentoBox = Box.createHorizontalBox();
 		dadosPessoaisBox.add(dataNascimentoBox);
@@ -133,10 +137,10 @@ public class PessoaPanel extends JPanel {
 		Component horizontalStrut_3_1 = Box.createHorizontalStrut(8);
 		dataNascimentoBox.add(horizontalStrut_3_1);
 
-		textField = new JTextField();
-		textField.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textField.setColumns(10);
-		dataNascimentoBox.add(textField);
+		textDataNascimento = new JTextField();
+		textDataNascimento.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textDataNascimento.setColumns(10);
+		dataNascimentoBox.add(textDataNascimento);
 
 		Component horizontalStrut_4 = Box.createHorizontalStrut(20);
 		horizontalStrut_4.setBounds(10, 209, 750, 32);
@@ -188,10 +192,10 @@ public class PessoaPanel extends JPanel {
 		Component horizontalStrut_3_2 = Box.createHorizontalStrut(8);
 		telefoneBox.add(horizontalStrut_3_2);
 
-		textFieldTelefone = new JTextField();
-		textFieldTelefone.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textFieldTelefone.setColumns(10);
-		telefoneBox.add(textFieldTelefone);
+		textTelefone = new JTextField();
+		textTelefone.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textTelefone.setColumns(10);
+		telefoneBox.add(textTelefone);
 
 		Component verticalStrut_1 = Box.createVerticalStrut(16);
 		contatoBox.add(verticalStrut_1);
@@ -206,10 +210,10 @@ public class PessoaPanel extends JPanel {
 		Component horizontalStrut_3_1_1 = Box.createHorizontalStrut(8);
 		emailBox.add(horizontalStrut_3_1_1);
 
-		textFieldEmail = new JTextField();
-		textFieldEmail.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textFieldEmail.setColumns(10);
-		emailBox.add(textFieldEmail);
+		textEmail = new JTextField();
+		textEmail.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textEmail.setColumns(10);
+		emailBox.add(textEmail);
 
 		Component horizontalStrut_4_1 = Box.createHorizontalStrut(20);
 		horizontalStrut_4_1.setBounds(10, 419, 750, 32);
@@ -256,6 +260,18 @@ public class PessoaPanel extends JPanel {
 		acaoBox.add(horizontalStrut_5);
 
 		JButton btnProximo_1 = new JButton("Próximo");
+		btnProximo_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				pacienteFullDTO.setDataNascimento(LocalDate.of(2000, 3, 25));
+				pacienteFullDTO.setNome(textNome.getText());
+				pacienteFullDTO.setCpf(textCPF.getText());
+				pacienteFullDTO.setRg(textRG.getText());
+				pacienteFullDTO.setCelular(Long.parseLong(textCelular.getText()));
+				pacienteFullDTO.setTelefone(Long.parseLong(textTelefone.getText()));
+				pacienteFullDTO.setEmail(textEmail.getText());
+				pacienteFullDTO.setGenero((EnumGenero) comboBoxGenero.getSelectedItem());
+			}
+		});
 		acaoBox.add(btnProximo_1);
 
 		Box voltarBox = Box.createHorizontalBox();

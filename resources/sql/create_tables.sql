@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS Pessoa (
     id INTEGER PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
     cpf VARCHAR(14) NOT NULL UNIQUE,
+    rg VARCHAR(14) NOT NULL UNIQUE,
     dataNascimento DATE NOT NULL,
     celular BIGINT,
     telefone BIGINT,

@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.TextArea;
 import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.ButtonGroup;
@@ -19,6 +21,8 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
+import model.persistence.dao.paciente.PacienteFullDTO;
+
 public class PacientePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -28,7 +32,7 @@ public class PacientePanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public PacientePanel() {
+	public PacientePanel(PacienteFullDTO pacienteFullDTO) {
 		setBackground(UIManager.getColor("menu"));
 		setLayout(null);
 
@@ -306,6 +310,19 @@ public class PacientePanel extends JPanel {
 		acaoBox.add(horizontalStrut_5);
 
 		JButton btnProximo_1 = new JButton("Próximo");
+		btnProximo_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				pacienteFullDTO.setAltura(148);
+				pacienteFullDTO.setFumante(false);
+				pacienteFullDTO.setMarcaPasso(true);
+				pacienteFullDTO.setNumeroCarteirinha(121311312);
+				pacienteFullDTO.setPrestadora("Bradesco");
+				pacienteFullDTO.setPlano("lorem ipsum");
+				pacienteFullDTO.setAlergias("lorem ipsum");
+				pacienteFullDTO.setMedicamentos("lorem ipsum");
+				pacienteFullDTO.setCondicaoMedica("lorem ipsum");
+			}
+		});
 		acaoBox.add(btnProximo_1);
 
 		Box voltarBox = Box.createHorizontalBox();
