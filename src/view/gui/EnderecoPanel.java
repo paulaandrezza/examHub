@@ -60,7 +60,7 @@ public class EnderecoPanel extends JPanel {
 		tituloBoxVerticalEndereco.add(hr_endereco_1);
 
 		Box boxVerticalEndereco = Box.createVerticalBox();
-		boxVerticalEndereco.setBounds(10, 65, 750, 272);
+		boxVerticalEndereco.setBounds(10, 65, 750, 350);
 		add(boxVerticalEndereco);
 
 		Box boxHorizontalCep = Box.createHorizontalBox();
@@ -78,7 +78,7 @@ public class EnderecoPanel extends JPanel {
 		textCep.setColumns(10);
 		boxHorizontalCep.add(textCep);
 
-		Component vertical_endereco_1 = Box.createVerticalStrut(16);
+		Component vertical_endereco_1 = Box.createVerticalStrut(32);
 		boxVerticalEndereco.add(vertical_endereco_1);
 
 		Box boxHorizontalEstado = Box.createHorizontalBox();
@@ -97,7 +97,7 @@ public class EnderecoPanel extends JPanel {
 		textEstado.setColumns(10);
 		boxHorizontalEstado.add(textEstado);
 
-		Component vertical_endereco_2 = Box.createVerticalStrut(16);
+		Component vertical_endereco_2 = Box.createVerticalStrut(32);
 		boxVerticalEndereco.add(vertical_endereco_2);
 
 		Box boxHorizontalCidade = Box.createHorizontalBox();
@@ -116,14 +116,14 @@ public class EnderecoPanel extends JPanel {
 		textCidade.setColumns(10);
 		boxHorizontalCidade.add(textCidade);
 
-		Component vertical_endereco_3 = Box.createVerticalStrut(16);
+		Component vertical_endereco_3 = Box.createVerticalStrut(32);
 		boxVerticalEndereco.add(vertical_endereco_3);
 
 		Box boxHorizontalLogradouro = Box.createHorizontalBox();
 		boxVerticalEndereco.add(boxHorizontalLogradouro);
 
 		Box bairroBox = Box.createHorizontalBox();
-		boxHorizontalLogradouro.add(bairroBox);
+		boxVerticalEndereco.add(bairroBox);
 
 		JLabel lblBairro = new JLabel("Bairro:");
 		lblBairro.setFont(new Font("Verdana", Font.BOLD, 16));
@@ -137,15 +137,12 @@ public class EnderecoPanel extends JPanel {
 		textBairro.setColumns(10);
 		bairroBox.add(textBairro);
 
-		Component vertical_endereco_4 = Box.createVerticalStrut(16);
+		Component vertical_endereco_4 = Box.createVerticalStrut(32);
 		boxVerticalEndereco.add(vertical_endereco_4);
-
-		Component horizontalStrut_2 = Box.createHorizontalStrut(32);
-		boxHorizontalLogradouro.add(horizontalStrut_2);
 
 		Box ruaBox = Box.createHorizontalBox();
 		ruaBox.setBounds(0, 0, 750, 48);
-		boxHorizontalLogradouro.add(ruaBox);
+		boxVerticalEndereco.add(ruaBox);
 
 		JLabel lblRua = new JLabel("Rua:");
 		lblRua.setFont(new Font("Verdana", Font.BOLD, 16));
@@ -158,6 +155,9 @@ public class EnderecoPanel extends JPanel {
 		textRua.setFont(new Font("Verdana", Font.PLAIN, 12));
 		textRua.setColumns(10);
 		ruaBox.add(textRua);
+
+		Component vertical_endereco_5 = Box.createVerticalStrut(32);
+		boxVerticalEndereco.add(vertical_endereco_5);
 
 		Box boxHorizontalLocalizacao = Box.createHorizontalBox();
 		boxHorizontalLocalizacao.setBounds(0, 0, 1, 1);

@@ -4,7 +4,6 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,6 +16,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
@@ -25,14 +25,14 @@ import model.persistence.dao.paciente.PacienteFullDTO;
 public class PacientePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private TextField textAltura = new TextField();
+	private JTextField textAltura = new JTextField();
 	private final ButtonGroup fumanteGroup = new ButtonGroup();
 	private final ButtonGroup marcaPassoGroup = new ButtonGroup();
 	private Box boxHorizontalNumeroCarterinha = Box.createHorizontalBox();
 	private Box boxHorizontalmarcaPasso = Box.createHorizontalBox();
-	private TextField textNumeroCarteirinha = new TextField();
-	private TextField textPrestadora = new TextField();
-	private TextField textPlano = new TextField();
+	private JTextField textNumeroCarteirinha = new JTextField();
+	private JTextField textPrestadora = new JTextField();
+	private JTextField textPlano = new JTextField();
 	private JTextArea textAreaAlergias = new JTextArea();
 	private JTextArea textAreaMedicamentos = new JTextArea();
 	private JTextArea textAreaCondicaoMedica = new JTextArea();
