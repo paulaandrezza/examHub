@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
@@ -275,7 +276,8 @@ public class PacientePanel extends JPanel {
 		textAreaAlergias.setLineWrap(true);
 		textAreaAlergias.setWrapStyleWord(true);
 
-		boxVerticalAlergias.add(textAreaAlergias);
+		JScrollPane scrollPaneAlergias = new JScrollPane(textAreaAlergias);
+		boxVerticalAlergias.add(scrollPaneAlergias);
 
 		Component horizontal_historicomedico_1 = Box.createHorizontalStrut(32);
 		boxHorizontalhistoricoMedico.add(horizontal_historicomedico_1);
@@ -293,7 +295,8 @@ public class PacientePanel extends JPanel {
 		textAreaMedicamentos.setLineWrap(true);
 		textAreaMedicamentos.setWrapStyleWord(true);
 
-		boxVerticalMedicamentos.add(textAreaMedicamentos);
+		JScrollPane scrollPaneMedicamentos = new JScrollPane(textAreaMedicamentos);
+		boxVerticalMedicamentos.add(scrollPaneMedicamentos);
 
 		Component horizontal_historicomedico_2 = Box.createHorizontalStrut(32);
 		boxHorizontalhistoricoMedico.add(horizontal_historicomedico_2);
@@ -311,7 +314,8 @@ public class PacientePanel extends JPanel {
 		textAreaCondicaoMedica.setLineWrap(true);
 		textAreaCondicaoMedica.setWrapStyleWord(true);
 
-		boxVerticalCondicaoMedica.add(textAreaCondicaoMedica);
+		JScrollPane scrollPaneCondicaoMedica = new JScrollPane(textAreaCondicaoMedica);
+		boxVerticalCondicaoMedica.add(scrollPaneCondicaoMedica);
 
 		Box boxHorizontalAcao = Box.createHorizontalBox();
 		boxHorizontalAcao.setAlignmentY(Component.CENTER_ALIGNMENT);
