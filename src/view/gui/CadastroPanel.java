@@ -60,6 +60,7 @@ public class CadastroPanel extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.X_AXIS));
+		tabbedPanel.setEnabled(false);
 
 		tabbedPanel.addTab("Dados Pessoais", pessoaPanel);
 
