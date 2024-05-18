@@ -3,6 +3,7 @@ SELECT
 
     pe.nome,
     pe.cpf,
+    pe.rg,
     pe.dataNascimento,
     pe.celular,
     pe.telefone,

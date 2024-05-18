@@ -5,6 +5,7 @@ import java.time.LocalDate;
 public class PessoaDTO {
 	String nome;
 	String cpf;
+	String rg;
 	LocalDate dataNascimento;
 	long celular;
 	long telefone;
@@ -12,11 +13,11 @@ public class PessoaDTO {
 	int genero;
 	int endereco_id;
 
-	public PessoaDTO(String nome, String cpf, LocalDate dataNascimento, long celular, long telefone, String email,
-			int genero, int endereco_id) {
-		super();
+	public PessoaDTO(String nome, String cpf, String rg, LocalDate dataNascimento, long celular, long telefone,
+			String email, int genero, int endereco_id) {
 		this.nome = nome;
 		this.cpf = cpf;
+		this.rg = rg;
 		this.dataNascimento = dataNascimento;
 		this.celular = celular;
 		this.telefone = telefone;
@@ -24,4 +25,5 @@ public class PessoaDTO {
 		this.genero = genero;
 		this.endereco_id = endereco_id;
 	}
+
 }

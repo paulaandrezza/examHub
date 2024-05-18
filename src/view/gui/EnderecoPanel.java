@@ -2,6 +2,8 @@ package view.gui;
 
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -12,98 +14,116 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
+import controller.PacienteController;
+import model.persistence.dao.paciente.PacienteFullDTO;
+
 public class EnderecoPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textFieldCep;
-	private JTextField textFieldEstado;
-	private JTextField textFieldCidade;
-	private JTextField textFieldBairro;
-	private JTextField textFieldRua;
-	private JTextField textFieldNumero;
-	private JTextField textFieldComplemento;
+	private JTextField textCep;
+	private JTextField textEstado;
+	private JTextField textCidade;
+	private JTextField textBairro;
+	private JTextField textRua;
+	private JTextField textNumero;
+	private JTextField textComplemento;
 
 	/**
 	 * Create the panel.
 	 */
-	public EnderecoPanel() {
+
+	public void clearEnderecoFields() {
+		textCep.setText("");
+		textEstado.setText("");
+		textCidade.setText("");
+		textBairro.setText("");
+		textRua.setText("");
+		textNumero.setText("");
+		textComplemento.setText("");
+	}
+
+	public EnderecoPanel(PacienteController pacienteController, PacienteFullDTO pacienteFullDTO,
+			CadastroPanel cadastroPanel) {
 		setBackground(UIManager.getColor("menu"));
 		setLayout(null);
 
-		Box enderecoTitulo = Box.createVerticalBox();
-		enderecoTitulo.setBounds(10, 10, 750, 45);
-		add(enderecoTitulo);
+		Box tituloBoxVerticalEndereco = Box.createVerticalBox();
+		tituloBoxVerticalEndereco.setBounds(10, 10, 750, 45);
+		add(tituloBoxVerticalEndereco);
 
-		JLabel lblEnderecoTitulo = new JLabel("ENDEREÇO");
-		enderecoTitulo.add(lblEnderecoTitulo);
-		lblEnderecoTitulo.setHorizontalAlignment(SwingConstants.LEFT);
-		lblEnderecoTitulo.setFont(new Font("Verdana", Font.BOLD, 32));
+		JLabel labelEnderecoTitulo = new JLabel("ENDEREÇO");
+		tituloBoxVerticalEndereco.add(labelEnderecoTitulo);
+		labelEnderecoTitulo.setHorizontalAlignment(SwingConstants.LEFT);
+		labelEnderecoTitulo.setFont(new Font("Verdana", Font.BOLD, 32));
 
-		JSeparator hr = new JSeparator();
-		enderecoTitulo.add(hr);
+		JSeparator hr_endereco_1 = new JSeparator();
+		tituloBoxVerticalEndereco.add(hr_endereco_1);
 
-		Box enderecoBox = Box.createVerticalBox();
-		enderecoBox.setBounds(10, 65, 750, 272);
-		add(enderecoBox);
+		Box boxVerticalEndereco = Box.createVerticalBox();
+		boxVerticalEndereco.setBounds(10, 65, 750, 350);
+		add(boxVerticalEndereco);
 
-		Box cepBox = Box.createHorizontalBox();
-		enderecoBox.add(cepBox);
+		Box boxHorizontalCep = Box.createHorizontalBox();
+		boxVerticalEndereco.add(boxHorizontalCep);
 
-		JLabel lblCep = new JLabel("CEP:");
-		lblCep.setFont(new Font("Verdana", Font.BOLD, 16));
-		cepBox.add(lblCep);
+		JLabel labelCep = new JLabel("CEP:");
+		labelCep.setFont(new Font("Verdana", Font.BOLD, 16));
+		boxHorizontalCep.add(labelCep);
 
-		Component horizontalStrut_1 = Box.createHorizontalStrut(8);
-		cepBox.add(horizontalStrut_1);
+		Component horizontal_endereco_1 = Box.createHorizontalStrut(8);
+		boxHorizontalCep.add(horizontal_endereco_1);
 
-		textFieldCep = new JTextField();
-		textFieldCep.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textFieldCep.setColumns(10);
-		cepBox.add(textFieldCep);
+		textCep = new JTextField();
+		textCep.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textCep.setColumns(10);
+		boxHorizontalCep.add(textCep);
 
-		Component verticalStrut = Box.createVerticalStrut(16);
-		enderecoBox.add(verticalStrut);
+		Component vertical_endereco_1 = Box.createVerticalStrut(32);
+		boxVerticalEndereco.add(vertical_endereco_1);
 
-		Box estadoBox = Box.createHorizontalBox();
-		estadoBox.setBounds(0, 0, 750, 32);
-		enderecoBox.add(estadoBox);
+		Box boxHorizontalEstado = Box.createHorizontalBox();
+		boxHorizontalEstado.setBounds(0, 0, 750, 32);
+		boxVerticalEndereco.add(boxHorizontalEstado);
 
-		JLabel lblEstado = new JLabel("Estado:");
-		lblEstado.setFont(new Font("Verdana", Font.BOLD, 16));
-		estadoBox.add(lblEstado);
+		JLabel labelEstado = new JLabel("Estado:");
+		labelEstado.setFont(new Font("Verdana", Font.BOLD, 16));
+		boxHorizontalEstado.add(labelEstado);
 
-		Component horizontalStrut_1_1 = Box.createHorizontalStrut(8);
-		estadoBox.add(horizontalStrut_1_1);
+		Component horizontal_endereco_2 = Box.createHorizontalStrut(8);
+		boxHorizontalEstado.add(horizontal_endereco_2);
 
-		textFieldEstado = new JTextField();
-		textFieldEstado.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textFieldEstado.setColumns(10);
-		estadoBox.add(textFieldEstado);
+		textEstado = new JTextField();
+		textEstado.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textEstado.setColumns(10);
+		boxHorizontalEstado.add(textEstado);
 
-		Component verticalStrut_1 = Box.createVerticalStrut(16);
-		enderecoBox.add(verticalStrut_1);
+		Component vertical_endereco_2 = Box.createVerticalStrut(32);
+		boxVerticalEndereco.add(vertical_endereco_2);
 
-		Box cidadeBox = Box.createHorizontalBox();
-		cidadeBox.setBounds(0, 0, 750, 96);
-		enderecoBox.add(cidadeBox);
+		Box boxHorizontalCidade = Box.createHorizontalBox();
+		boxHorizontalCidade.setBounds(0, 0, 750, 96);
+		boxVerticalEndereco.add(boxHorizontalCidade);
 
 		JLabel lblCidade = new JLabel("Cidade:");
 		lblCidade.setFont(new Font("Verdana", Font.BOLD, 16));
-		cidadeBox.add(lblCidade);
+		boxHorizontalCidade.add(lblCidade);
 
 		Component horizontalStrut_1_1_1 = Box.createHorizontalStrut(8);
-		cidadeBox.add(horizontalStrut_1_1_1);
+		boxHorizontalCidade.add(horizontalStrut_1_1_1);
 
-		textFieldCidade = new JTextField();
-		textFieldCidade.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textFieldCidade.setColumns(10);
-		cidadeBox.add(textFieldCidade);
+		textCidade = new JTextField();
+		textCidade.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textCidade.setColumns(10);
+		boxHorizontalCidade.add(textCidade);
 
-		Component verticalStrut_2 = Box.createVerticalStrut(16);
-		enderecoBox.add(verticalStrut_2);
+		Component vertical_endereco_3 = Box.createVerticalStrut(32);
+		boxVerticalEndereco.add(vertical_endereco_3);
+
+		Box boxHorizontalLogradouro = Box.createHorizontalBox();
+		boxVerticalEndereco.add(boxHorizontalLogradouro);
 
 		Box bairroBox = Box.createHorizontalBox();
-		enderecoBox.add(bairroBox);
+		boxVerticalEndereco.add(bairroBox);
 
 		JLabel lblBairro = new JLabel("Bairro:");
 		lblBairro.setFont(new Font("Verdana", Font.BOLD, 16));
@@ -112,17 +132,17 @@ public class EnderecoPanel extends JPanel {
 		Component horizontalStrut_1_1_1_1 = Box.createHorizontalStrut(8);
 		bairroBox.add(horizontalStrut_1_1_1_1);
 
-		textFieldBairro = new JTextField();
-		textFieldBairro.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textFieldBairro.setColumns(10);
-		bairroBox.add(textFieldBairro);
+		textBairro = new JTextField();
+		textBairro.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textBairro.setColumns(10);
+		bairroBox.add(textBairro);
 
-		Component verticalStrut_3 = Box.createVerticalStrut(16);
-		enderecoBox.add(verticalStrut_3);
+		Component vertical_endereco_4 = Box.createVerticalStrut(32);
+		boxVerticalEndereco.add(vertical_endereco_4);
 
 		Box ruaBox = Box.createHorizontalBox();
 		ruaBox.setBounds(0, 0, 750, 48);
-		enderecoBox.add(ruaBox);
+		boxVerticalEndereco.add(ruaBox);
 
 		JLabel lblRua = new JLabel("Rua:");
 		lblRua.setFont(new Font("Verdana", Font.BOLD, 16));
@@ -131,65 +151,102 @@ public class EnderecoPanel extends JPanel {
 		Component horizontalStrut_1_1_1_1_1 = Box.createHorizontalStrut(8);
 		ruaBox.add(horizontalStrut_1_1_1_1_1);
 
-		textFieldRua = new JTextField();
-		textFieldRua.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textFieldRua.setColumns(10);
-		ruaBox.add(textFieldRua);
+		textRua = new JTextField();
+		textRua.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textRua.setColumns(10);
+		ruaBox.add(textRua);
 
-		Component verticalStrut_4 = Box.createVerticalStrut(16);
-		enderecoBox.add(verticalStrut_4);
+		Component vertical_endereco_5 = Box.createVerticalStrut(32);
+		boxVerticalEndereco.add(vertical_endereco_5);
 
-		Box casaBox = Box.createHorizontalBox();
-		casaBox.setBounds(0, 0, 1, 1);
-		enderecoBox.add(casaBox);
+		Box boxHorizontalLocalizacao = Box.createHorizontalBox();
+		boxHorizontalLocalizacao.setBounds(0, 0, 1, 1);
+		boxVerticalEndereco.add(boxHorizontalLocalizacao);
 
-		Box numeroBox = Box.createHorizontalBox();
-		casaBox.add(numeroBox);
+		Box boxHorizontalNumero = Box.createHorizontalBox();
+		boxHorizontalLocalizacao.add(boxHorizontalNumero);
 
-		JLabel lblNumero = new JLabel("Número:");
-		lblNumero.setFont(new Font("Verdana", Font.BOLD, 16));
-		numeroBox.add(lblNumero);
+		JLabel labelNumero = new JLabel("Número:");
+		labelNumero.setFont(new Font("Verdana", Font.BOLD, 16));
+		boxHorizontalNumero.add(labelNumero);
 
-		Component horizontalStrut_1_1_1_1_1_1 = Box.createHorizontalStrut(8);
-		numeroBox.add(horizontalStrut_1_1_1_1_1_1);
+		Component horizontal_endereco_3 = Box.createHorizontalStrut(8);
+		boxHorizontalNumero.add(horizontal_endereco_3);
 
-		textFieldNumero = new JTextField();
-		textFieldNumero.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textFieldNumero.setColumns(10);
-		numeroBox.add(textFieldNumero);
+		textNumero = new JTextField();
+		textNumero.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textNumero.setColumns(1);
+		boxHorizontalNumero.add(textNumero);
 
-		Component horizontalStrut = Box.createHorizontalStrut(32);
-		casaBox.add(horizontalStrut);
+		Component horizontal_endereco_4 = Box.createHorizontalStrut(32);
+		boxHorizontalLocalizacao.add(horizontal_endereco_4);
 
-		Box complementoBox = Box.createHorizontalBox();
-		complementoBox.setBounds(0, 0, 750, 32);
-		casaBox.add(complementoBox);
+		Box boxHorizontalComplemento = Box.createHorizontalBox();
+		boxHorizontalComplemento.setBounds(0, 0, 750, 32);
+		boxHorizontalLocalizacao.add(boxHorizontalComplemento);
 
-		JLabel lblComplemento = new JLabel("Complemento:");
-		lblComplemento.setFont(new Font("Verdana", Font.BOLD, 16));
-		complementoBox.add(lblComplemento);
+		JLabel labelComplemento = new JLabel("Complemento:");
+		labelComplemento.setFont(new Font("Verdana", Font.BOLD, 16));
+		boxHorizontalComplemento.add(labelComplemento);
 
-		Component horizontalStrut_1_1_1_1_1_1_1 = Box.createHorizontalStrut(8);
-		complementoBox.add(horizontalStrut_1_1_1_1_1_1_1);
+		Component horizontal_endereco_5 = Box.createHorizontalStrut(8);
+		boxHorizontalComplemento.add(horizontal_endereco_5);
 
-		textFieldComplemento = new JTextField();
-		textFieldComplemento.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textFieldComplemento.setColumns(10);
-		complementoBox.add(textFieldComplemento);
+		textComplemento = new JTextField();
+		textComplemento.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textComplemento.setColumns(10);
+		boxHorizontalComplemento.add(textComplemento);
 
-		Box acaoBox = Box.createHorizontalBox();
-		acaoBox.setAlignmentY(0.5f);
-		acaoBox.setBounds(605, 570, 154, 32);
-		add(acaoBox);
+		Box boxHorizontalAcao = Box.createHorizontalBox();
+		boxHorizontalAcao.setAlignmentY(0.5f);
+		boxHorizontalAcao.setBounds(10, 570, 750, 32);
+		add(boxHorizontalAcao);
+
+		Box boxHorizontalVoltar = Box.createHorizontalBox();
+		boxHorizontalAcao.add(boxHorizontalVoltar);
+
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cadastroPanel.switchToBackTab();
+			}
+		});
+		boxHorizontalVoltar.add(btnVoltar);
+
+		Component horizontal_acao_1 = Box.createHorizontalStrut(530);
+		boxHorizontalAcao.add(horizontal_acao_1);
+
+		Box boxHorizontalCancelarEProximo = Box.createHorizontalBox();
+		boxHorizontalAcao.add(boxHorizontalCancelarEProximo);
 
 		JButton btnCancelar = new JButton("Cancelar");
-		acaoBox.add(btnCancelar);
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cadastroPanel.switchToCancelTab();
+			}
+		});
+		boxHorizontalCancelarEProximo.add(btnCancelar);
 
-		Component horizontalStrut_5 = Box.createHorizontalStrut(8);
-		acaoBox.add(horizontalStrut_5);
+		Component horizontal_acao_2 = Box.createHorizontalStrut(8);
+		boxHorizontalCancelarEProximo.add(horizontal_acao_2);
 
 		JButton btnCadastrar = new JButton("Cadastrar");
-		acaoBox.add(btnCadastrar);
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				pacienteFullDTO.setCep(148);
+				pacienteFullDTO.setEstado("SP");
+				pacienteFullDTO.setCidade("Bragança");
+				pacienteFullDTO.setRua("Rua 2");
+				pacienteFullDTO.setBairro("Bairro 2");
+				pacienteFullDTO.setNumero("ac1523");
+				pacienteFullDTO.setComplemento("lorem ipsum");
+
+				System.out.println(pacienteFullDTO);
+
+				pacienteController.create(pacienteFullDTO);
+			}
+		});
+		boxHorizontalCancelarEProximo.add(btnCadastrar);
 
 	}
 }

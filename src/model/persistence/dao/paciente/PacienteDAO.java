@@ -25,9 +25,9 @@ public class PacienteDAO extends GenericDAO<PacienteFullDTO> implements ICommonD
 			int historicoMedicoId = super.save(paciente.getHistoricoMedico(), "historicoMedico");
 
 			PessoaDTO pessoaDTO = new PessoaDTO(paciente.getPessoa().getNome(), paciente.getPessoa().getCpf(),
-					paciente.getPessoa().getDataNascimento(), paciente.getPessoa().getCelular(),
-					paciente.getPessoa().getTelefone(), paciente.getPessoa().getEmail(),
-					paciente.getPessoa().getGenero().getValue(), enderecoId);
+					paciente.getPessoa().getRg(), paciente.getPessoa().getDataNascimento(),
+					paciente.getPessoa().getCelular(), paciente.getPessoa().getTelefone(),
+					paciente.getPessoa().getEmail(), paciente.getPessoa().getGenero().getValue(), enderecoId);
 			int pessoaId = super.save(pessoaDTO, "pessoa");
 
 			PacienteDTO pacienteDAO = new PacienteDTO(paciente.getAltura(), paciente.isFumante(),
@@ -60,6 +60,7 @@ public class PacienteDAO extends GenericDAO<PacienteFullDTO> implements ICommonD
 
 		String nome = resultSet.getString("nome");
 		String cpf = resultSet.getString("cpf");
+		String rg = resultSet.getString("rg");
 		Object dbSqlDate = resultSet.getObject("dataNascimento");
 		LocalDate dataNascimento = LocalDate.parse(dbSqlDate.toString());
 		long celular = resultSet.getLong("celular");
@@ -87,8 +88,8 @@ public class PacienteDAO extends GenericDAO<PacienteFullDTO> implements ICommonD
 		String medicamentos = resultSet.getString("medicamentos");
 		String condicaoMedica = resultSet.getString("condicaoMedica");
 
-		return new PacienteFullDTO(idPaciente, nome, cpf, dataNascimento, celular, telefone, email, genero, cep, estado,
-				cidade, bairro, rua, numero, complemento, altura, fumante, marcaPasso, numeroCarteirinha, prestadora,
-				plano, alergias, medicamentos, condicaoMedica);
+		return new PacienteFullDTO(idPaciente, nome, cpf, rg, dataNascimento, celular, telefone, email, genero, cep,
+				estado, cidade, bairro, rua, numero, complemento, altura, fumante, marcaPasso, numeroCarteirinha,
+				prestadora, plano, alergias, medicamentos, condicaoMedica);
 	}
 }

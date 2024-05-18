@@ -63,7 +63,7 @@ public class PacienteController implements IController<PacienteFullDTO, Paciente
 		Endereco endereco = new Endereco(dto.getCep(), dto.getEstado(), dto.getCidade(), dto.getBairro(), dto.getRua(),
 				dto.getNumero(), dto.getComplemento());
 
-		Pessoa pessoa = new Pessoa(dto.getNome(), dto.getCpf(), dto.getDataNascimento(), dto.getCelular(),
+		Pessoa pessoa = new Pessoa(dto.getNome(), dto.getCpf(), dto.getRg(), dto.getDataNascimento(), dto.getCelular(),
 				dto.getTelefone(), dto.getEmail(), dto.getGenero(), endereco);
 
 		Convenio convenio = new Convenio(dto.getNumeroCarteirinha(), dto.getPrestadora(), dto.getPlano());

@@ -2,6 +2,9 @@ package view.gui;
 
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.LocalDate;
 
 import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
@@ -15,248 +18,290 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
 import model.enums.EnumGenero;
+import model.persistence.dao.paciente.PacienteFullDTO;
 
 public class PessoaPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textFieldCPF;
-	private JTextField textFieldRG;
-	private JTextField textField;
+
+	private JTextField textNome;
+	private JTextField textCpf;
+	private JTextField textRg;
+	private JTextField textDataNascimento;
 	private JTextField textCelular;
-	private JTextField textFieldTelefone;
-	private JTextField textFieldEmail;
-	private JTextField textField_1;
+	private JTextField textTelefone;
+	private JTextField textEmail;
+	private JComboBox<Object> comboBoxGenero = new JComboBox<Object>();
 
 	/**
 	 * Create the panel.
 	 */
-	public PessoaPanel() {
+	public void clearPessoaFields() {
+		textNome.setText("");
+		textCpf.setText("");
+		textRg.setText("");
+		textDataNascimento.setText("");
+		textCelular.setText("");
+		textTelefone.setText("");
+		textEmail.setText("");
+		comboBoxGenero.setSelectedIndex(0);
+	}
+
+	public PessoaPanel(PacienteFullDTO pacienteFullDTO, CadastroPanel cadastroPanel) {
 		setBackground(UIManager.getColor("menu"));
 		setLayout(null);
 
-		Box pessoaTitulo = Box.createVerticalBox();
-		pessoaTitulo.setBounds(10, 10, 750, 45);
-		add(pessoaTitulo);
+		Box tituloBoxVerticalDadosPessoais = Box.createVerticalBox();
+		tituloBoxVerticalDadosPessoais.setBounds(10, 10, 750, 45);
+		add(tituloBoxVerticalDadosPessoais);
 
-		JLabel lblPessoaTitulo = new JLabel("DADOS PESSOAIS");
-		pessoaTitulo.add(lblPessoaTitulo);
-		lblPessoaTitulo.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPessoaTitulo.setFont(new Font("Verdana", Font.BOLD, 32));
+		JLabel tituloDadosPessoais = new JLabel("DADOS PESSOAIS");
+		tituloBoxVerticalDadosPessoais.add(tituloDadosPessoais);
+		tituloDadosPessoais.setHorizontalAlignment(SwingConstants.LEFT);
+		tituloDadosPessoais.setFont(new Font("Verdana", Font.BOLD, 32));
 
-		JSeparator hr = new JSeparator();
-		pessoaTitulo.add(hr);
+		JSeparator hr_dadosPessoais = new JSeparator();
+		tituloBoxVerticalDadosPessoais.add(hr_dadosPessoais);
 
-		Box dadosPessoaisBox = Box.createHorizontalBox();
-		dadosPessoaisBox.setBounds(10, 65, 750, 32);
-		add(dadosPessoaisBox);
+		Box boxHorizontalDadosPessoais = Box.createHorizontalBox();
+		boxHorizontalDadosPessoais.setBounds(10, 65, 750, 32);
+		add(boxHorizontalDadosPessoais);
 
-		Box nomeBox = Box.createHorizontalBox();
-		dadosPessoaisBox.add(nomeBox);
+		Box boxHorizontalNome = Box.createHorizontalBox();
+		boxHorizontalDadosPessoais.add(boxHorizontalNome);
 
-		JLabel lblNome = new JLabel("Nome:");
-		lblNome.setFont(new Font("Verdana", Font.BOLD, 16));
-		nomeBox.add(lblNome);
+		JLabel labelNome = new JLabel("Nome:");
+		labelNome.setFont(new Font("Verdana", Font.BOLD, 16));
+		boxHorizontalNome.add(labelNome);
 
-		Component horizontalStrut_1 = Box.createHorizontalStrut(8);
-		nomeBox.add(horizontalStrut_1);
+		Component horizontal_dadosPessoais_1 = Box.createHorizontalStrut(8);
+		boxHorizontalNome.add(horizontal_dadosPessoais_1);
 
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textField_1.setColumns(30);
-		nomeBox.add(textField_1);
+		textNome = new JTextField();
+		textNome.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textNome.setColumns(30);
+		boxHorizontalNome.add(textNome);
 
-		Component horizontalStrut = Box.createHorizontalStrut(20);
-		horizontalStrut.setBounds(10, 97, 750, 32);
-		add(horizontalStrut);
+		Component horizontal_pessoapanel_1 = Box.createHorizontalStrut(20);
+		horizontal_pessoapanel_1.setBounds(10, 97, 750, 32);
+		add(horizontal_pessoapanel_1);
 
-		Box documentoTitulo = Box.createVerticalBox();
-		documentoTitulo.setBounds(10, 129, 750, 45);
-		add(documentoTitulo);
+		Box tituloBoxVerticalDocumentos = Box.createVerticalBox();
+		tituloBoxVerticalDocumentos.setBounds(10, 129, 750, 45);
+		add(tituloBoxVerticalDocumentos);
 
-		JLabel lblDocumentos = new JLabel("DOCUMENTOS");
-		lblDocumentos.setHorizontalAlignment(SwingConstants.LEFT);
-		lblDocumentos.setFont(new Font("Verdana", Font.BOLD, 32));
-		documentoTitulo.add(lblDocumentos);
+		JLabel documentosLabel = new JLabel("DOCUMENTOS");
+		documentosLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		documentosLabel.setFont(new Font("Verdana", Font.BOLD, 32));
+		tituloBoxVerticalDocumentos.add(documentosLabel);
 
-		JSeparator hr_1 = new JSeparator();
-		documentoTitulo.add(hr_1);
+		JSeparator hr_documentos = new JSeparator();
+		tituloBoxVerticalDocumentos.add(hr_documentos);
 
-		Box documentosBox = Box.createHorizontalBox();
-		documentosBox.setBounds(10, 177, 750, 32);
-		add(documentosBox);
+		Box boxHorizontalDocumentos = Box.createHorizontalBox();
+		boxHorizontalDocumentos.setBounds(10, 177, 750, 32);
+		add(boxHorizontalDocumentos);
 
-		Box cpfBox = Box.createHorizontalBox();
-		cpfBox.setAlignmentY(Component.CENTER_ALIGNMENT);
-		documentosBox.add(cpfBox);
+		Box boxHorizontalCpf = Box.createHorizontalBox();
+		boxHorizontalCpf.setAlignmentY(Component.CENTER_ALIGNMENT);
+		boxHorizontalDocumentos.add(boxHorizontalCpf);
 
-		JLabel lblCPF = new JLabel("CPF:");
-		lblCPF.setFont(new Font("Verdana", Font.BOLD, 16));
-		cpfBox.add(lblCPF);
+		JLabel labelCpf = new JLabel("CPF:");
+		labelCpf.setFont(new Font("Verdana", Font.BOLD, 16));
+		boxHorizontalCpf.add(labelCpf);
 
-		Component horizontalStrut_2 = Box.createHorizontalStrut(8);
-		cpfBox.add(horizontalStrut_2);
+		Component horizontal_documentos_1 = Box.createHorizontalStrut(8);
+		boxHorizontalCpf.add(horizontal_documentos_1);
 
-		textFieldCPF = new JTextField();
-		textFieldCPF.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textFieldCPF.setColumns(10);
-		cpfBox.add(textFieldCPF);
+		textCpf = new JTextField();
+		textCpf.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textCpf.setColumns(10);
+		boxHorizontalCpf.add(textCpf);
 
-		Component horizontalStrut_2_1 = Box.createHorizontalStrut(32);
-		cpfBox.add(horizontalStrut_2_1);
+		Component horizontal_documentos_2 = Box.createHorizontalStrut(32);
+		boxHorizontalDocumentos.add(horizontal_documentos_2);
 
-		Box rgBox = Box.createHorizontalBox();
-		rgBox.setAlignmentY(Component.CENTER_ALIGNMENT);
-		documentosBox.add(rgBox);
+		Box boxHorizontalRg = Box.createHorizontalBox();
+		boxHorizontalRg.setAlignmentY(Component.CENTER_ALIGNMENT);
+		boxHorizontalDocumentos.add(boxHorizontalRg);
 
-		JLabel lblRG = new JLabel("RG:");
-		lblRG.setFont(new Font("Verdana", Font.BOLD, 16));
-		rgBox.add(lblRG);
+		JLabel labelRg = new JLabel("RG:");
+		labelRg.setFont(new Font("Verdana", Font.BOLD, 16));
+		boxHorizontalRg.add(labelRg);
 
-		Component horizontalStrut_3 = Box.createHorizontalStrut(8);
-		rgBox.add(horizontalStrut_3);
+		Component horizontal_documentos_3 = Box.createHorizontalStrut(8);
+		boxHorizontalRg.add(horizontal_documentos_3);
 
-		textFieldRG = new JTextField();
-		textFieldRG.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textFieldRG.setColumns(10);
-		rgBox.add(textFieldRG);
+		textRg = new JTextField();
+		textRg.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textRg.setColumns(10);
+		boxHorizontalRg.add(textRg);
 
-		Box dataNascimentoBox = Box.createHorizontalBox();
-		dadosPessoaisBox.add(dataNascimentoBox);
+		Component horizontal_dadosPessoais_2 = Box.createHorizontalStrut(32);
+		boxHorizontalDadosPessoais.add(horizontal_dadosPessoais_2);
 
-		Component horizontalStrut_2_1_1 = Box.createHorizontalStrut(32);
-		dataNascimentoBox.add(horizontalStrut_2_1_1);
+		Box boxHorizontalDataNascimento = Box.createHorizontalBox();
+		boxHorizontalDadosPessoais.add(boxHorizontalDataNascimento);
 
-		JLabel lblDataNascimento = new JLabel("Data de nascimento:");
-		lblDataNascimento.setFont(new Font("Verdana", Font.BOLD, 16));
-		dataNascimentoBox.add(lblDataNascimento);
+		JLabel labelDataNascimento = new JLabel("Data de nascimento:");
+		labelDataNascimento.setFont(new Font("Verdana", Font.BOLD, 16));
+		boxHorizontalDataNascimento.add(labelDataNascimento);
 
-		Component horizontalStrut_3_1 = Box.createHorizontalStrut(8);
-		dataNascimentoBox.add(horizontalStrut_3_1);
+		Component horizontal_dadosPessoais_3 = Box.createHorizontalStrut(8);
+		boxHorizontalDataNascimento.add(horizontal_dadosPessoais_3);
 
-		textField = new JTextField();
-		textField.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textField.setColumns(10);
-		dataNascimentoBox.add(textField);
+		textDataNascimento = new JTextField();
+		textDataNascimento.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textDataNascimento.setColumns(10);
+		boxHorizontalDataNascimento.add(textDataNascimento);
 
-		Component horizontalStrut_4 = Box.createHorizontalStrut(20);
-		horizontalStrut_4.setBounds(10, 209, 750, 32);
-		add(horizontalStrut_4);
+		Component horizontal_pessoapanel_2 = Box.createHorizontalStrut(20);
+		horizontal_pessoapanel_2.setBounds(10, 209, 750, 32);
+		add(horizontal_pessoapanel_2);
 
-		Box contatoTitulo = Box.createVerticalBox();
-		contatoTitulo.setBounds(10, 241, 750, 45);
-		add(contatoTitulo);
+		Box tituloBoxVerticalContato = Box.createVerticalBox();
+		tituloBoxVerticalContato.setBounds(10, 241, 750, 45);
+		add(tituloBoxVerticalContato);
 
-		JLabel lblContato = new JLabel("CONTATO");
-		lblContato.setHorizontalAlignment(SwingConstants.LEFT);
-		lblContato.setFont(new Font("Verdana", Font.BOLD, 32));
-		contatoTitulo.add(lblContato);
+		JLabel labelContato = new JLabel("CONTATO");
+		labelContato.setHorizontalAlignment(SwingConstants.LEFT);
+		labelContato.setFont(new Font("Verdana", Font.BOLD, 32));
+		tituloBoxVerticalContato.add(labelContato);
 
-		JSeparator hr_1_1 = new JSeparator();
-		contatoTitulo.add(hr_1_1);
+		JSeparator hr_contato = new JSeparator();
+		tituloBoxVerticalContato.add(hr_contato);
 
-		Box contatoBox = Box.createVerticalBox();
-		contatoBox.setBounds(10, 289, 750, 128);
-		add(contatoBox);
+		Box boxVerticalContato = Box.createVerticalBox();
+		boxVerticalContato.setBounds(10, 289, 750, 128);
+		add(boxVerticalContato);
 
-		Box celularBox = Box.createHorizontalBox();
-		celularBox.setAlignmentY(0.5f);
-		contatoBox.add(celularBox);
+		Box boxHorizontalCelular = Box.createHorizontalBox();
+		boxHorizontalCelular.setAlignmentY(0.5f);
+		boxVerticalContato.add(boxHorizontalCelular);
 
-		JLabel lblCelular = new JLabel("Celular:");
-		lblCelular.setFont(new Font("Verdana", Font.BOLD, 16));
-		celularBox.add(lblCelular);
+		JLabel labelCelular = new JLabel("Celular:");
+		labelCelular.setFont(new Font("Verdana", Font.BOLD, 16));
+		boxHorizontalCelular.add(labelCelular);
 
-		Component horizontalStrut_2_2 = Box.createHorizontalStrut(8);
-		celularBox.add(horizontalStrut_2_2);
+		Component horizontal_contato_1 = Box.createHorizontalStrut(8);
+		boxHorizontalCelular.add(horizontal_contato_1);
 
 		textCelular = new JTextField();
 		textCelular.setFont(new Font("Verdana", Font.PLAIN, 12));
 		textCelular.setColumns(10);
-		celularBox.add(textCelular);
+		boxHorizontalCelular.add(textCelular);
 
-		Component verticalStrut = Box.createVerticalStrut(16);
-		contatoBox.add(verticalStrut);
+		Component vertical_contato_1 = Box.createVerticalStrut(16);
+		boxVerticalContato.add(vertical_contato_1);
 
-		Box telefoneBox = Box.createHorizontalBox();
-		telefoneBox.setAlignmentY(0.5f);
-		contatoBox.add(telefoneBox);
+		Box boxHorizontalTelefone = Box.createHorizontalBox();
+		boxHorizontalTelefone.setAlignmentY(0.5f);
+		boxVerticalContato.add(boxHorizontalTelefone);
 
-		JLabel lblTelefone = new JLabel("Telefone:");
-		lblTelefone.setFont(new Font("Verdana", Font.BOLD, 16));
-		telefoneBox.add(lblTelefone);
+		JLabel labelTelefone = new JLabel("Telefone:");
+		labelTelefone.setFont(new Font("Verdana", Font.BOLD, 16));
+		boxHorizontalTelefone.add(labelTelefone);
 
-		Component horizontalStrut_3_2 = Box.createHorizontalStrut(8);
-		telefoneBox.add(horizontalStrut_3_2);
+		Component horizontal_contato_2 = Box.createHorizontalStrut(8);
+		boxHorizontalTelefone.add(horizontal_contato_2);
 
-		textFieldTelefone = new JTextField();
-		textFieldTelefone.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textFieldTelefone.setColumns(10);
-		telefoneBox.add(textFieldTelefone);
+		textTelefone = new JTextField();
+		textTelefone.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textTelefone.setColumns(10);
+		boxHorizontalTelefone.add(textTelefone);
 
-		Component verticalStrut_1 = Box.createVerticalStrut(16);
-		contatoBox.add(verticalStrut_1);
+		Component vertical_contato_2 = Box.createVerticalStrut(16);
+		boxVerticalContato.add(vertical_contato_2);
 
-		Box emailBox = Box.createHorizontalBox();
-		contatoBox.add(emailBox);
+		Box boxHorizontalEmail = Box.createHorizontalBox();
+		boxVerticalContato.add(boxHorizontalEmail);
 
-		JLabel lblEmail = new JLabel("E-mail:");
-		lblEmail.setFont(new Font("Verdana", Font.BOLD, 16));
-		emailBox.add(lblEmail);
+		JLabel labelEmail = new JLabel("E-mail:");
+		labelEmail.setFont(new Font("Verdana", Font.BOLD, 16));
+		boxHorizontalEmail.add(labelEmail);
 
-		Component horizontalStrut_3_1_1 = Box.createHorizontalStrut(8);
-		emailBox.add(horizontalStrut_3_1_1);
+		Component horizontal_contato_3 = Box.createHorizontalStrut(8);
+		boxHorizontalEmail.add(horizontal_contato_3);
 
-		textFieldEmail = new JTextField();
-		textFieldEmail.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textFieldEmail.setColumns(10);
-		emailBox.add(textFieldEmail);
+		textEmail = new JTextField();
+		textEmail.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textEmail.setColumns(10);
+		boxHorizontalEmail.add(textEmail);
 
-		Component horizontalStrut_4_1 = Box.createHorizontalStrut(20);
-		horizontalStrut_4_1.setBounds(10, 419, 750, 32);
-		add(horizontalStrut_4_1);
+		Component horizontal_contato_4 = Box.createHorizontalStrut(20);
+		horizontal_contato_4.setBounds(10, 419, 750, 32);
+		add(horizontal_contato_4);
 
-		Box outrosTitulo = Box.createVerticalBox();
-		outrosTitulo.setBounds(10, 451, 750, 45);
-		add(outrosTitulo);
+		Box tituloBoxVerticalOutrasInformacoes = Box.createVerticalBox();
+		tituloBoxVerticalOutrasInformacoes.setBounds(10, 451, 750, 45);
+		add(tituloBoxVerticalOutrasInformacoes);
 
-		JLabel lblOutros = new JLabel("OUTRAS INFORMAÇÕES");
-		lblOutros.setHorizontalAlignment(SwingConstants.LEFT);
-		lblOutros.setFont(new Font("Verdana", Font.BOLD, 32));
-		outrosTitulo.add(lblOutros);
+		JLabel labelOutrasInformacoes = new JLabel("OUTRAS INFORMAÇÕES");
+		labelOutrasInformacoes.setHorizontalAlignment(SwingConstants.LEFT);
+		labelOutrasInformacoes.setFont(new Font("Verdana", Font.BOLD, 32));
+		tituloBoxVerticalOutrasInformacoes.add(labelOutrasInformacoes);
 
-		JSeparator hr_1_1_1 = new JSeparator();
-		outrosTitulo.add(hr_1_1_1);
+		JSeparator hr_outrasInformacoes = new JSeparator();
+		tituloBoxVerticalOutrasInformacoes.add(hr_outrasInformacoes);
 
-		Box generoBox = Box.createHorizontalBox();
-		generoBox.setAlignmentY(0.5f);
-		generoBox.setBounds(10, 499, 750, 32);
-		add(generoBox);
+		Box boxHorizontalOutrasInformacoes = Box.createHorizontalBox();
+		boxHorizontalOutrasInformacoes.setBounds(10, 504, 750, 32);
+		add(boxHorizontalOutrasInformacoes);
 
-		JLabel lblGenero = new JLabel("Gênero:");
-		lblGenero.setFont(new Font("Verdana", Font.BOLD, 16));
-		generoBox.add(lblGenero);
+		Box boxHorizontalGenero = Box.createHorizontalBox();
+		boxHorizontalGenero.setAlignmentY(0.5f);
+		boxHorizontalGenero.setBounds(10, 499, 750, 32);
+		boxHorizontalOutrasInformacoes.add(boxHorizontalGenero);
 
-		Component horizontalStrut_2_2_1 = Box.createHorizontalStrut(8);
-		generoBox.add(horizontalStrut_2_2_1);
+		JLabel labelGenero = new JLabel("Gênero:");
+		labelGenero.setFont(new Font("Verdana", Font.BOLD, 16));
+		boxHorizontalGenero.add(labelGenero);
 
-		JComboBox<Object> comboBoxGenero = new JComboBox<Object>();
+		Component horizontal_outrasinformacoes_1 = Box.createHorizontalStrut(8);
+		boxHorizontalGenero.add(horizontal_outrasinformacoes_1);
+
 		comboBoxGenero.setModel(new DefaultComboBoxModel<Object>(EnumGenero.values()));
 		comboBoxGenero.setSelectedIndex(0);
-		generoBox.add(comboBoxGenero);
+		boxHorizontalGenero.add(comboBoxGenero);
 
-		Box acaoBox = Box.createHorizontalBox();
-		acaoBox.setAlignmentY(0.5f);
-		acaoBox.setBounds(605, 570, 154, 32);
-		add(acaoBox);
+		Box boxHorizontalAcao = Box.createHorizontalBox();
+		boxHorizontalAcao.setAlignmentY(0.5f);
+		boxHorizontalAcao.setBounds(10, 570, 750, 32);
+		add(boxHorizontalAcao);
+
+		Component horizontal_acao_1 = Box.createHorizontalStrut(595);
+		boxHorizontalAcao.add(horizontal_acao_1);
+
+		Box boxHorizontalCancelarEProximo = Box.createHorizontalBox();
+		boxHorizontalAcao.add(boxHorizontalCancelarEProximo);
 
 		JButton btnCancelar = new JButton("Cancelar");
-		acaoBox.add(btnCancelar);
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cadastroPanel.switchToCancelTab();
+			}
+		});
+		boxHorizontalCancelarEProximo.add(btnCancelar);
 
-		Component horizontalStrut_5 = Box.createHorizontalStrut(8);
-		acaoBox.add(horizontalStrut_5);
+		Component horizontal_acao_2 = Box.createHorizontalStrut(8);
+		boxHorizontalCancelarEProximo.add(horizontal_acao_2);
 
-		JButton btnProximo_1 = new JButton("Próximo");
-		acaoBox.add(btnProximo_1);
+		JButton btnProximo = new JButton("Próximo");
+		btnProximo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				pacienteFullDTO.setDataNascimento(LocalDate.of(2000, 3, 25));
+				pacienteFullDTO.setNome(textNome.getText());
+				pacienteFullDTO.setCpf(textCpf.getText());
+				pacienteFullDTO.setRg(textRg.getText());
+				pacienteFullDTO.setCelular(Long.parseLong(textCelular.getText()));
+				pacienteFullDTO.setTelefone(Long.parseLong(textTelefone.getText()));
+				pacienteFullDTO.setEmail(textEmail.getText());
+				pacienteFullDTO.setGenero((EnumGenero) comboBoxGenero.getSelectedItem());
+
+				cadastroPanel.switchToNextTab();
+			}
+		});
+		boxHorizontalCancelarEProximo.add(btnProximo);
 
 	}
 }
