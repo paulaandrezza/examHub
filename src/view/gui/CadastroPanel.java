@@ -18,9 +18,14 @@ public class CadastroPanel extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	JTabbedPane tabbedPanel = new JTabbedPane(JTabbedPane.TOP);
 
-	PacienteController pacienteController = new PacienteController();
-	PacienteFullDTO pacienteFullDTO = new PacienteFullDTO();
+	private PacienteController pacienteController = new PacienteController();
+	private PacienteFullDTO pacienteFullDTO = new PacienteFullDTO();
+
+	private PessoaPanel pessoaPanel = new PessoaPanel(pacienteFullDTO, this);
+	private PacientePanel pacientePanel = new PacientePanel(pacienteFullDTO, this);
+	private EnderecoPanel enderecoPanel = new EnderecoPanel(pacienteController, pacienteFullDTO, this);
 
 	/**
 	 * Launch the application.
@@ -56,15 +61,10 @@ public class CadastroPanel extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.X_AXIS));
 
-		JTabbedPane tabbedPanel = new JTabbedPane(JTabbedPane.TOP);
-		// PessoaPanel - Dados Pessoais
-		PessoaPanel pessoaPanel = new PessoaPanel(pacienteFullDTO);
 		tabbedPanel.addTab("Dados Pessoais", pessoaPanel);
-		// PacientePanel - Dados médicos
-		PacientePanel pacientePanel = new PacientePanel(pacienteFullDTO);
+
 		tabbedPanel.addTab("Dados Médicos", pacientePanel);
-		// EnderecoPanel - Endereço
-		EnderecoPanel enderecoPanel = new EnderecoPanel(pacienteController, pacienteFullDTO);
+
 		tabbedPanel.addTab("Dados de Moradia", enderecoPanel);
 		contentPane.add(tabbedPanel);
 
@@ -74,4 +74,27 @@ public class CadastroPanel extends JFrame {
 
 	}
 
+	public void switchToNextTab() {
+		int currentIndex = tabbedPanel.getSelectedIndex();
+		int nextIndex = currentIndex + 1;
+		if (nextIndex < tabbedPanel.getTabCount()) {
+			tabbedPanel.setSelectedIndex(nextIndex);
+		}
+	}
+
+	public void switchToBackTab() {
+		int currentIndex = tabbedPanel.getSelectedIndex();
+		int nextIndex = currentIndex - 1;
+		if (nextIndex >= 0) {
+			tabbedPanel.setSelectedIndex(nextIndex);
+		}
+	}
+
+	public void switchToCancelTab() {
+		tabbedPanel.setSelectedIndex(0);
+
+		pessoaPanel.clearPessoaFields();
+		pacientePanel.clearPacienteFields();
+		enderecoPanel.clearEnderecoFields();
+	}
 }

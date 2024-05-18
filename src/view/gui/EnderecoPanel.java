@@ -20,18 +20,30 @@ import model.persistence.dao.paciente.PacienteFullDTO;
 public class EnderecoPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textFieldCep;
-	private JTextField textFieldEstado;
-	private JTextField textFieldCidade;
-	private JTextField textFieldBairro;
-	private JTextField textFieldRua;
-	private JTextField textFieldNumero;
-	private JTextField textFieldComplemento;
+	private JTextField textCep;
+	private JTextField textEstado;
+	private JTextField textCidade;
+	private JTextField textBairro;
+	private JTextField textRua;
+	private JTextField textNumero;
+	private JTextField textComplemento;
 
 	/**
 	 * Create the panel.
 	 */
-	public EnderecoPanel(PacienteController pacienteController, PacienteFullDTO pacienteFullDTO) {
+
+	public void clearEnderecoFields() {
+		textCep.setText("");
+		textEstado.setText("");
+		textCidade.setText("");
+		textBairro.setText("");
+		textRua.setText("");
+		textNumero.setText("");
+		textComplemento.setText("");
+	}
+
+	public EnderecoPanel(PacienteController pacienteController, PacienteFullDTO pacienteFullDTO,
+			CadastroPanel cadastroPanel) {
 		setBackground(UIManager.getColor("menu"));
 		setLayout(null);
 
@@ -61,10 +73,10 @@ public class EnderecoPanel extends JPanel {
 		Component horizontalStrut_1 = Box.createHorizontalStrut(8);
 		cepBox.add(horizontalStrut_1);
 
-		textFieldCep = new JTextField();
-		textFieldCep.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textFieldCep.setColumns(10);
-		cepBox.add(textFieldCep);
+		textCep = new JTextField();
+		textCep.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textCep.setColumns(10);
+		cepBox.add(textCep);
 
 		Component verticalStrut = Box.createVerticalStrut(16);
 		enderecoBox.add(verticalStrut);
@@ -80,10 +92,10 @@ public class EnderecoPanel extends JPanel {
 		Component horizontalStrut_1_1 = Box.createHorizontalStrut(8);
 		estadoBox.add(horizontalStrut_1_1);
 
-		textFieldEstado = new JTextField();
-		textFieldEstado.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textFieldEstado.setColumns(10);
-		estadoBox.add(textFieldEstado);
+		textEstado = new JTextField();
+		textEstado.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textEstado.setColumns(10);
+		estadoBox.add(textEstado);
 
 		Component verticalStrut_1 = Box.createVerticalStrut(16);
 		enderecoBox.add(verticalStrut_1);
@@ -99,10 +111,10 @@ public class EnderecoPanel extends JPanel {
 		Component horizontalStrut_1_1_1 = Box.createHorizontalStrut(8);
 		cidadeBox.add(horizontalStrut_1_1_1);
 
-		textFieldCidade = new JTextField();
-		textFieldCidade.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textFieldCidade.setColumns(10);
-		cidadeBox.add(textFieldCidade);
+		textCidade = new JTextField();
+		textCidade.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textCidade.setColumns(10);
+		cidadeBox.add(textCidade);
 
 		Component verticalStrut_2 = Box.createVerticalStrut(16);
 		enderecoBox.add(verticalStrut_2);
@@ -120,10 +132,10 @@ public class EnderecoPanel extends JPanel {
 		Component horizontalStrut_1_1_1_1 = Box.createHorizontalStrut(8);
 		bairroBox.add(horizontalStrut_1_1_1_1);
 
-		textFieldBairro = new JTextField();
-		textFieldBairro.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textFieldBairro.setColumns(10);
-		bairroBox.add(textFieldBairro);
+		textBairro = new JTextField();
+		textBairro.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textBairro.setColumns(10);
+		bairroBox.add(textBairro);
 
 		Component verticalStrut_3 = Box.createVerticalStrut(16);
 		enderecoBox.add(verticalStrut_3);
@@ -142,10 +154,10 @@ public class EnderecoPanel extends JPanel {
 		Component horizontalStrut_1_1_1_1_1 = Box.createHorizontalStrut(8);
 		ruaBox.add(horizontalStrut_1_1_1_1_1);
 
-		textFieldRua = new JTextField();
-		textFieldRua.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textFieldRua.setColumns(10);
-		ruaBox.add(textFieldRua);
+		textRua = new JTextField();
+		textRua.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textRua.setColumns(10);
+		ruaBox.add(textRua);
 
 		Component verticalStrut_4 = Box.createVerticalStrut(16);
 		enderecoBox.add(verticalStrut_4);
@@ -164,10 +176,10 @@ public class EnderecoPanel extends JPanel {
 		Component horizontalStrut_1_1_1_1_1_1 = Box.createHorizontalStrut(8);
 		numeroBox.add(horizontalStrut_1_1_1_1_1_1);
 
-		textFieldNumero = new JTextField();
-		textFieldNumero.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textFieldNumero.setColumns(1);
-		numeroBox.add(textFieldNumero);
+		textNumero = new JTextField();
+		textNumero.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textNumero.setColumns(1);
+		numeroBox.add(textNumero);
 
 		Component horizontalStrut = Box.createHorizontalStrut(32);
 		casaBox.add(horizontalStrut);
@@ -183,10 +195,10 @@ public class EnderecoPanel extends JPanel {
 		Component horizontalStrut_1_1_1_1_1_1_1 = Box.createHorizontalStrut(8);
 		complementoBox.add(horizontalStrut_1_1_1_1_1_1_1);
 
-		textFieldComplemento = new JTextField();
-		textFieldComplemento.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textFieldComplemento.setColumns(10);
-		complementoBox.add(textFieldComplemento);
+		textComplemento = new JTextField();
+		textComplemento.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textComplemento.setColumns(10);
+		complementoBox.add(textComplemento);
 
 		Box acaoBox = Box.createHorizontalBox();
 		acaoBox.setAlignmentY(0.5f);
@@ -194,6 +206,11 @@ public class EnderecoPanel extends JPanel {
 		add(acaoBox);
 
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cadastroPanel.switchToCancelTab();
+			}
+		});
 		acaoBox.add(btnCancelar);
 
 		Component horizontalStrut_5 = Box.createHorizontalStrut(8);
@@ -222,8 +239,13 @@ public class EnderecoPanel extends JPanel {
 		voltarBox.setBounds(10, 570, 58, 32);
 		add(voltarBox);
 
-		JButton btnVoltar_1 = new JButton("Voltar");
-		voltarBox.add(btnVoltar_1);
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cadastroPanel.switchToBackTab();
+			}
+		});
+		voltarBox.add(btnVoltar);
 
 	}
 }

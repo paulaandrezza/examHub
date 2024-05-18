@@ -30,11 +30,23 @@ public class PessoaPanel extends JPanel {
 	private JTextField textTelefone;
 	private JTextField textEmail;
 	private JTextField textNome;
+	private JComboBox<Object> comboBoxGenero = new JComboBox<Object>();
 
 	/**
 	 * Create the panel.
 	 */
-	public PessoaPanel(PacienteFullDTO pacienteFullDTO) {
+	public void clearPessoaFields() {
+		textNome.setText("");
+		textCPF.setText("");
+		textRG.setText("");
+		textDataNascimento.setText("");
+		textCelular.setText("");
+		textTelefone.setText("");
+		textEmail.setText("");
+		comboBoxGenero.setSelectedIndex(0);
+	}
+
+	public PessoaPanel(PacienteFullDTO pacienteFullDTO, CadastroPanel cadastroPanel) {
 		setBackground(UIManager.getColor("menu"));
 		setLayout(null);
 
@@ -243,7 +255,6 @@ public class PessoaPanel extends JPanel {
 		Component horizontalStrut_2_2_1 = Box.createHorizontalStrut(8);
 		generoBox.add(horizontalStrut_2_2_1);
 
-		JComboBox<Object> comboBoxGenero = new JComboBox<Object>();
 		comboBoxGenero.setModel(new DefaultComboBoxModel<Object>(EnumGenero.values()));
 		comboBoxGenero.setSelectedIndex(0);
 		generoBox.add(comboBoxGenero);
@@ -254,13 +265,18 @@ public class PessoaPanel extends JPanel {
 		add(acaoBox);
 
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cadastroPanel.switchToCancelTab();
+			}
+		});
 		acaoBox.add(btnCancelar);
 
 		Component horizontalStrut_5 = Box.createHorizontalStrut(8);
 		acaoBox.add(horizontalStrut_5);
 
-		JButton btnProximo_1 = new JButton("Próximo");
-		btnProximo_1.addActionListener(new ActionListener() {
+		JButton btnProximo = new JButton("Próximo");
+		btnProximo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				pacienteFullDTO.setDataNascimento(LocalDate.of(2000, 3, 25));
 				pacienteFullDTO.setNome(textNome.getText());
@@ -270,17 +286,11 @@ public class PessoaPanel extends JPanel {
 				pacienteFullDTO.setTelefone(Long.parseLong(textTelefone.getText()));
 				pacienteFullDTO.setEmail(textEmail.getText());
 				pacienteFullDTO.setGenero((EnumGenero) comboBoxGenero.getSelectedItem());
+
+				cadastroPanel.switchToNextTab();
 			}
 		});
-		acaoBox.add(btnProximo_1);
-
-		Box voltarBox = Box.createHorizontalBox();
-		voltarBox.setAlignmentY(0.5f);
-		voltarBox.setBounds(10, 570, 58, 32);
-		add(voltarBox);
-
-		JButton btnVoltar = new JButton("Voltar");
-		voltarBox.add(btnVoltar);
+		acaoBox.add(btnProximo);
 
 	}
 

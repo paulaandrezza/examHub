@@ -16,8 +16,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSeparator;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
@@ -29,10 +27,33 @@ public class PacientePanel extends JPanel {
 	private final ButtonGroup fumanteGroup = new ButtonGroup();
 	private final ButtonGroup marcaPassoGroup = new ButtonGroup();
 
+	private TextField textAltura = new TextField();
+	private Box numeroCarBox = Box.createHorizontalBox();
+	private Box marcaPassoBox = Box.createHorizontalBox();
+	private TextField textNumeroCarteirinha = new TextField();
+	private TextField textPrestadora = new TextField();
+	private TextField textPlano = new TextField();
+	private TextArea textAreaAlergias = new TextArea();
+	private TextArea textMedicamentos = new TextArea();
+	private TextArea textAreacondicaoMedica = new TextArea();
+
 	/**
 	 * Create the panel.
 	 */
-	public PacientePanel(PacienteFullDTO pacienteFullDTO) {
+	public void clearPacienteFields() {
+		textAltura.setText("");
+		textNumeroCarteirinha.setText("");
+		fumanteGroup.clearSelection();
+		marcaPassoGroup.clearSelection();
+		textNumeroCarteirinha.setText("");
+		textPrestadora.setText("");
+		textPlano.setText("");
+		textAreaAlergias.setText("");
+		textMedicamentos.setText("");
+		textAreacondicaoMedica.setText("");
+	}
+
+	public PacientePanel(PacienteFullDTO pacienteFullDTO, CadastroPanel cadastroPanel) {
 		setBackground(UIManager.getColor("menu"));
 		setLayout(null);
 
@@ -56,16 +77,14 @@ public class PacientePanel extends JPanel {
 		horizontalStrut.setMaximumSize(new Dimension(16, 32767));
 		alturaBox.add(horizontalStrut);
 
-		JSpinner spinnerAltura = new JSpinner();
-		alturaBox.add(spinnerAltura);
-		spinnerAltura.setFont(new Font("Verdana", Font.PLAIN, 12));
-		spinnerAltura.setModel(
-				new SpinnerNumberModel(Float.valueOf(0), Float.valueOf(0), Float.valueOf(3), Float.valueOf(1)));
-
 		Box fumanteBox = Box.createHorizontalBox();
 		fumanteBox.setMinimumSize(new Dimension(200, 32));
 		fumanteBox.setAlignmentY(Component.CENTER_ALIGNMENT);
 		pacienteBox.add(fumanteBox);
+
+		textAltura.setName("prestadora");
+		textAltura.setFont(new Font("Verdana", Font.PLAIN, 12));
+		fumanteBox.add(textAltura);
 
 		Component horizontalStrut_1_1 = Box.createHorizontalStrut(32);
 		horizontalStrut_1_1.setMaximumSize(new Dimension(16, 32767));
@@ -97,7 +116,6 @@ public class PacientePanel extends JPanel {
 		radioFumanteBox.add(rdbtnFumanteNo);
 		rdbtnFumanteNo.setFont(new Font("Verdana", Font.PLAIN, 12));
 
-		Box marcaPassoBox = Box.createHorizontalBox();
 		marcaPassoBox.setMinimumSize(new Dimension(200, 32));
 		marcaPassoBox.setAlignmentY(0.5f);
 		pacienteBox.add(marcaPassoBox);
@@ -164,7 +182,6 @@ public class PacientePanel extends JPanel {
 		convenioBox.setBounds(10, 210, 750, 128);
 		add(convenioBox);
 
-		Box numeroCarBox = Box.createHorizontalBox();
 		numeroCarBox.setMinimumSize(new Dimension(200, 32));
 		numeroCarBox.setAlignmentY(0.5f);
 		convenioBox.add(numeroCarBox);
@@ -177,11 +194,9 @@ public class PacientePanel extends JPanel {
 		horizontalStrut_4.setMaximumSize(new Dimension(16, 32767));
 		numeroCarBox.add(horizontalStrut_4);
 
-		JSpinner spinnerNumeroCar = new JSpinner();
-		spinnerNumeroCar
-				.setModel(new SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
-		spinnerNumeroCar.setFont(new Font("Verdana", Font.PLAIN, 12));
-		numeroCarBox.add(spinnerNumeroCar);
+		textNumeroCarteirinha.setName("prestadora");
+		textNumeroCarteirinha.setFont(new Font("Verdana", Font.PLAIN, 12));
+		numeroCarBox.add(textNumeroCarteirinha);
 
 		Component verticalStrut = Box.createVerticalStrut(16);
 		verticalStrut.setBounds(139, 320, 1, 20);
@@ -201,10 +216,9 @@ public class PacientePanel extends JPanel {
 		horizontalStrut_1_3.setMaximumSize(new Dimension(16, 32767));
 		prestadoraBox.add(horizontalStrut_1_3);
 
-		TextField prestadoraField = new TextField();
-		prestadoraField.setFont(new Font("Verdana", Font.PLAIN, 12));
-		prestadoraField.setName("prestadora");
-		prestadoraBox.add(prestadoraField);
+		textPrestadora.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textPrestadora.setName("prestadora");
+		prestadoraBox.add(textPrestadora);
 
 		Component verticalStrut_1 = Box.createVerticalStrut(16);
 		verticalStrut_1.setBounds(0, 336, 750, 20);
@@ -224,10 +238,9 @@ public class PacientePanel extends JPanel {
 		horizontalStrut_1_2_1.setMaximumSize(new Dimension(16, 32767));
 		planoBox.add(horizontalStrut_1_2_1);
 
-		TextField planoField = new TextField();
-		planoField.setName("plano");
-		planoField.setFont(new Font("Verdana", Font.PLAIN, 12));
-		planoBox.add(planoField);
+		textPlano.setName("plano");
+		textPlano.setFont(new Font("Verdana", Font.PLAIN, 12));
+		planoBox.add(textPlano);
 
 		Component horizontalStrut_3_1 = Box.createHorizontalStrut(20);
 		horizontalStrut_3_1.setBounds(10, 336, 750, 64);
@@ -260,7 +273,6 @@ public class PacientePanel extends JPanel {
 		lblAlergias.setAlignmentX(0.5f);
 		alergiasBox.add(lblAlergias);
 
-		TextArea textAreaAlergias = new TextArea();
 		alergiasBox.add(textAreaAlergias);
 
 		Component verticalStrut_2 = Box.createHorizontalStrut(32);
@@ -276,7 +288,6 @@ public class PacientePanel extends JPanel {
 		lblMedicamentos.setAlignmentX(0.5f);
 		medicamentosBox.add(lblMedicamentos);
 
-		TextArea textMedicamentos = new TextArea();
 		medicamentosBox.add(textMedicamentos);
 
 		Component verticalStrut_1_2 = Box.createHorizontalStrut(32);
@@ -292,7 +303,6 @@ public class PacientePanel extends JPanel {
 		lblcondicaoMedica.setAlignmentX(0.5f);
 		condicaoMedicaBox.add(lblcondicaoMedica);
 
-		TextArea textAreacondicaoMedica = new TextArea();
 		condicaoMedicaBox.add(textAreacondicaoMedica);
 
 		Component verticalStrut_1_1 = Box.createVerticalStrut(20);
@@ -304,13 +314,18 @@ public class PacientePanel extends JPanel {
 		add(acaoBox);
 
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cadastroPanel.switchToCancelTab();
+			}
+		});
 		acaoBox.add(btnCancelar);
 
 		Component horizontalStrut_5 = Box.createHorizontalStrut(8);
 		acaoBox.add(horizontalStrut_5);
 
-		JButton btnProximo_1 = new JButton("Próximo");
-		btnProximo_1.addActionListener(new ActionListener() {
+		JButton btnProximo = new JButton("Próximo");
+		btnProximo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				pacienteFullDTO.setAltura(148);
 				pacienteFullDTO.setFumante(false);
@@ -321,16 +336,23 @@ public class PacientePanel extends JPanel {
 				pacienteFullDTO.setAlergias("lorem ipsum");
 				pacienteFullDTO.setMedicamentos("lorem ipsum");
 				pacienteFullDTO.setCondicaoMedica("lorem ipsum");
+
+				cadastroPanel.switchToNextTab();
 			}
 		});
-		acaoBox.add(btnProximo_1);
+		acaoBox.add(btnProximo);
 
 		Box voltarBox = Box.createHorizontalBox();
 		voltarBox.setAlignmentY(0.5f);
 		voltarBox.setBounds(10, 570, 58, 32);
 		add(voltarBox);
 
-		JButton btnVoltar_1 = new JButton("Voltar");
-		voltarBox.add(btnVoltar_1);
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cadastroPanel.switchToBackTab();
+			}
+		});
+		voltarBox.add(btnVoltar);
 	}
 }
