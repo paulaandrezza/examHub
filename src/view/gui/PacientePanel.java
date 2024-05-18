@@ -348,8 +348,8 @@ public class PacientePanel extends JPanel {
 		});
 		boxHorizontalCancelarEProximo.add(btnCancelar);
 
-		Component horizontalStrut_5 = Box.createHorizontalStrut(8);
-		boxHorizontalCancelarEProximo.add(horizontalStrut_5);
+		Component horizontal_acao_2 = Box.createHorizontalStrut(8);
+		boxHorizontalCancelarEProximo.add(horizontal_acao_2);
 
 		JButton btnProximo = new JButton("Próximo");
 		btnProximo.addActionListener(new ActionListener() {
