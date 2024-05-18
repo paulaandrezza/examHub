@@ -4,7 +4,6 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.TextArea;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSeparator;
+import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
@@ -24,18 +24,17 @@ import model.persistence.dao.paciente.PacienteFullDTO;
 public class PacientePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	private TextField textAltura = new TextField();
 	private final ButtonGroup fumanteGroup = new ButtonGroup();
 	private final ButtonGroup marcaPassoGroup = new ButtonGroup();
-
-	private TextField textAltura = new TextField();
-	private Box numeroCarBox = Box.createHorizontalBox();
-	private Box marcaPassoBox = Box.createHorizontalBox();
+	private Box boxHorizontalNumeroCarterinha = Box.createHorizontalBox();
+	private Box boxHorizontalmarcaPasso = Box.createHorizontalBox();
 	private TextField textNumeroCarteirinha = new TextField();
 	private TextField textPrestadora = new TextField();
 	private TextField textPlano = new TextField();
-	private TextArea textAreaAlergias = new TextArea();
-	private TextArea textMedicamentos = new TextArea();
-	private TextArea textAreacondicaoMedica = new TextArea();
+	private JTextArea textAreaAlergias = new JTextArea();
+	private JTextArea textAreaMedicamentos = new JTextArea();
+	private JTextArea textAreaCondicaoMedica = new JTextArea();
 
 	/**
 	 * Create the panel.
@@ -49,269 +48,293 @@ public class PacientePanel extends JPanel {
 		textPrestadora.setText("");
 		textPlano.setText("");
 		textAreaAlergias.setText("");
-		textMedicamentos.setText("");
-		textAreacondicaoMedica.setText("");
+		textAreaMedicamentos.setText("");
+		textAreaCondicaoMedica.setText("");
 	}
 
 	public PacientePanel(PacienteFullDTO pacienteFullDTO, CadastroPanel cadastroPanel) {
 		setBackground(UIManager.getColor("menu"));
 		setLayout(null);
 
-		Box pacienteBox = Box.createHorizontalBox();
-		pacienteBox.setAlignmentY(Component.CENTER_ALIGNMENT);
-		pacienteBox.setBounds(10, 65, 750, 32);
-		add(pacienteBox);
+		Box tituloBoxHorizontalPaciente = Box.createVerticalBox();
+		tituloBoxHorizontalPaciente.setBounds(10, 10, 750, 45);
+		add(tituloBoxHorizontalPaciente);
 
-		Box alturaBox = Box.createHorizontalBox();
-		pacienteBox.add(alturaBox);
-		alturaBox.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		alturaBox.setMinimumSize(new Dimension(200, 32));
-		alturaBox.setAlignmentY(Component.CENTER_ALIGNMENT);
+		JLabel labelPaciente = new JLabel("PACIENTE");
+		tituloBoxHorizontalPaciente.add(labelPaciente);
+		labelPaciente.setHorizontalAlignment(SwingConstants.LEFT);
+		labelPaciente.setFont(new Font("Verdana", Font.BOLD, 32));
 
-		JLabel lblAltura = new JLabel("Altura:");
-		alturaBox.add(lblAltura);
-		lblAltura.setAlignmentX(Component.CENTER_ALIGNMENT);
-		lblAltura.setFont(new Font("Verdana", Font.BOLD, 16));
+		JSeparator hr_paciente_1 = new JSeparator();
+		tituloBoxHorizontalPaciente.add(hr_paciente_1);
 
-		Component horizontalStrut = Box.createHorizontalStrut(8);
-		horizontalStrut.setMaximumSize(new Dimension(16, 32767));
-		alturaBox.add(horizontalStrut);
+		Box boxHorizontalPaciente = Box.createHorizontalBox();
+		boxHorizontalPaciente.setAlignmentY(Component.CENTER_ALIGNMENT);
+		boxHorizontalPaciente.setBounds(10, 65, 750, 32);
+		add(boxHorizontalPaciente);
 
-		Box fumanteBox = Box.createHorizontalBox();
-		fumanteBox.setMinimumSize(new Dimension(200, 32));
-		fumanteBox.setAlignmentY(Component.CENTER_ALIGNMENT);
-		pacienteBox.add(fumanteBox);
+		Box boxHorizontalAltura = Box.createHorizontalBox();
+		boxHorizontalPaciente.add(boxHorizontalAltura);
+		boxHorizontalAltura.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		boxHorizontalAltura.setMinimumSize(new Dimension(200, 32));
+		boxHorizontalAltura.setAlignmentY(Component.CENTER_ALIGNMENT);
+
+		JLabel labelAltura = new JLabel("Altura:");
+		boxHorizontalAltura.add(labelAltura);
+		labelAltura.setAlignmentX(Component.CENTER_ALIGNMENT);
+		labelAltura.setFont(new Font("Verdana", Font.BOLD, 16));
+
+		Component horizontal_paciente_1 = Box.createHorizontalStrut(8);
+		horizontal_paciente_1.setMaximumSize(new Dimension(16, 32767));
+		boxHorizontalAltura.add(horizontal_paciente_1);
 
 		textAltura.setName("prestadora");
 		textAltura.setFont(new Font("Verdana", Font.PLAIN, 12));
-		fumanteBox.add(textAltura);
+		boxHorizontalAltura.add(textAltura);
 
-		Component horizontalStrut_1_1 = Box.createHorizontalStrut(32);
-		horizontalStrut_1_1.setMaximumSize(new Dimension(16, 32767));
-		fumanteBox.add(horizontalStrut_1_1);
+		Component horizontal_paciente_2 = Box.createHorizontalStrut(32);
+		horizontal_paciente_2.setMaximumSize(new Dimension(16, 32767));
+		boxHorizontalPaciente.add(horizontal_paciente_2);
 
-		JLabel lblFumante = new JLabel("Fumante:");
-		lblFumante.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblFumante.setAlignmentX(0.5f);
-		fumanteBox.add(lblFumante);
+		Box boxHorizontalFumante = Box.createHorizontalBox();
+		boxHorizontalFumante.setMinimumSize(new Dimension(200, 32));
+		boxHorizontalFumante.setAlignmentY(Component.CENTER_ALIGNMENT);
+		boxHorizontalPaciente.add(boxHorizontalFumante);
 
-		Component horizontalStrut_1 = Box.createHorizontalStrut(8);
-		horizontalStrut_1.setMaximumSize(new Dimension(16, 32767));
-		fumanteBox.add(horizontalStrut_1);
+		JLabel labelFumante = new JLabel("Fumante:");
+		labelFumante.setFont(new Font("Verdana", Font.BOLD, 16));
+		labelFumante.setAlignmentX(0.5f);
+		boxHorizontalFumante.add(labelFumante);
 
-		Box radioFumanteBox = Box.createHorizontalBox();
-		radioFumanteBox.setAlignmentY(Component.CENTER_ALIGNMENT);
-		fumanteBox.add(radioFumanteBox);
+		Component horizontal_paciente_3 = Box.createHorizontalStrut(8);
+		horizontal_paciente_3.setMaximumSize(new Dimension(16, 32767));
+		boxHorizontalFumante.add(horizontal_paciente_3);
 
-		JRadioButton rdbtnFumanteYes = new JRadioButton("Sim");
-		fumanteGroup.add(rdbtnFumanteYes);
-		radioFumanteBox.add(rdbtnFumanteYes);
-		rdbtnFumanteYes.setFont(new Font("Verdana", Font.PLAIN, 12));
+		Box radioBoxFumante = Box.createHorizontalBox();
+		radioBoxFumante.setAlignmentY(Component.CENTER_ALIGNMENT);
+		boxHorizontalFumante.add(radioBoxFumante);
 
-		Component horizontalStrut_2 = Box.createHorizontalStrut(8);
-		radioFumanteBox.add(horizontalStrut_2);
+		JRadioButton btnYesFumante = new JRadioButton("Sim");
+		fumanteGroup.add(btnYesFumante);
+		radioBoxFumante.add(btnYesFumante);
+		btnYesFumante.setFont(new Font("Verdana", Font.PLAIN, 12));
 
-		JRadioButton rdbtnFumanteNo = new JRadioButton("Não");
-		fumanteGroup.add(rdbtnFumanteNo);
-		radioFumanteBox.add(rdbtnFumanteNo);
-		rdbtnFumanteNo.setFont(new Font("Verdana", Font.PLAIN, 12));
+		Component horizontal_paciente_4 = Box.createHorizontalStrut(8);
+		radioBoxFumante.add(horizontal_paciente_4);
 
-		marcaPassoBox.setMinimumSize(new Dimension(200, 32));
-		marcaPassoBox.setAlignmentY(0.5f);
-		pacienteBox.add(marcaPassoBox);
+		JRadioButton btnNoFumante = new JRadioButton("Não");
+		fumanteGroup.add(btnNoFumante);
+		radioBoxFumante.add(btnNoFumante);
+		btnNoFumante.setFont(new Font("Verdana", Font.PLAIN, 12));
 
-		Component horizontalStrut_1_1_1 = Box.createHorizontalStrut(32);
-		horizontalStrut_1_1_1.setMaximumSize(new Dimension(16, 32767));
-		marcaPassoBox.add(horizontalStrut_1_1_1);
+		Component horizontal_paciente_5 = Box.createHorizontalStrut(32);
+		horizontal_paciente_5.setMaximumSize(new Dimension(16, 32767));
+		boxHorizontalPaciente.add(horizontal_paciente_5);
 
-		JLabel lblMarcaPasso = new JLabel("Marca Passo:");
-		lblMarcaPasso.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblMarcaPasso.setAlignmentX(0.5f);
-		marcaPassoBox.add(lblMarcaPasso);
+		boxHorizontalmarcaPasso.setMinimumSize(new Dimension(200, 32));
+		boxHorizontalmarcaPasso.setAlignmentY(0.5f);
+		boxHorizontalPaciente.add(boxHorizontalmarcaPasso);
 
-		Component horizontalStrut_1_2 = Box.createHorizontalStrut(8);
-		horizontalStrut_1_2.setMaximumSize(new Dimension(16, 32767));
-		marcaPassoBox.add(horizontalStrut_1_2);
+		JLabel labelMarcaPasso = new JLabel("Marca Passo:");
+		labelMarcaPasso.setFont(new Font("Verdana", Font.BOLD, 16));
+		labelMarcaPasso.setAlignmentX(0.5f);
+		boxHorizontalmarcaPasso.add(labelMarcaPasso);
 
-		Box radioMarcaPassoBox = Box.createHorizontalBox();
-		marcaPassoBox.add(radioMarcaPassoBox);
+		Component horizontal_paciente_6 = Box.createHorizontalStrut(8);
+		horizontal_paciente_6.setMaximumSize(new Dimension(16, 32767));
+		boxHorizontalmarcaPasso.add(horizontal_paciente_6);
 
-		JRadioButton rdbtnMarcaPassoYes = new JRadioButton("Sim");
-		marcaPassoGroup.add(rdbtnMarcaPassoYes);
-		rdbtnMarcaPassoYes.setFont(new Font("Verdana", Font.PLAIN, 12));
-		radioMarcaPassoBox.add(rdbtnMarcaPassoYes);
+		Box radioBoxMarcaPasso = Box.createHorizontalBox();
+		boxHorizontalmarcaPasso.add(radioBoxMarcaPasso);
 
-		Component horizontalStrut_2_1 = Box.createHorizontalStrut(8);
-		radioMarcaPassoBox.add(horizontalStrut_2_1);
+		JRadioButton btnYesMarcaPasso = new JRadioButton("Sim");
+		marcaPassoGroup.add(btnYesMarcaPasso);
+		btnYesMarcaPasso.setFont(new Font("Verdana", Font.PLAIN, 12));
+		radioBoxMarcaPasso.add(btnYesMarcaPasso);
 
-		JRadioButton rdbtnMarcaPassoNo = new JRadioButton("Não");
-		marcaPassoGroup.add(rdbtnMarcaPassoNo);
-		rdbtnMarcaPassoNo.setFont(new Font("Verdana", Font.PLAIN, 12));
-		radioMarcaPassoBox.add(rdbtnMarcaPassoNo);
+		Component horizontal_paciente_7 = Box.createHorizontalStrut(8);
+		radioBoxMarcaPasso.add(horizontal_paciente_7);
 
-		Box pacienteTitulo = Box.createVerticalBox();
-		pacienteTitulo.setBounds(10, 10, 750, 45);
-		add(pacienteTitulo);
+		JRadioButton btnNoMarcaPasso = new JRadioButton("Não");
+		marcaPassoGroup.add(btnNoMarcaPasso);
+		btnNoMarcaPasso.setFont(new Font("Verdana", Font.PLAIN, 12));
+		radioBoxMarcaPasso.add(btnNoMarcaPasso);
 
-		JLabel lblPacienteTitulo = new JLabel("PACIENTE");
-		pacienteTitulo.add(lblPacienteTitulo);
-		lblPacienteTitulo.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPacienteTitulo.setFont(new Font("Verdana", Font.BOLD, 32));
+		Component horizontal_pacientepanel_1 = Box.createHorizontalStrut(20);
+		horizontal_pacientepanel_1.setBounds(10, 98, 750, 64);
+		add(horizontal_pacientepanel_1);
 
-		JSeparator hr = new JSeparator();
-		pacienteTitulo.add(hr);
+		Box tituloBoxHorizontalConvenio = Box.createVerticalBox();
+		tituloBoxHorizontalConvenio.setBounds(10, 162, 750, 45);
+		add(tituloBoxHorizontalConvenio);
 
-		Component horizontalStrut_3 = Box.createHorizontalStrut(20);
-		horizontalStrut_3.setBounds(10, 98, 750, 64);
-		add(horizontalStrut_3);
+		JLabel labelConvenio = new JLabel("CONVÊNIO");
+		labelConvenio.setHorizontalAlignment(SwingConstants.LEFT);
+		labelConvenio.setFont(new Font("Verdana", Font.BOLD, 32));
+		tituloBoxHorizontalConvenio.add(labelConvenio);
 
-		Box convenioTitulo = Box.createVerticalBox();
-		convenioTitulo.setBounds(10, 162, 750, 45);
-		add(convenioTitulo);
+		JSeparator hr_convenio_1 = new JSeparator();
+		tituloBoxHorizontalConvenio.add(hr_convenio_1);
 
-		JLabel lblConvenioTitulo = new JLabel("CONVÊNIO");
-		lblConvenioTitulo.setHorizontalAlignment(SwingConstants.LEFT);
-		lblConvenioTitulo.setFont(new Font("Verdana", Font.BOLD, 32));
-		convenioTitulo.add(lblConvenioTitulo);
+		Box boxVerticalConvenio = Box.createVerticalBox();
+		boxVerticalConvenio.setAlignmentY(0.5f);
+		boxVerticalConvenio.setBounds(10, 210, 750, 128);
+		add(boxVerticalConvenio);
 
-		JSeparator hr_1 = new JSeparator();
-		convenioTitulo.add(hr_1);
+		boxHorizontalNumeroCarterinha.setMinimumSize(new Dimension(200, 32));
+		boxHorizontalNumeroCarterinha.setAlignmentY(0.5f);
+		boxVerticalConvenio.add(boxHorizontalNumeroCarterinha);
 
-		Box convenioBox = Box.createVerticalBox();
-		convenioBox.setAlignmentY(0.5f);
-		convenioBox.setBounds(10, 210, 750, 128);
-		add(convenioBox);
+		JLabel labelNumeroCarteirinha = new JLabel("Número da Carteirinha:");
+		labelNumeroCarteirinha.setFont(new Font("Verdana", Font.BOLD, 16));
+		boxHorizontalNumeroCarterinha.add(labelNumeroCarteirinha);
 
-		numeroCarBox.setMinimumSize(new Dimension(200, 32));
-		numeroCarBox.setAlignmentY(0.5f);
-		convenioBox.add(numeroCarBox);
-
-		JLabel lblNumeroCar = new JLabel("Número da Carteirinha:");
-		lblNumeroCar.setFont(new Font("Verdana", Font.BOLD, 16));
-		numeroCarBox.add(lblNumeroCar);
-
-		Component horizontalStrut_4 = Box.createHorizontalStrut(8);
-		horizontalStrut_4.setMaximumSize(new Dimension(16, 32767));
-		numeroCarBox.add(horizontalStrut_4);
+		Component horizontal_convenio_1 = Box.createHorizontalStrut(8);
+		horizontal_convenio_1.setMaximumSize(new Dimension(16, 32767));
+		boxHorizontalNumeroCarterinha.add(horizontal_convenio_1);
 
 		textNumeroCarteirinha.setName("prestadora");
 		textNumeroCarteirinha.setFont(new Font("Verdana", Font.PLAIN, 12));
-		numeroCarBox.add(textNumeroCarteirinha);
+		boxHorizontalNumeroCarterinha.add(textNumeroCarteirinha);
 
-		Component verticalStrut = Box.createVerticalStrut(16);
-		verticalStrut.setBounds(139, 320, 1, 20);
-		convenioBox.add(verticalStrut);
+		Component vertical_convenio_1 = Box.createVerticalStrut(16);
+		vertical_convenio_1.setBounds(139, 320, 1, 20);
+		boxVerticalConvenio.add(vertical_convenio_1);
 
-		Box prestadoraBox = Box.createHorizontalBox();
-		prestadoraBox.setMinimumSize(new Dimension(200, 32));
-		prestadoraBox.setAlignmentY(0.5f);
-		convenioBox.add(prestadoraBox);
+		Box boxHorizontalprestadora = Box.createHorizontalBox();
+		boxHorizontalprestadora.setMinimumSize(new Dimension(200, 32));
+		boxHorizontalprestadora.setAlignmentY(0.5f);
+		boxVerticalConvenio.add(boxHorizontalprestadora);
 
-		JLabel lblPrestadora = new JLabel("Prestadora:");
-		lblPrestadora.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblPrestadora.setAlignmentX(0.5f);
-		prestadoraBox.add(lblPrestadora);
+		JLabel labelPrestadora = new JLabel("Prestadora:");
+		labelPrestadora.setFont(new Font("Verdana", Font.BOLD, 16));
+		labelPrestadora.setAlignmentX(0.5f);
+		boxHorizontalprestadora.add(labelPrestadora);
 
-		Component horizontalStrut_1_3 = Box.createHorizontalStrut(8);
-		horizontalStrut_1_3.setMaximumSize(new Dimension(16, 32767));
-		prestadoraBox.add(horizontalStrut_1_3);
+		Component horizontal_convenio_2 = Box.createHorizontalStrut(8);
+		horizontal_convenio_2.setMaximumSize(new Dimension(16, 32767));
+		boxHorizontalprestadora.add(horizontal_convenio_2);
 
 		textPrestadora.setFont(new Font("Verdana", Font.PLAIN, 12));
 		textPrestadora.setName("prestadora");
-		prestadoraBox.add(textPrestadora);
+		boxHorizontalprestadora.add(textPrestadora);
 
-		Component verticalStrut_1 = Box.createVerticalStrut(16);
-		verticalStrut_1.setBounds(0, 336, 750, 20);
-		convenioBox.add(verticalStrut_1);
+		Component vertical_convenio_2 = Box.createVerticalStrut(16);
+		vertical_convenio_2.setBounds(0, 336, 750, 20);
+		boxVerticalConvenio.add(vertical_convenio_2);
 
-		Box planoBox = Box.createHorizontalBox();
-		planoBox.setMinimumSize(new Dimension(200, 32));
-		planoBox.setAlignmentY(0.5f);
-		convenioBox.add(planoBox);
+		Box boxHorizontalPlano = Box.createHorizontalBox();
+		boxHorizontalPlano.setMinimumSize(new Dimension(200, 32));
+		boxHorizontalPlano.setAlignmentY(0.5f);
+		boxVerticalConvenio.add(boxHorizontalPlano);
 
-		JLabel lblPlano = new JLabel("Plano:");
-		lblPlano.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblPlano.setAlignmentX(0.5f);
-		planoBox.add(lblPlano);
+		JLabel labelPlano = new JLabel("Plano:");
+		labelPlano.setFont(new Font("Verdana", Font.BOLD, 16));
+		labelPlano.setAlignmentX(0.5f);
+		boxHorizontalPlano.add(labelPlano);
 
-		Component horizontalStrut_1_2_1 = Box.createHorizontalStrut(20);
-		horizontalStrut_1_2_1.setMaximumSize(new Dimension(16, 32767));
-		planoBox.add(horizontalStrut_1_2_1);
+		Component horizontal_convenio_3 = Box.createHorizontalStrut(20);
+		horizontal_convenio_3.setMaximumSize(new Dimension(16, 32767));
+		boxHorizontalPlano.add(horizontal_convenio_3);
 
 		textPlano.setName("plano");
 		textPlano.setFont(new Font("Verdana", Font.PLAIN, 12));
-		planoBox.add(textPlano);
+		boxHorizontalPlano.add(textPlano);
 
-		Component horizontalStrut_3_1 = Box.createHorizontalStrut(20);
-		horizontalStrut_3_1.setBounds(10, 336, 750, 64);
-		add(horizontalStrut_3_1);
+		Component horizontal_pacientePanel_2 = Box.createHorizontalStrut(20);
+		horizontal_pacientePanel_2.setBounds(10, 336, 750, 64);
+		add(horizontal_pacientePanel_2);
 
-		Box historicoMedicoTitulo = Box.createVerticalBox();
-		historicoMedicoTitulo.setBounds(10, 393, 750, 45);
-		add(historicoMedicoTitulo);
+		Box tituloBoxVerticalHistoricoMedico = Box.createVerticalBox();
+		tituloBoxVerticalHistoricoMedico.setBounds(10, 393, 750, 45);
+		add(tituloBoxVerticalHistoricoMedico);
 
-		JLabel lblHistoricoMedicoTitulo = new JLabel("HISTÓRICO MÉDICO");
-		lblHistoricoMedicoTitulo.setHorizontalAlignment(SwingConstants.LEFT);
-		lblHistoricoMedicoTitulo.setFont(new Font("Verdana", Font.BOLD, 32));
-		historicoMedicoTitulo.add(lblHistoricoMedicoTitulo);
+		JLabel labelHistoricoMedicoTitulo = new JLabel("HISTÓRICO MÉDICO");
+		labelHistoricoMedicoTitulo.setHorizontalAlignment(SwingConstants.LEFT);
+		labelHistoricoMedicoTitulo.setFont(new Font("Verdana", Font.BOLD, 32));
+		tituloBoxVerticalHistoricoMedico.add(labelHistoricoMedicoTitulo);
 
-		JSeparator hr_1_1 = new JSeparator();
-		historicoMedicoTitulo.add(hr_1_1);
+		JSeparator hr_historicoMedico_1 = new JSeparator();
+		tituloBoxVerticalHistoricoMedico.add(hr_historicoMedico_1);
 
-		Box historicoMedicoBox = Box.createHorizontalBox();
-		historicoMedicoBox.setAlignmentY(0.5f);
-		historicoMedicoBox.setBounds(10, 448, 750, 96);
-		add(historicoMedicoBox);
+		Box boxHorizontalhistoricoMedico = Box.createHorizontalBox();
+		boxHorizontalhistoricoMedico.setAlignmentY(0.5f);
+		boxHorizontalhistoricoMedico.setBounds(10, 448, 750, 96);
+		add(boxHorizontalhistoricoMedico);
 
-		Box alergiasBox = Box.createVerticalBox();
-		alergiasBox.setMinimumSize(new Dimension(200, 32));
-		alergiasBox.setAlignmentY(0.5f);
-		historicoMedicoBox.add(alergiasBox);
+		Box boxVerticalAlergias = Box.createVerticalBox();
+		boxVerticalAlergias.setMinimumSize(new Dimension(200, 32));
+		boxVerticalAlergias.setAlignmentY(0.5f);
+		boxHorizontalhistoricoMedico.add(boxVerticalAlergias);
 
-		JLabel lblAlergias = new JLabel("Alergias:");
-		lblAlergias.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblAlergias.setAlignmentX(0.5f);
-		alergiasBox.add(lblAlergias);
+		JLabel labelAlergias = new JLabel("Alergias:");
+		labelAlergias.setFont(new Font("Verdana", Font.BOLD, 16));
+		labelAlergias.setAlignmentX(0.5f);
+		boxVerticalAlergias.add(labelAlergias);
+		textAreaAlergias.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textAreaAlergias.setLineWrap(true);
+		textAreaAlergias.setWrapStyleWord(true);
 
-		alergiasBox.add(textAreaAlergias);
+		boxVerticalAlergias.add(textAreaAlergias);
 
-		Component verticalStrut_2 = Box.createHorizontalStrut(32);
-		historicoMedicoBox.add(verticalStrut_2);
+		Component horizontal_historicomedico_1 = Box.createHorizontalStrut(32);
+		boxHorizontalhistoricoMedico.add(horizontal_historicomedico_1);
 
-		Box medicamentosBox = Box.createVerticalBox();
-		medicamentosBox.setMinimumSize(new Dimension(200, 32));
-		medicamentosBox.setAlignmentY(0.5f);
-		historicoMedicoBox.add(medicamentosBox);
+		Box boxVerticalMedicamentos = Box.createVerticalBox();
+		boxVerticalMedicamentos.setMinimumSize(new Dimension(200, 32));
+		boxVerticalMedicamentos.setAlignmentY(0.5f);
+		boxHorizontalhistoricoMedico.add(boxVerticalMedicamentos);
 
-		JLabel lblMedicamentos = new JLabel("Medicamentos:");
-		lblMedicamentos.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblMedicamentos.setAlignmentX(0.5f);
-		medicamentosBox.add(lblMedicamentos);
+		JLabel labelMedicamentos = new JLabel("Medicamentos:");
+		labelMedicamentos.setFont(new Font("Verdana", Font.BOLD, 16));
+		labelMedicamentos.setAlignmentX(0.5f);
+		boxVerticalMedicamentos.add(labelMedicamentos);
+		textAreaMedicamentos.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textAreaMedicamentos.setLineWrap(true);
+		textAreaMedicamentos.setWrapStyleWord(true);
 
-		medicamentosBox.add(textMedicamentos);
+		boxVerticalMedicamentos.add(textAreaMedicamentos);
 
-		Component verticalStrut_1_2 = Box.createHorizontalStrut(32);
-		historicoMedicoBox.add(verticalStrut_1_2);
+		Component horizontal_historicomedico_2 = Box.createHorizontalStrut(32);
+		boxHorizontalhistoricoMedico.add(horizontal_historicomedico_2);
 
-		Box condicaoMedicaBox = Box.createVerticalBox();
-		condicaoMedicaBox.setMinimumSize(new Dimension(200, 32));
-		condicaoMedicaBox.setAlignmentY(0.5f);
-		historicoMedicoBox.add(condicaoMedicaBox);
+		Box boxVerticalCondicaoMedica = Box.createVerticalBox();
+		boxVerticalCondicaoMedica.setMinimumSize(new Dimension(200, 32));
+		boxVerticalCondicaoMedica.setAlignmentY(0.5f);
+		boxHorizontalhistoricoMedico.add(boxVerticalCondicaoMedica);
 
-		JLabel lblcondicaoMedica = new JLabel("Condição Médica:");
-		lblcondicaoMedica.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblcondicaoMedica.setAlignmentX(0.5f);
-		condicaoMedicaBox.add(lblcondicaoMedica);
+		JLabel labelCondicaoMedica = new JLabel("Condição Médica:");
+		labelCondicaoMedica.setFont(new Font("Verdana", Font.BOLD, 16));
+		labelCondicaoMedica.setAlignmentX(0.5f);
+		boxVerticalCondicaoMedica.add(labelCondicaoMedica);
+		textAreaCondicaoMedica.setFont(new Font("Verdana", Font.PLAIN, 12));
+		textAreaCondicaoMedica.setLineWrap(true);
+		textAreaCondicaoMedica.setWrapStyleWord(true);
 
-		condicaoMedicaBox.add(textAreacondicaoMedica);
+		boxVerticalCondicaoMedica.add(textAreaCondicaoMedica);
 
-		Component verticalStrut_1_1 = Box.createVerticalStrut(20);
-		historicoMedicoBox.add(verticalStrut_1_1);
+		Box boxHorizontalAcao = Box.createHorizontalBox();
+		boxHorizontalAcao.setAlignmentY(Component.CENTER_ALIGNMENT);
+		boxHorizontalAcao.setBounds(10, 570, 750, 32);
+		add(boxHorizontalAcao);
 
-		Box acaoBox = Box.createHorizontalBox();
-		acaoBox.setAlignmentY(Component.CENTER_ALIGNMENT);
-		acaoBox.setBounds(605, 570, 154, 32);
-		add(acaoBox);
+		Box boxHorizontalVoltar = Box.createHorizontalBox();
+		boxHorizontalVoltar.setAlignmentY(0.5f);
+		boxHorizontalAcao.add(boxHorizontalVoltar);
+
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cadastroPanel.switchToBackTab();
+			}
+		});
+		boxHorizontalVoltar.add(btnVoltar);
+
+		Component horizontal_acao_1 = Box.createHorizontalStrut(535);
+		boxHorizontalAcao.add(horizontal_acao_1);
+
+		Box boxHorizontalCancelarEProximo = Box.createHorizontalBox();
+		boxHorizontalAcao.add(boxHorizontalCancelarEProximo);
 
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
@@ -319,10 +342,10 @@ public class PacientePanel extends JPanel {
 				cadastroPanel.switchToCancelTab();
 			}
 		});
-		acaoBox.add(btnCancelar);
+		boxHorizontalCancelarEProximo.add(btnCancelar);
 
 		Component horizontalStrut_5 = Box.createHorizontalStrut(8);
-		acaoBox.add(horizontalStrut_5);
+		boxHorizontalCancelarEProximo.add(horizontalStrut_5);
 
 		JButton btnProximo = new JButton("Próximo");
 		btnProximo.addActionListener(new ActionListener() {
@@ -340,19 +363,6 @@ public class PacientePanel extends JPanel {
 				cadastroPanel.switchToNextTab();
 			}
 		});
-		acaoBox.add(btnProximo);
-
-		Box voltarBox = Box.createHorizontalBox();
-		voltarBox.setAlignmentY(0.5f);
-		voltarBox.setBounds(10, 570, 58, 32);
-		add(voltarBox);
-
-		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cadastroPanel.switchToBackTab();
-			}
-		});
-		voltarBox.add(btnVoltar);
+		boxHorizontalCancelarEProximo.add(btnProximo);
 	}
 }

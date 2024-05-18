@@ -266,8 +266,14 @@ public class PessoaPanel extends JPanel {
 
 		Box boxHorizontalAcao = Box.createHorizontalBox();
 		boxHorizontalAcao.setAlignmentY(0.5f);
-		boxHorizontalAcao.setBounds(605, 570, 154, 32);
+		boxHorizontalAcao.setBounds(10, 570, 750, 32);
 		add(boxHorizontalAcao);
+
+		Component horizontal_acao_1 = Box.createHorizontalStrut(595);
+		boxHorizontalAcao.add(horizontal_acao_1);
+
+		Box boxHorizontalCancelarEProximo = Box.createHorizontalBox();
+		boxHorizontalAcao.add(boxHorizontalCancelarEProximo);
 
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
@@ -275,10 +281,10 @@ public class PessoaPanel extends JPanel {
 				cadastroPanel.switchToCancelTab();
 			}
 		});
-		boxHorizontalAcao.add(btnCancelar);
+		boxHorizontalCancelarEProximo.add(btnCancelar);
 
-		Component horizontal_acao_1 = Box.createHorizontalStrut(8);
-		boxHorizontalAcao.add(horizontal_acao_1);
+		Component horizontal_acao_2 = Box.createHorizontalStrut(8);
+		boxHorizontalCancelarEProximo.add(horizontal_acao_2);
 
 		JButton btnProximo = new JButton("Próximo");
 		btnProximo.addActionListener(new ActionListener() {
@@ -295,7 +301,7 @@ public class PessoaPanel extends JPanel {
 				cadastroPanel.switchToNextTab();
 			}
 		});
-		boxHorizontalAcao.add(btnProximo);
+		boxHorizontalCancelarEProximo.add(btnProximo);
 
 	}
 }
