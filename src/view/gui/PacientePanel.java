@@ -370,11 +370,7 @@ public class PacientePanel extends JPanel {
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int resposta = JOptionPane.showConfirmDialog(null, "Esta ação irá apagar todos os dados cadastrados.",
-						"Apagar Dados", JOptionPane.OK_CANCEL_OPTION);
-				if (resposta == JOptionPane.OK_OPTION) {
-					cadastroPanel.switchToCancelTab();
-				}
+				cadastroPanel.switchToCancelTab();
 			}
 		});
 		boxHorizontalCancelarEProximo.add(btnCancelar);
@@ -398,8 +394,8 @@ public class PacientePanel extends JPanel {
 
 					cadastroPanel.switchToNextTab();
 				} catch (Exception a) {
-					JOptionPane.showMessageDialog(null,
-							"Por favor, preencha todos os campos corretamente antes de prosseguir.");
+
+					JOptionPane.showMessageDialog(null, cadastroPanel.errorMessage());
 				}
 			}
 		});

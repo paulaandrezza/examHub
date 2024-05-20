@@ -10,6 +10,7 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
@@ -98,6 +99,10 @@ public class CadastroPanel extends JFrame {
 
 	}
 
+	public String errorMessage() {
+		return "Por favor, preencha todos os campos corretamente antes de prosseguir.";
+	}
+
 	public void switchToNextTab() {
 		int currentIndex = tabbedPanel.getSelectedIndex();
 		int nextIndex = currentIndex + 1;
@@ -115,10 +120,14 @@ public class CadastroPanel extends JFrame {
 	}
 
 	public void switchToCancelTab() {
-		tabbedPanel.setSelectedIndex(0);
+		int resposta = JOptionPane.showConfirmDialog(null, "Esta ação irá apagar todos os dados salvos.",
+				"Apagar Dados", JOptionPane.OK_CANCEL_OPTION);
+		if (resposta == JOptionPane.OK_OPTION) {
+			tabbedPanel.setSelectedIndex(0);
 
-		pessoaPanel.clearPessoaFields();
-		pacientePanel.clearPacienteFields();
-		enderecoPanel.clearEnderecoFields();
+			pessoaPanel.clearPessoaFields();
+			pacientePanel.clearPacienteFields();
+			enderecoPanel.clearEnderecoFields();
+		}
 	}
 }
