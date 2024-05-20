@@ -240,7 +240,7 @@ public class EnderecoPanel extends JPanel {
 		});
 		boxHorizontalVoltar.add(btnVoltar);
 
-		Component horizontal_acao_1 = Box.createHorizontalStrut(530);
+		Component horizontal_acao_1 = Box.createHorizontalStrut(500);
 		boxHorizontalAcao.add(horizontal_acao_1);
 
 		Box boxHorizontalCancelarEProximo = Box.createHorizontalBox();
@@ -249,7 +249,11 @@ public class EnderecoPanel extends JPanel {
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cadastroPanel.switchToCancelTab();
+				int resposta = JOptionPane.showConfirmDialog(null, "Esta ação irá apagar todos os dados cadastrados.",
+						"Apagar Dados", JOptionPane.OK_CANCEL_OPTION);
+				if (resposta == JOptionPane.OK_OPTION) {
+					cadastroPanel.switchToCancelTab();
+				}
 			}
 		});
 		boxHorizontalCancelarEProximo.add(btnCancelar);
