@@ -4,11 +4,15 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.SystemColor;
+import java.io.IOException;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import controller.PacienteController;
@@ -62,11 +66,30 @@ public class CadastroPanel extends JFrame {
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.X_AXIS));
 		tabbedPanel.setEnabled(false);
 
-		tabbedPanel.addTab("Dados Pessoais", pessoaPanel);
+		try {
+			ImageIcon iconPessoais = SVGIconUtil.createImageIcon("image/angle-right.svg");
+			ImageIcon iconMedicos = SVGIconUtil.createImageIcon("image/angle-right.svg");
+			ImageIcon iconMoradia = SVGIconUtil.createImageIcon("image/check-square.svg");
 
-		tabbedPanel.addTab("Dados Médicos", pacientePanel);
+			JLabel labelPessoais = new JLabel("Dados Pessoais", iconPessoais, SwingConstants.RIGHT);
+			JLabel labelMedicos = new JLabel("Dados Médicos", iconMedicos, SwingConstants.RIGHT);
+			JLabel labelMoradia = new JLabel("Dados de Moradia", iconMoradia, SwingConstants.RIGHT);
 
-		tabbedPanel.addTab("Dados de Moradia", enderecoPanel);
+			labelPessoais.setIconTextGap(5);
+			labelMedicos.setIconTextGap(5);
+			labelMoradia.setIconTextGap(5);
+
+			tabbedPanel.addTab(null, null, pessoaPanel);
+			tabbedPanel.setTabComponentAt(tabbedPanel.indexOfComponent(pessoaPanel), labelPessoais);
+			tabbedPanel.addTab("Dados Médicos", pacientePanel);
+			tabbedPanel.setTabComponentAt(tabbedPanel.indexOfComponent(pacientePanel), labelMedicos);
+			tabbedPanel.addTab("Dados de Moradia", enderecoPanel);
+			tabbedPanel.setTabComponentAt(tabbedPanel.indexOfComponent(enderecoPanel), labelMoradia);
+		} catch (IOException e) {
+			System.out.println("Erro ao carregar o ícone");
+			e.printStackTrace();
+		}
+
 		contentPane.add(tabbedPanel);
 
 		contentPane.add(tabbedPanel, BorderLayout.CENTER);
