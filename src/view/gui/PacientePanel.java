@@ -1,5 +1,6 @@
 package view.gui;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -11,6 +12,7 @@ import javax.swing.Box;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -85,6 +87,11 @@ public class PacientePanel extends JPanel {
 		labelAltura.setAlignmentX(Component.CENTER_ALIGNMENT);
 		labelAltura.setFont(new Font("Verdana", Font.BOLD, 16));
 
+		JLabel labelInfo_1 = new JLabel("*");
+		labelInfo_1.setForeground(Color.RED);
+		labelInfo_1.setFont(new Font("Verdana", Font.BOLD, 16));
+		boxHorizontalAltura.add(labelInfo_1);
+
 		Component horizontal_paciente_1 = Box.createHorizontalStrut(8);
 		horizontal_paciente_1.setMaximumSize(new Dimension(16, 32767));
 		boxHorizontalAltura.add(horizontal_paciente_1);
@@ -106,6 +113,11 @@ public class PacientePanel extends JPanel {
 		labelFumante.setFont(new Font("Verdana", Font.BOLD, 16));
 		labelFumante.setAlignmentX(0.5f);
 		boxHorizontalFumante.add(labelFumante);
+
+		JLabel labelInfo_2 = new JLabel("*");
+		labelInfo_2.setForeground(Color.RED);
+		labelInfo_2.setFont(new Font("Verdana", Font.BOLD, 16));
+		boxHorizontalFumante.add(labelInfo_2);
 
 		Component horizontal_paciente_3 = Box.createHorizontalStrut(8);
 		horizontal_paciente_3.setMaximumSize(new Dimension(16, 32767));
@@ -140,6 +152,11 @@ public class PacientePanel extends JPanel {
 		labelMarcaPasso.setFont(new Font("Verdana", Font.BOLD, 16));
 		labelMarcaPasso.setAlignmentX(0.5f);
 		boxHorizontalmarcaPasso.add(labelMarcaPasso);
+
+		JLabel labelInfo_3 = new JLabel("*");
+		labelInfo_3.setForeground(Color.RED);
+		labelInfo_3.setFont(new Font("Verdana", Font.BOLD, 16));
+		boxHorizontalmarcaPasso.add(labelInfo_3);
 
 		Component horizontal_paciente_6 = Box.createHorizontalStrut(8);
 		horizontal_paciente_6.setMaximumSize(new Dimension(16, 32767));
@@ -190,6 +207,11 @@ public class PacientePanel extends JPanel {
 		labelNumeroCarteirinha.setFont(new Font("Verdana", Font.BOLD, 16));
 		boxHorizontalNumeroCarterinha.add(labelNumeroCarteirinha);
 
+		JLabel labelInfo_4 = new JLabel("*");
+		labelInfo_4.setForeground(Color.RED);
+		labelInfo_4.setFont(new Font("Verdana", Font.BOLD, 16));
+		boxHorizontalNumeroCarterinha.add(labelInfo_4);
+
 		Component horizontal_convenio_1 = Box.createHorizontalStrut(8);
 		horizontal_convenio_1.setMaximumSize(new Dimension(16, 32767));
 		boxHorizontalNumeroCarterinha.add(horizontal_convenio_1);
@@ -211,6 +233,11 @@ public class PacientePanel extends JPanel {
 		labelPrestadora.setFont(new Font("Verdana", Font.BOLD, 16));
 		labelPrestadora.setAlignmentX(0.5f);
 		boxHorizontalprestadora.add(labelPrestadora);
+
+		JLabel labelInfo_5 = new JLabel("*");
+		labelInfo_5.setForeground(Color.RED);
+		labelInfo_5.setFont(new Font("Verdana", Font.BOLD, 16));
+		boxHorizontalprestadora.add(labelInfo_5);
 
 		Component horizontal_convenio_2 = Box.createHorizontalStrut(8);
 		horizontal_convenio_2.setMaximumSize(new Dimension(16, 32767));
@@ -354,17 +381,22 @@ public class PacientePanel extends JPanel {
 		JButton btnProximo = new JButton("Próximo");
 		btnProximo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				pacienteFullDTO.setAltura(148);
-				pacienteFullDTO.setFumante(false);
-				pacienteFullDTO.setMarcaPasso(true);
-				pacienteFullDTO.setNumeroCarteirinha(121311312);
-				pacienteFullDTO.setPrestadora("Bradesco");
-				pacienteFullDTO.setPlano("lorem ipsum");
-				pacienteFullDTO.setAlergias("lorem ipsum");
-				pacienteFullDTO.setMedicamentos("lorem ipsum");
-				pacienteFullDTO.setCondicaoMedica("lorem ipsum");
+				try {
+					pacienteFullDTO.setAltura(148);
+					pacienteFullDTO.setFumante(false);
+					pacienteFullDTO.setMarcaPasso(true);
+					pacienteFullDTO.setNumeroCarteirinha(121311312);
+					pacienteFullDTO.setPrestadora("Bradesco");
+					pacienteFullDTO.setPlano("lorem ipsum");
+					pacienteFullDTO.setAlergias("lorem ipsum");
+					pacienteFullDTO.setMedicamentos("lorem ipsum");
+					pacienteFullDTO.setCondicaoMedica("lorem ipsum");
 
-				cadastroPanel.switchToNextTab();
+					cadastroPanel.switchToNextTab();
+				} catch (Exception a) {
+					JOptionPane.showMessageDialog(null,
+							"Por favor, preencha todos os campos corretamente antes de prosseguir.");
+				}
 			}
 		});
 		boxHorizontalCancelarEProximo.add(btnProximo);

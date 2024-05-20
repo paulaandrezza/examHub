@@ -1,5 +1,6 @@
 package view.gui;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -8,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -70,6 +72,11 @@ public class EnderecoPanel extends JPanel {
 		labelCep.setFont(new Font("Verdana", Font.BOLD, 16));
 		boxHorizontalCep.add(labelCep);
 
+		JLabel labelInfo_1 = new JLabel("*");
+		labelInfo_1.setForeground(Color.RED);
+		labelInfo_1.setFont(new Font("Verdana", Font.BOLD, 16));
+		boxHorizontalCep.add(labelInfo_1);
+
 		Component horizontal_endereco_1 = Box.createHorizontalStrut(8);
 		boxHorizontalCep.add(horizontal_endereco_1);
 
@@ -89,6 +96,11 @@ public class EnderecoPanel extends JPanel {
 		labelEstado.setFont(new Font("Verdana", Font.BOLD, 16));
 		boxHorizontalEstado.add(labelEstado);
 
+		JLabel labelInfo_2 = new JLabel("*");
+		labelInfo_2.setForeground(Color.RED);
+		labelInfo_2.setFont(new Font("Verdana", Font.BOLD, 16));
+		boxHorizontalEstado.add(labelInfo_2);
+
 		Component horizontal_endereco_2 = Box.createHorizontalStrut(8);
 		boxHorizontalEstado.add(horizontal_endereco_2);
 
@@ -107,6 +119,11 @@ public class EnderecoPanel extends JPanel {
 		JLabel lblCidade = new JLabel("Cidade:");
 		lblCidade.setFont(new Font("Verdana", Font.BOLD, 16));
 		boxHorizontalCidade.add(lblCidade);
+
+		JLabel labelInfo_3 = new JLabel("*");
+		labelInfo_3.setForeground(Color.RED);
+		labelInfo_3.setFont(new Font("Verdana", Font.BOLD, 16));
+		boxHorizontalCidade.add(labelInfo_3);
 
 		Component horizontalStrut_1_1_1 = Box.createHorizontalStrut(8);
 		boxHorizontalCidade.add(horizontalStrut_1_1_1);
@@ -129,6 +146,11 @@ public class EnderecoPanel extends JPanel {
 		lblBairro.setFont(new Font("Verdana", Font.BOLD, 16));
 		bairroBox.add(lblBairro);
 
+		JLabel labelInfo_4 = new JLabel("*");
+		labelInfo_4.setForeground(Color.RED);
+		labelInfo_4.setFont(new Font("Verdana", Font.BOLD, 16));
+		bairroBox.add(labelInfo_4);
+
 		Component horizontalStrut_1_1_1_1 = Box.createHorizontalStrut(8);
 		bairroBox.add(horizontalStrut_1_1_1_1);
 
@@ -147,6 +169,11 @@ public class EnderecoPanel extends JPanel {
 		JLabel lblRua = new JLabel("Rua:");
 		lblRua.setFont(new Font("Verdana", Font.BOLD, 16));
 		ruaBox.add(lblRua);
+
+		JLabel labelInfo_5 = new JLabel("*");
+		labelInfo_5.setForeground(Color.RED);
+		labelInfo_5.setFont(new Font("Verdana", Font.BOLD, 16));
+		ruaBox.add(labelInfo_5);
 
 		Component horizontalStrut_1_1_1_1_1 = Box.createHorizontalStrut(8);
 		ruaBox.add(horizontalStrut_1_1_1_1_1);
@@ -233,17 +260,22 @@ public class EnderecoPanel extends JPanel {
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				pacienteFullDTO.setCep(148);
-				pacienteFullDTO.setEstado("SP");
-				pacienteFullDTO.setCidade("Bragança");
-				pacienteFullDTO.setRua("Rua 2");
-				pacienteFullDTO.setBairro("Bairro 2");
-				pacienteFullDTO.setNumero("ac1523");
-				pacienteFullDTO.setComplemento("lorem ipsum");
+				try {
+					pacienteFullDTO.setCep(148);
+					pacienteFullDTO.setEstado("SP");
+					pacienteFullDTO.setCidade("Bragança");
+					pacienteFullDTO.setRua("Rua 2");
+					pacienteFullDTO.setBairro("Bairro 2");
+					pacienteFullDTO.setNumero("ac1523");
+					pacienteFullDTO.setComplemento("lorem ipsum");
 
-				System.out.println(pacienteFullDTO);
+					System.out.println(pacienteFullDTO);
 
-				pacienteController.create(pacienteFullDTO);
+					pacienteController.create(pacienteFullDTO);
+				} catch (Exception a) {
+					JOptionPane.showMessageDialog(null,
+							"Por favor, preencha todos os campos corretamente antes de prosseguir.");
+				}
 			}
 		});
 		boxHorizontalCancelarEProximo.add(btnCadastrar);
