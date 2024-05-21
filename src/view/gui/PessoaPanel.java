@@ -5,12 +5,14 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;
+import java.text.ParseException;
+import java.time.ZoneId;
 
 import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -18,6 +20,10 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.text.MaskFormatter;
+
+import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JTextFieldDateEditor;
 
 import model.enums.EnumGenero;
 import model.persistence.dao.paciente.PacienteFullDTO;
@@ -27,11 +33,11 @@ public class PessoaPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private JTextField textNome;
-	private JTextField textCpf;
-	private JTextField textRg;
-	private JTextField textDataNascimento;
-	private JTextField textCelular;
-	private JTextField textTelefone;
+	private JFormattedTextField textCpf;
+	private JFormattedTextField textRg;
+	private JDateChooser textDataNascimento;
+	private JFormattedTextField textCelular;
+	private JFormattedTextField textTelefone;
 	private JTextField textEmail;
 	private JComboBox<Object> comboBoxGenero = new JComboBox<Object>();
 
@@ -42,7 +48,7 @@ public class PessoaPanel extends JPanel {
 		textNome.setText("");
 		textCpf.setText("");
 		textRg.setText("");
-		textDataNascimento.setText("");
+		textDataNascimento.setDate(null);
 		textCelular.setText("");
 		textTelefone.setText("");
 		textEmail.setText("");
@@ -85,8 +91,8 @@ public class PessoaPanel extends JPanel {
 		boxHorizontalNome.add(horizontal_dadosPessoais_1);
 
 		textNome = new JTextField();
+		textNome.setColumns(15);
 		textNome.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textNome.setColumns(30);
 		boxHorizontalNome.add(textNome);
 
 		Component horizontal_pessoapanel_1 = Box.createHorizontalStrut(20);
@@ -125,10 +131,14 @@ public class PessoaPanel extends JPanel {
 		Component horizontal_documentos_1 = Box.createHorizontalStrut(8);
 		boxHorizontalCpf.add(horizontal_documentos_1);
 
-		textCpf = new JTextField();
-		textCpf.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textCpf.setColumns(10);
-		boxHorizontalCpf.add(textCpf);
+		try {
+			MaskFormatter mascaraCpf = new MaskFormatter("###.###.###-##");
+			textCpf = new JFormattedTextField(mascaraCpf);
+			textCpf.setFont(new Font("Verdana", Font.PLAIN, 12));
+			boxHorizontalCpf.add(textCpf);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
 		Component horizontal_documentos_2 = Box.createHorizontalStrut(32);
 		boxHorizontalDocumentos.add(horizontal_documentos_2);
@@ -149,15 +159,22 @@ public class PessoaPanel extends JPanel {
 		Component horizontal_documentos_3 = Box.createHorizontalStrut(8);
 		boxHorizontalRg.add(horizontal_documentos_3);
 
-		textRg = new JTextField();
-		textRg.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textRg.setColumns(10);
-		boxHorizontalRg.add(textRg);
+		textRg = new JFormattedTextField();
+
+		try {
+			MaskFormatter mascaraRg = new MaskFormatter("##.###.###-*");
+			textRg = new JFormattedTextField(mascaraRg);
+			textRg.setFont(new Font("Verdana", Font.PLAIN, 12));
+			boxHorizontalRg.add(textRg);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
 		Component horizontal_dadosPessoais_2 = Box.createHorizontalStrut(32);
 		boxHorizontalDadosPessoais.add(horizontal_dadosPessoais_2);
 
 		Box boxHorizontalDataNascimento = Box.createHorizontalBox();
+		boxHorizontalDataNascimento.setAlignmentX(Component.LEFT_ALIGNMENT);
 		boxHorizontalDadosPessoais.add(boxHorizontalDataNascimento);
 
 		JLabel labelDataNascimento = new JLabel("Data de nascimento:");
@@ -172,9 +189,17 @@ public class PessoaPanel extends JPanel {
 		Component horizontal_dadosPessoais_3 = Box.createHorizontalStrut(8);
 		boxHorizontalDataNascimento.add(horizontal_dadosPessoais_3);
 
-		textDataNascimento = new JTextField();
+		textDataNascimento = new JDateChooser();
 		textDataNascimento.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textDataNascimento.setColumns(10);
+		textDataNascimento.setToolTipText("");
+		textDataNascimento.setDateFormatString("dd/MM/yyyy");
+
+		JTextFieldDateEditor editor = (JTextFieldDateEditor) textDataNascimento.getDateEditor();
+		editor.setForeground(Color.BLACK);
+		editor.setFont(new Font("Verdana", Font.PLAIN, 12));
+		editor.setDateFormatString("dd/MM/yyyy");
+		editor.setFocusLostBehavior(JFormattedTextField.PERSIST);
+
 		boxHorizontalDataNascimento.add(textDataNascimento);
 
 		Component horizontal_pessoapanel_2 = Box.createHorizontalStrut(20);
@@ -213,10 +238,14 @@ public class PessoaPanel extends JPanel {
 		Component horizontal_contato_1 = Box.createHorizontalStrut(8);
 		boxHorizontalCelular.add(horizontal_contato_1);
 
-		textCelular = new JTextField();
-		textCelular.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textCelular.setColumns(10);
-		boxHorizontalCelular.add(textCelular);
+		try {
+			MaskFormatter mascaraCelular = new MaskFormatter("(+55) ## ####-#####");
+			textCelular = new JFormattedTextField(mascaraCelular);
+			textCelular.setFont(new Font("Verdana", Font.PLAIN, 12));
+			boxHorizontalCelular.add(textCelular);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
 		Component vertical_contato_1 = Box.createVerticalStrut(16);
 		boxVerticalContato.add(vertical_contato_1);
@@ -232,10 +261,14 @@ public class PessoaPanel extends JPanel {
 		Component horizontal_contato_2 = Box.createHorizontalStrut(8);
 		boxHorizontalTelefone.add(horizontal_contato_2);
 
-		textTelefone = new JTextField();
-		textTelefone.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textTelefone.setColumns(10);
-		boxHorizontalTelefone.add(textTelefone);
+		try {
+			MaskFormatter mascaraTelefone = new MaskFormatter("(+55) ## ####-####");
+			textTelefone = new JFormattedTextField(mascaraTelefone);
+			textTelefone.setFont(new Font("Verdana", Font.PLAIN, 12));
+			boxHorizontalTelefone.add(textTelefone);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
 		Component vertical_contato_2 = Box.createVerticalStrut(16);
 		boxVerticalContato.add(vertical_contato_2);
@@ -323,21 +356,34 @@ public class PessoaPanel extends JPanel {
 		btnProximo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					pacienteFullDTO.setDataNascimento(LocalDate.of(2000, 3, 25));
+					pacienteFullDTO.setDataNascimento(
+							textDataNascimento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 					pacienteFullDTO.setNome(textNome.getText());
 					pacienteFullDTO.setCpf(textCpf.getText());
-					pacienteFullDTO.setRg(textRg.getText());
-					pacienteFullDTO.setCelular(Long.parseLong(textCelular.getText()));
-					pacienteFullDTO.setTelefone(Long.parseLong(textTelefone.getText()));
-					pacienteFullDTO.setEmail(textEmail.getText());
+					pacienteFullDTO.setRg(textRg.getText().toUpperCase());
+					String celular = textCelular.getText().replaceAll("[^0-9]", "");
+					pacienteFullDTO.setCelular(celular.isEmpty() ? 0 : Long.parseLong(celular));
+					String telefone = textTelefone.getText().replaceAll("[^0-9]", "");
+					if (telefone == "55") {
+						pacienteFullDTO.setTelefone(Long.parseLong(null));
+					} else {
+						pacienteFullDTO.setTelefone(telefone.isEmpty() ? 0 : Long.parseLong(telefone));
+					}
+					if (textEmail.getText() == "") {
+						pacienteFullDTO.setEmail(null);
+					} else {
+						pacienteFullDTO.setEmail(textEmail.getText());
+					}
 					pacienteFullDTO.setGenero((EnumGenero) comboBoxGenero.getSelectedItem());
 
 					cadastroPanel.switchToNextTab();
 				} catch (Exception a) {
+					System.out.println(a);
 					JOptionPane.showMessageDialog(null, cadastroPanel.errorMessage());
 				}
 			}
 		});
+
 		boxHorizontalCancelarEProximo.add(btnProximo);
 
 	}

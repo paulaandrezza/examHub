@@ -268,12 +268,16 @@ public class EnderecoPanel extends JPanel {
 					pacienteFullDTO.setBairro("Bairro 2");
 					pacienteFullDTO.setNumero("ac1523");
 					pacienteFullDTO.setComplemento("lorem ipsum");
-
-					System.out.println(pacienteFullDTO);
-
 					pacienteController.create(pacienteFullDTO);
+					System.out.println(pacienteFullDTO);
 				} catch (Exception a) {
-					JOptionPane.showMessageDialog(null, cadastroPanel.errorMessage());
+					System.out.println("Error: " + a);
+					if (a.getMessage().contains("UNIQUE constraint failed")) {
+						JOptionPane.showMessageDialog(null,
+								"Paciente já existe em nossa base de dados. " + a.getMessage());
+					} else {
+						JOptionPane.showMessageDialog(null, cadastroPanel.errorMessage());
+					}
 				}
 			}
 		});
