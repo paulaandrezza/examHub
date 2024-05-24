@@ -7,10 +7,12 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 import javax.swing.Box;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -21,13 +23,15 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.text.MaskFormatter;
 
 import model.persistence.dao.paciente.PacienteFullDTO;
+import view.utils.FieldMask;
 
 public class PacientePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textAltura = new JTextField();
+	private JFormattedTextField textAltura = new JFormattedTextField();
 	private final ButtonGroup fumanteGroup = new ButtonGroup();
 	private final ButtonGroup marcaPassoGroup = new ButtonGroup();
 	private Box boxHorizontalNumeroCarterinha = Box.createHorizontalBox();
@@ -96,9 +100,14 @@ public class PacientePanel extends JPanel {
 		horizontal_paciente_1.setMaximumSize(new Dimension(16, 32767));
 		boxHorizontalAltura.add(horizontal_paciente_1);
 
-		textAltura.setName("prestadora");
-		textAltura.setFont(new Font("Verdana", Font.PLAIN, 12));
-		boxHorizontalAltura.add(textAltura);
+		try {
+			MaskFormatter mascarAltura = new MaskFormatter("###cm");
+			textAltura = new JFormattedTextField(mascarAltura);
+			textAltura.setFont(new Font("Verdana", Font.PLAIN, 12));
+			boxHorizontalAltura.add(textAltura);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
 		Component horizontal_paciente_2 = Box.createHorizontalStrut(32);
 		horizontal_paciente_2.setMaximumSize(new Dimension(16, 32767));
@@ -216,8 +225,10 @@ public class PacientePanel extends JPanel {
 		horizontal_convenio_1.setMaximumSize(new Dimension(16, 32767));
 		boxHorizontalNumeroCarterinha.add(horizontal_convenio_1);
 
-		textNumeroCarteirinha.setName("prestadora");
 		textNumeroCarteirinha.setFont(new Font("Verdana", Font.PLAIN, 12));
+		FieldMask fieldMaskNumeroCarteirinha = new FieldMask();
+		fieldMaskNumeroCarteirinha.setMaskType(FieldMask.MaskType.NUMBERS_ONLY);
+		textNumeroCarteirinha.setDocument(fieldMaskNumeroCarteirinha);
 		boxHorizontalNumeroCarterinha.add(textNumeroCarteirinha);
 
 		Component vertical_convenio_1 = Box.createVerticalStrut(16);
@@ -382,19 +393,41 @@ public class PacientePanel extends JPanel {
 		btnProximo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					pacienteFullDTO.setAltura(148);
-					pacienteFullDTO.setFumante(false);
-					pacienteFullDTO.setMarcaPasso(true);
-					pacienteFullDTO.setNumeroCarteirinha(121311312);
-					pacienteFullDTO.setPrestadora("Bradesco");
-					pacienteFullDTO.setPlano("lorem ipsum");
-					pacienteFullDTO.setAlergias("lorem ipsum");
-					pacienteFullDTO.setMedicamentos("lorem ipsum");
-					pacienteFullDTO.setCondicaoMedica("lorem ipsum");
+					Float altura = Float.parseFloat(textAltura.getText().replaceAll("cm", "")) / 100;
+					String alturaFormatada = String.format("%.2f", altura);
+					pacienteFullDTO.setAltura(Float.parseFloat(alturaFormatada));
+					pacienteFullDTO.setFumante(fumanteGroup.isSelected(btnYesFumante.getModel()) ? true : false);
+					pacienteFullDTO.setFumante(marcaPassoGroup.isSelected(btnYesMarcaPasso.getModel()) ? true : false);
+					pacienteFullDTO.setNumeroCarteirinha(Integer.parseInt(textNumeroCarteirinha.getText()));
+					pacienteFullDTO.setPrestadora(textPrestadora.getText());
+
+					if (textPlano.getText().equals("")) {
+						pacienteFullDTO.setPlano(null);
+					} else {
+						pacienteFullDTO.setPlano(textPlano.getText());
+					}
+
+					if (textAreaAlergias.getText().equals("")) {
+						pacienteFullDTO.setAlergias(null);
+					} else {
+						pacienteFullDTO.setAlergias(textAreaAlergias.getText());
+					}
+
+					if (textAreaMedicamentos.getText().equals("")) {
+						pacienteFullDTO.setMedicamentos(null);
+					} else {
+						pacienteFullDTO.setMedicamentos(textAreaMedicamentos.getText());
+					}
+
+					if (textAreaCondicaoMedica.getText() == "") {
+						pacienteFullDTO.setCondicaoMedica(null);
+					} else {
+						pacienteFullDTO.setCondicaoMedica(textAreaCondicaoMedica.getText());
+					}
 
 					cadastroPanel.switchToNextTab();
 				} catch (Exception a) {
-
+					System.out.println(a);
 					JOptionPane.showMessageDialog(null, cadastroPanel.errorMessage());
 				}
 			}

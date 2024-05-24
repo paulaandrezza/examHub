@@ -18,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 
 import controller.PacienteController;
 import model.persistence.dao.paciente.PacienteFullDTO;
+import view.img.SVGIconUtil;
 
 public class CadastroPanel extends JFrame {
 
@@ -68,9 +69,9 @@ public class CadastroPanel extends JFrame {
 		tabbedPanel.setEnabled(false);
 
 		try {
-			ImageIcon iconPessoais = SVGIconUtil.createImageIcon("image/angle-right.svg");
-			ImageIcon iconMedicos = SVGIconUtil.createImageIcon("image/angle-right.svg");
-			ImageIcon iconMoradia = SVGIconUtil.createImageIcon("image/check-square.svg");
+			ImageIcon iconPessoais = SVGIconUtil.createImageIcon("../img/angle-right.svg");
+			ImageIcon iconMedicos = SVGIconUtil.createImageIcon("../img/angle-right.svg");
+			ImageIcon iconMoradia = SVGIconUtil.createImageIcon("../img/check-square.svg");
 
 			JLabel labelPessoais = new JLabel("Dados Pessoais", iconPessoais, SwingConstants.RIGHT);
 			JLabel labelMedicos = new JLabel("Dados Médicos", iconMedicos, SwingConstants.RIGHT);

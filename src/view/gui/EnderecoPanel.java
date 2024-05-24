@@ -93,10 +93,12 @@ public class EnderecoPanel extends JPanel {
 		boxVerticalEndereco.add(boxHorizontalEstado);
 
 		JLabel labelEstado = new JLabel("Estado:");
+		labelEstado.setEnabled(false);
 		labelEstado.setFont(new Font("Verdana", Font.BOLD, 16));
 		boxHorizontalEstado.add(labelEstado);
 
 		JLabel labelInfo_2 = new JLabel("*");
+		labelInfo_2.setEnabled(false);
 		labelInfo_2.setForeground(Color.RED);
 		labelInfo_2.setFont(new Font("Verdana", Font.BOLD, 16));
 		boxHorizontalEstado.add(labelInfo_2);
@@ -105,6 +107,7 @@ public class EnderecoPanel extends JPanel {
 		boxHorizontalEstado.add(horizontal_endereco_2);
 
 		textEstado = new JTextField();
+		textEstado.setEditable(false);
 		textEstado.setFont(new Font("Verdana", Font.PLAIN, 12));
 		textEstado.setColumns(10);
 		boxHorizontalEstado.add(textEstado);
@@ -117,10 +120,12 @@ public class EnderecoPanel extends JPanel {
 		boxVerticalEndereco.add(boxHorizontalCidade);
 
 		JLabel lblCidade = new JLabel("Cidade:");
+		lblCidade.setEnabled(false);
 		lblCidade.setFont(new Font("Verdana", Font.BOLD, 16));
 		boxHorizontalCidade.add(lblCidade);
 
 		JLabel labelInfo_3 = new JLabel("*");
+		labelInfo_3.setEnabled(false);
 		labelInfo_3.setForeground(Color.RED);
 		labelInfo_3.setFont(new Font("Verdana", Font.BOLD, 16));
 		boxHorizontalCidade.add(labelInfo_3);
@@ -129,6 +134,7 @@ public class EnderecoPanel extends JPanel {
 		boxHorizontalCidade.add(horizontalStrut_1_1_1);
 
 		textCidade = new JTextField();
+		textCidade.setEditable(false);
 		textCidade.setFont(new Font("Verdana", Font.PLAIN, 12));
 		textCidade.setColumns(10);
 		boxHorizontalCidade.add(textCidade);

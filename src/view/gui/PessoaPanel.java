@@ -27,10 +27,12 @@ import com.toedter.calendar.JTextFieldDateEditor;
 
 import model.enums.EnumGenero;
 import model.persistence.dao.paciente.PacienteFullDTO;
+import view.utils.FieldMask;
 
 public class PessoaPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	private FieldMask fieldMask = new FieldMask();
 
 	private JTextField textNome;
 	private JFormattedTextField textCpf;
@@ -93,6 +95,8 @@ public class PessoaPanel extends JPanel {
 		textNome = new JTextField();
 		textNome.setColumns(15);
 		textNome.setFont(new Font("Verdana", Font.PLAIN, 12));
+		fieldMask.setMaskType(FieldMask.MaskType.LETTERS_ONLY);
+		textNome.setDocument(fieldMask);
 		boxHorizontalNome.add(textNome);
 
 		Component horizontal_pessoapanel_1 = Box.createHorizontalStrut(20);
@@ -280,6 +284,11 @@ public class PessoaPanel extends JPanel {
 		labelEmail.setFont(new Font("Verdana", Font.BOLD, 16));
 		boxHorizontalEmail.add(labelEmail);
 
+		JLabel labelInfo_6 = new JLabel("*");
+		labelInfo_6.setForeground(Color.RED);
+		labelInfo_6.setFont(new Font("Verdana", Font.BOLD, 16));
+		boxHorizontalEmail.add(labelInfo_6);
+
 		Component horizontal_contato_3 = Box.createHorizontalStrut(8);
 		boxHorizontalEmail.add(horizontal_contato_3);
 
@@ -317,10 +326,10 @@ public class PessoaPanel extends JPanel {
 		labelGenero.setFont(new Font("Verdana", Font.BOLD, 16));
 		boxHorizontalGenero.add(labelGenero);
 
-		JLabel labelInfo_6 = new JLabel("*");
-		labelInfo_6.setForeground(Color.RED);
-		labelInfo_6.setFont(new Font("Verdana", Font.BOLD, 16));
-		boxHorizontalGenero.add(labelInfo_6);
+		JLabel labelInfo_7 = new JLabel("*");
+		labelInfo_7.setForeground(Color.RED);
+		labelInfo_7.setFont(new Font("Verdana", Font.BOLD, 16));
+		boxHorizontalGenero.add(labelInfo_7);
 
 		Component horizontal_outrasinformacoes_1 = Box.createHorizontalStrut(8);
 		boxHorizontalGenero.add(horizontal_outrasinformacoes_1);
@@ -364,16 +373,12 @@ public class PessoaPanel extends JPanel {
 					String celular = textCelular.getText().replaceAll("[^0-9]", "");
 					pacienteFullDTO.setCelular(celular.isEmpty() ? 0 : Long.parseLong(celular));
 					String telefone = textTelefone.getText().replaceAll("[^0-9]", "");
-					if (telefone == "55") {
+					if (telefone.equals("55")) {
 						pacienteFullDTO.setTelefone(Long.parseLong(null));
 					} else {
 						pacienteFullDTO.setTelefone(telefone.isEmpty() ? 0 : Long.parseLong(telefone));
 					}
-					if (textEmail.getText() == "") {
-						pacienteFullDTO.setEmail(null);
-					} else {
-						pacienteFullDTO.setEmail(textEmail.getText());
-					}
+					pacienteFullDTO.setEmail(textEmail.getText());
 					pacienteFullDTO.setGenero((EnumGenero) comboBoxGenero.getSelectedItem());
 
 					cadastroPanel.switchToNextTab();

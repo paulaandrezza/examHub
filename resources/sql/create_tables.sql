@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS Pessoa (
     dataNascimento DATE NOT NULL,
     celular BIGINT,
     telefone BIGINT,
-    email VARCHAR(255) UNIQUE,
+    email VARCHAR(255) NOT NULL UNIQUE,
     genero INT NOT NULL,
     endereco_id INT NOT NULL,
     FOREIGN KEY (endereco_id) REFERENCES Endereco(id) ON DELETE CASCADE
