@@ -14,7 +14,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -34,8 +33,6 @@ public class PacientePanel extends JPanel {
 	private JFormattedTextField textAltura = new JFormattedTextField();
 	private final ButtonGroup fumanteGroup = new ButtonGroup();
 	private final ButtonGroup marcaPassoGroup = new ButtonGroup();
-	private Box boxHorizontalNumeroCarterinha = Box.createHorizontalBox();
-	private Box boxHorizontalmarcaPasso = Box.createHorizontalBox();
 	private JTextField textNumeroCarteirinha = new JTextField();
 	private JTextField textPrestadora = new JTextField();
 	private JTextField textPlano = new JTextField();
@@ -101,8 +98,8 @@ public class PacientePanel extends JPanel {
 		boxHorizontalAltura.add(horizontal_paciente_1);
 
 		try {
-			MaskFormatter mascarAltura = new MaskFormatter("###cm");
-			textAltura = new JFormattedTextField(mascarAltura);
+			MaskFormatter mascaraAltura = new MaskFormatter("###cm");
+			textAltura = new JFormattedTextField(mascaraAltura);
 			textAltura.setFont(new Font("Verdana", Font.PLAIN, 12));
 			boxHorizontalAltura.add(textAltura);
 		} catch (ParseException e) {
@@ -153,6 +150,7 @@ public class PacientePanel extends JPanel {
 		horizontal_paciente_5.setMaximumSize(new Dimension(16, 32767));
 		boxHorizontalPaciente.add(horizontal_paciente_5);
 
+		Box boxHorizontalmarcaPasso = Box.createHorizontalBox();
 		boxHorizontalmarcaPasso.setMinimumSize(new Dimension(200, 32));
 		boxHorizontalmarcaPasso.setAlignmentY(0.5f);
 		boxHorizontalPaciente.add(boxHorizontalmarcaPasso);
@@ -208,6 +206,7 @@ public class PacientePanel extends JPanel {
 		boxVerticalConvenio.setBounds(10, 210, 750, 128);
 		add(boxVerticalConvenio);
 
+		Box boxHorizontalNumeroCarterinha = Box.createHorizontalBox();
 		boxHorizontalNumeroCarterinha.setMinimumSize(new Dimension(200, 32));
 		boxHorizontalNumeroCarterinha.setAlignmentY(0.5f);
 		boxVerticalConvenio.add(boxHorizontalNumeroCarterinha);
@@ -419,7 +418,7 @@ public class PacientePanel extends JPanel {
 						pacienteFullDTO.setMedicamentos(textAreaMedicamentos.getText());
 					}
 
-					if (textAreaCondicaoMedica.getText() == "") {
+					if (textAreaCondicaoMedica.getText().equals("")) {
 						pacienteFullDTO.setCondicaoMedica(null);
 					} else {
 						pacienteFullDTO.setCondicaoMedica(textAreaCondicaoMedica.getText());
@@ -428,7 +427,6 @@ public class PacientePanel extends JPanel {
 					cadastroPanel.switchToNextTab();
 				} catch (Exception a) {
 					System.out.println(a);
-					JOptionPane.showMessageDialog(null, cadastroPanel.errorMessage());
 				}
 			}
 		});

@@ -66,7 +66,7 @@ public class CadastroPanel extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.X_AXIS));
-		tabbedPanel.setEnabled(false);
+		// tabbedPanel.setEnabled(false);
 
 		try {
 			ImageIcon iconPessoais = SVGIconUtil.createImageIcon("../img/angle-right.svg");
