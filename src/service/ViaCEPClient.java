@@ -28,7 +28,7 @@ public class ViaCEPClient {
 				}
 
 				if (response.toString().contains("\"erro\": true")) {
-					throw new ViaCEPException("CEP not found: " + address + ". Try again.");
+					throw new ViaCEPException("CEP not recognized.");
 				}
 
 				reader.close();

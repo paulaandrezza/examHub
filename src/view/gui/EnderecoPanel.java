@@ -11,7 +11,6 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -103,8 +102,7 @@ public class EnderecoPanel extends JPanel {
 						textBairro.setText(local.getBairro());
 						textRua.setText(local.getLogradouro());
 					} catch (Exception f) {
-						JOptionPane.showMessageDialog(null,
-								"Informe um valor válido para o CEP, ou preencha manualmente.");
+						System.out.println("Erro ao inserir os dados nos campos: " + f.getMessage());
 					}
 				}
 			});
@@ -323,8 +321,8 @@ public class EnderecoPanel extends JPanel {
 					pacienteFullDTO.setCep(Integer.parseInt(textCep.getText()));
 					pacienteFullDTO.setEstado(textEstado.getText());
 					pacienteFullDTO.setCidade(textCidade.getText());
-					// pacienteFullDTO.setRua();
-					// pacienteFullDTO.setBairro();
+					pacienteFullDTO.setRua(textRua.getText());
+					pacienteFullDTO.setBairro(textBairro.getText());
 
 					if (textNumero.getText().equals("")) {
 						pacienteFullDTO.setNumero(null);
@@ -340,7 +338,7 @@ public class EnderecoPanel extends JPanel {
 
 					pacienteController.create(pacienteFullDTO);
 				} catch (Exception a) {
-					System.out.println("Error: " + a);
+					System.out.println("Error: " + a.getMessage());
 				}
 			}
 		});
