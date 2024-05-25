@@ -9,9 +9,6 @@ public class Address {
 	@SerializedName("logradouro")
 	private final String logradouro;
 
-	@SerializedName("complemento")
-	private final String complemento;
-
 	@SerializedName("bairro")
 	private final String bairro;
 
@@ -24,7 +21,6 @@ public class Address {
 	public Address(String cep, String logradouro, String complemento, String bairro, String cidade, String estado) {
 		this.cep = cep;
 		this.logradouro = logradouro;
-		this.complemento = complemento;
 		this.bairro = bairro;
 		this.cidade = cidade;
 		this.estado = estado;
@@ -36,10 +32,6 @@ public class Address {
 
 	public String getLogradouro() {
 		return logradouro != null && !logradouro.isEmpty() ? logradouro : "Not available";
-	}
-
-	public String getComplemento() {
-		return complemento != null && !complemento.isEmpty() ? complemento : "Not available";
 	}
 
 	public String getBairro() {

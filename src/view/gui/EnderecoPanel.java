@@ -6,19 +6,17 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
-import java.text.ParseException;
 
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
-import javax.swing.text.MaskFormatter;
 import javax.swing.text.MaskFormatter;
 
 import controller.PacienteController;
@@ -29,7 +27,6 @@ import view.utils.ViaCep;
 public class EnderecoPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JFormattedTextField textCep;
 	private JFormattedTextField textCep;
 	private JTextField textEstado;
 	private JTextField textCidade;
@@ -93,16 +90,9 @@ public class EnderecoPanel extends JPanel {
 			textCep = new JFormattedTextField(mascaraCep);
 			textCep.setFont(new Font("Verdana", Font.PLAIN, 12));
 			boxHorizontalCep.add(textCep);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		try {
-			MaskFormatter mascaraCep = new MaskFormatter("#####-###");
-			textCep = new JFormattedTextField(mascaraCep);
-			textCep.setFont(new Font("Verdana", Font.PLAIN, 12));
-			boxHorizontalCep.add(textCep);
 
 			JButton btnProcurarCep = new JButton("Consultar CEP");
+			btnProcurarCep.setAlignmentX(Component.CENTER_ALIGNMENT);
 			btnProcurarCep.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
@@ -110,12 +100,15 @@ public class EnderecoPanel extends JPanel {
 						Address local = viaCep.searchCep(textCep.getText());
 						textEstado.setText(local.getEstado());
 						textCidade.setText(local.getCidade());
+						textBairro.setText(local.getBairro());
+						textRua.setText(local.getLogradouro());
 					} catch (Exception f) {
 						JOptionPane.showMessageDialog(null,
 								"Informe um valor válido para o CEP, ou preencha manualmente.");
 					}
 				}
 			});
+
 			boxHorizontalCep.add(btnProcurarCep);
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -307,8 +300,9 @@ public class EnderecoPanel extends JPanel {
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					String cep = textCep.getText();
-					pacienteFullDTO.setCep(Integer.parseInt(cep.replaceAll("[^0-9]", "")));
+					String cep = textCep.getText().replaceAll("[^0-9]", "");
+					System.out.println(cep);
+					pacienteFullDTO.setCep(Integer.parseInt(cep));
 					pacienteFullDTO.setEstado(textEstado.getText());
 					pacienteFullDTO.setCidade(textCidade.getText());
 					pacienteFullDTO.setRua(textRua.getText());
