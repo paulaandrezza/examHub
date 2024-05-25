@@ -6,17 +6,19 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.text.ParseException;
 
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.text.MaskFormatter;
 import javax.swing.text.MaskFormatter;
 
 import controller.PacienteController;
@@ -27,6 +29,7 @@ import view.utils.ViaCep;
 public class EnderecoPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	private JFormattedTextField textCep;
 	private JFormattedTextField textCep;
 	private JTextField textEstado;
 	private JTextField textCidade;
@@ -90,6 +93,14 @@ public class EnderecoPanel extends JPanel {
 			textCep = new JFormattedTextField(mascaraCep);
 			textCep.setFont(new Font("Verdana", Font.PLAIN, 12));
 			boxHorizontalCep.add(textCep);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		try {
+			MaskFormatter mascaraCep = new MaskFormatter("#####-###");
+			textCep = new JFormattedTextField(mascaraCep);
+			textCep.setFont(new Font("Verdana", Font.PLAIN, 12));
+			boxHorizontalCep.add(textCep);
 
 			JButton btnProcurarCep = new JButton("Consultar CEP");
 			btnProcurarCep.addActionListener(new ActionListener() {
@@ -114,6 +125,7 @@ public class EnderecoPanel extends JPanel {
 		boxVerticalEndereco.add(vertical_endereco_1);
 
 		Box boxHorizontalEstado = Box.createHorizontalBox();
+		boxHorizontalEstado.setEnabled(false);
 		boxHorizontalEstado.setEnabled(false);
 		boxHorizontalEstado.setBounds(0, 0, 750, 32);
 		boxVerticalEndereco.add(boxHorizontalEstado);
@@ -142,6 +154,7 @@ public class EnderecoPanel extends JPanel {
 		boxVerticalEndereco.add(vertical_endereco_2);
 
 		Box boxHorizontalCidade = Box.createHorizontalBox();
+		boxHorizontalCidade.setEnabled(false);
 		boxHorizontalCidade.setEnabled(false);
 		boxHorizontalCidade.setBounds(0, 0, 750, 96);
 		boxVerticalEndereco.add(boxHorizontalCidade);
@@ -294,6 +307,25 @@ public class EnderecoPanel extends JPanel {
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					String cep = textCep.getText();
+					pacienteFullDTO.setCep(Integer.parseInt(cep.replaceAll("[^0-9]", "")));
+					pacienteFullDTO.setEstado(textEstado.getText());
+					pacienteFullDTO.setCidade(textCidade.getText());
+					pacienteFullDTO.setRua(textRua.getText());
+					pacienteFullDTO.setBairro(textBairro.getText());
+
+					if (textNumero.getText().equals("")) {
+						pacienteFullDTO.setNumero(null);
+					} else {
+						pacienteFullDTO.setNumero(textNumero.getText());
+					}
+
+					if (textNumero.getText().equals("")) {
+						pacienteFullDTO.setComplemento(null);
+					} else {
+						pacienteFullDTO.setComplemento(textComplemento.getText());
+					}
+
 					pacienteFullDTO.setCep(Integer.parseInt(textCep.getText()));
 					pacienteFullDTO.setEstado(textEstado.getText());
 					pacienteFullDTO.setCidade(textCidade.getText());
