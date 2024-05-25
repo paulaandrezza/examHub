@@ -228,6 +228,8 @@ public class PacientePanel extends JPanel {
 		textNumeroCarteirinha.setFont(new Font("Verdana", Font.PLAIN, 12));
 		FieldMask fieldMaskNumeroCarteirinha = new FieldMask();
 		fieldMaskNumeroCarteirinha.setMaskType(FieldMask.MaskType.NUMBERS_ONLY);
+		fieldMaskNumeroCarteirinha.setMaskType(FieldMask.MaskType.NUMBERS_ONLY);
+		fieldMaskNumeroCarteirinha.setMaxValue(Integer.MAX_VALUE);
 		textNumeroCarteirinha.setDocument(fieldMaskNumeroCarteirinha);
 		boxHorizontalNumeroCarterinha.add(textNumeroCarteirinha);
 
@@ -394,8 +396,8 @@ public class PacientePanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Float altura = Float.parseFloat(textAltura.getText().replaceAll("cm", "")) / 100;
-					String alturaFormatada = String.format("%.2f", altura);
-					pacienteFullDTO.setAltura(Float.parseFloat(alturaFormatada));
+					Float alturaFormatada = (float) (Math.round(altura * 100.0) / 100.0);
+					pacienteFullDTO.setAltura(alturaFormatada);
 					pacienteFullDTO.setFumante(fumanteGroup.isSelected(btnYesFumante.getModel()) ? true : false);
 					pacienteFullDTO.setFumante(marcaPassoGroup.isSelected(btnYesMarcaPasso.getModel()) ? true : false);
 					pacienteFullDTO.setNumeroCarteirinha(Integer.parseInt(textNumeroCarteirinha.getText()));

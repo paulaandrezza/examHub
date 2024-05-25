@@ -5,16 +5,18 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 import javax.swing.Box;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.text.MaskFormatter;
 
 import controller.PacienteController;
 import model.persistence.dao.paciente.PacienteFullDTO;
@@ -22,7 +24,7 @@ import model.persistence.dao.paciente.PacienteFullDTO;
 public class EnderecoPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textCep;
+	private JFormattedTextField textCep;
 	private JTextField textEstado;
 	private JTextField textCidade;
 	private JTextField textBairro;
@@ -80,15 +82,20 @@ public class EnderecoPanel extends JPanel {
 		Component horizontal_endereco_1 = Box.createHorizontalStrut(8);
 		boxHorizontalCep.add(horizontal_endereco_1);
 
-		textCep = new JTextField();
-		textCep.setFont(new Font("Verdana", Font.PLAIN, 12));
-		textCep.setColumns(10);
-		boxHorizontalCep.add(textCep);
+		try {
+			MaskFormatter mascaraCep = new MaskFormatter("#####-###");
+			textCep = new JFormattedTextField(mascaraCep);
+			textCep.setFont(new Font("Verdana", Font.PLAIN, 12));
+			boxHorizontalCep.add(textCep);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
 		Component vertical_endereco_1 = Box.createVerticalStrut(32);
 		boxVerticalEndereco.add(vertical_endereco_1);
 
 		Box boxHorizontalEstado = Box.createHorizontalBox();
+		boxHorizontalEstado.setEnabled(false);
 		boxHorizontalEstado.setBounds(0, 0, 750, 32);
 		boxVerticalEndereco.add(boxHorizontalEstado);
 
@@ -116,6 +123,7 @@ public class EnderecoPanel extends JPanel {
 		boxVerticalEndereco.add(vertical_endereco_2);
 
 		Box boxHorizontalCidade = Box.createHorizontalBox();
+		boxHorizontalCidade.setEnabled(false);
 		boxHorizontalCidade.setBounds(0, 0, 750, 96);
 		boxVerticalEndereco.add(boxHorizontalCidade);
 
@@ -267,23 +275,28 @@ public class EnderecoPanel extends JPanel {
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					pacienteFullDTO.setCep(148);
-					pacienteFullDTO.setEstado("SP");
-					pacienteFullDTO.setCidade("Bragança");
-					pacienteFullDTO.setRua("Rua 2");
-					pacienteFullDTO.setBairro("Bairro 2");
-					pacienteFullDTO.setNumero("ac1523");
-					pacienteFullDTO.setComplemento("lorem ipsum");
+					String cep = textCep.getText();
+					pacienteFullDTO.setCep(Integer.parseInt(cep.replaceAll("[^0-9]", "")));
+					pacienteFullDTO.setEstado(textEstado.getText());
+					pacienteFullDTO.setCidade(textCidade.getText());
+					pacienteFullDTO.setRua(textRua.getText());
+					pacienteFullDTO.setBairro(textBairro.getText());
+
+					if (textNumero.getText().equals("")) {
+						pacienteFullDTO.setNumero(null);
+					} else {
+						pacienteFullDTO.setNumero(textNumero.getText());
+					}
+
+					if (textNumero.getText().equals("")) {
+						pacienteFullDTO.setComplemento(null);
+					} else {
+						pacienteFullDTO.setComplemento(textComplemento.getText());
+					}
+
 					pacienteController.create(pacienteFullDTO);
-					System.out.println(pacienteFullDTO);
 				} catch (Exception a) {
 					System.out.println("Error: " + a);
-					if (a.getMessage().contains("UNIQUE constraint failed")) {
-						JOptionPane.showMessageDialog(null,
-								"Paciente já existe em nossa base de dados. " + a.getMessage());
-					} else {
-						JOptionPane.showMessageDialog(null, cadastroPanel.errorMessage());
-					}
 				}
 			}
 		});

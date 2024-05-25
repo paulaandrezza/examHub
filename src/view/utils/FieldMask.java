@@ -12,6 +12,7 @@ final public class FieldMask extends PlainDocument {
 	 */
 	private static final long serialVersionUID = 1L;
 	private MaskType maskType;
+	private int maxValue;
 
 	public enum MaskType {
 		NUMBERS_ONLY, LETTERS_ONLY
@@ -19,6 +20,10 @@ final public class FieldMask extends PlainDocument {
 
 	public void setMaskType(MaskType maskType) {
 		this.maskType = maskType;
+	}
+
+	public void setMaxValue(int maxValue) {
+		this.maxValue = maxValue;
 	}
 
 	@Override
@@ -54,7 +59,19 @@ final public class FieldMask extends PlainDocument {
 			}
 		}
 
-		super.insertString(offs, str, a);
+		if (maxValue > 0) {
+			String newText = getText(0, getLength()) + str;
+			try {
+				int newValue = Integer.parseInt(newText);
+				if (newValue <= maxValue) {
+					super.insertString(offs, str, a);
+				}
+			} catch (NumberFormatException e) {
+				System.out.println(e);
+			}
+		} else {
+			super.insertString(offs, str, a);
+		}
 	}
 
 	public void formatedLabelLetters(int offs, String str, AttributeSet a) throws BadLocationException {
