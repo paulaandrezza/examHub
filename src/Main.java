@@ -1,5 +1,5 @@
 import model.persistence.DatabaseConnection;
-import view.guiMenu.MenuPanel;
+import view.guiLogin.LoginPanel;
 
 public class Main {
 
@@ -41,7 +41,7 @@ public class Main {
 
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				MenuPanel tela = new MenuPanel();
+				LoginPanel tela = new LoginPanel();
 				tela.setVisible(true);
 			}
 		});

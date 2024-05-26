@@ -25,7 +25,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 
-import view.guiCadastro.CadastroPanel;
+import view.guiPaciente.CadastroPanel;
 
 public class MenuPanel extends JFrame {
 
