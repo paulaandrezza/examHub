@@ -1,4 +1,4 @@
-package view.gui;
+package view.guiCadastro;
 
 import java.awt.Color;
 import java.awt.Component;

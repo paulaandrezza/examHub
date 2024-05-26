@@ -1,5 +1,5 @@
 import model.persistence.DatabaseConnection;
-import view.gui.CadastroPanel;
+import view.guiMenu.MenuPanel;
 
 public class Main {
 
@@ -41,7 +41,7 @@ public class Main {
 
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				CadastroPanel tela = new CadastroPanel();
+				MenuPanel tela = new MenuPanel();
 				tela.setVisible(true);
 			}
 		});
