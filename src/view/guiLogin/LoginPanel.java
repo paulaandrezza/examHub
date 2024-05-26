@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -70,6 +71,14 @@ public class LoginPanel extends JFrame {
 
 		Component login_vertical_glue_1 = Box.createVerticalGlue();
 		contentPane.add(login_vertical_glue_1);
+
+		JLabel labelLoginTitulo = new JLabel("ExamHub");
+		labelLoginTitulo.setFont(new Font("Verdana", Font.BOLD, 32));
+		labelLoginTitulo.setAlignmentX(Component.CENTER_ALIGNMENT);
+		contentPane.add(labelLoginTitulo);
+
+		JSeparator hr_login_1 = new JSeparator();
+		contentPane.add(hr_login_1);
 
 		JPanel panelEmail = new JPanel();
 		contentPane.add(panelEmail);
