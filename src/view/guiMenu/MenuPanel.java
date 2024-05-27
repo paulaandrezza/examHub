@@ -102,7 +102,7 @@ public class MenuPanel extends JFrame {
 		addMenuItem(panelMenuLista, "Cadastrar Novo Paciente", e -> openInternalFrame(new CadastroPanel()));
 
 		desktopPanelMenuWindow.setBackground(SystemColor.activeCaption);
-		desktopPanelMenuWindow.setMaximumSize(new java.awt.Dimension(800, Integer.MAX_VALUE));
+		desktopPanelMenuWindow.setMaximumSize(new java.awt.Dimension(850, Integer.MAX_VALUE));
 
 		Box box = Box.createHorizontalBox();
 		box.add(scrollMenuLista);
