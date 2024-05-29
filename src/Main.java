@@ -1,3 +1,8 @@
+import javax.swing.JOptionPane;
+
+import controller.AuthController;
+import model.enums.EnumTipoFuncionario;
+import model.exceptions.EmailAndPasswordIncorrectException;
 import model.persistence.DatabaseConnection;
 import view.guiLogin.LoginPanel;
 
@@ -6,6 +11,26 @@ public class Main {
 	public static void main(String[] args) {
 		DatabaseConnection dbConnection = new DatabaseConnection();
 		dbConnection.connectAndExecute();
+
+		AuthController authController = new AuthController();
+		try {
+			EnumTipoFuncionario tipoFuncionario = authController.auth("paula.marinho@examhub.com", "password123");
+			JOptionPane.showMessageDialog(null,
+					"Login bem-sucedido! Tipo de funcionário: " + tipoFuncionario.getDescription());
+		} catch (EmailAndPasswordIncorrectException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
+
+		try {
+			EnumTipoFuncionario tipoFuncionario = authController.auth("emailerrado@email.com", "senhaerrada");
+			JOptionPane.showMessageDialog(null, "Login bem-sucedido! Tipo de funcionário: " + tipoFuncionario);
+		} catch (EmailAndPasswordIncorrectException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
 
 		/*
 		 * PacienteController pacienteController = new PacienteController();
@@ -41,7 +66,7 @@ public class Main {
 
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				LoginPanel tela = new LoginPanel();
+				MenuPanel tela = new MenuPanel();
 				tela.setVisible(true);
 			}
 		});
