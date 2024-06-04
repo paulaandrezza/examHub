@@ -1,4 +1,4 @@
-package service.exception;
+package model.exceptions;
 
 public class ViaCEPException extends Exception {
 	/**
@@ -8,9 +8,5 @@ public class ViaCEPException extends Exception {
 
 	public ViaCEPException(String message) {
 		super(message);
-	}
-
-	public ViaCEPException(String message, Throwable cause) {
-		super(message, cause);
 	}
 }
