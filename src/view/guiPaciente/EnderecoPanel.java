@@ -11,6 +11,7 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -19,9 +20,9 @@ import javax.swing.UIManager;
 import javax.swing.text.MaskFormatter;
 
 import controller.PacienteController;
+import controller.external.CepController;
+import model.entities.external.Address;
 import model.persistence.dao.paciente.PacienteFullDTO;
-import service.Address;
-import view.utils.ViaCep;
 
 public class EnderecoPanel extends JPanel {
 
@@ -95,14 +96,14 @@ public class EnderecoPanel extends JPanel {
 			btnProcurarCep.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
-						ViaCep viaCep = new ViaCep();
-						Address local = viaCep.searchCep(textCep.getText());
+						CepController cepController = new CepController();
+						Address local = cepController.searchCep(textCep.getText());
 						textEstado.setText(local.getEstado());
 						textCidade.setText(local.getCidade());
 						textBairro.setText(local.getBairro());
 						textRua.setText(local.getLogradouro());
 					} catch (Exception f) {
-						System.out.println("Erro ao inserir os dados nos campos: " + f.getMessage());
+						JOptionPane.showMessageDialog(null, f.getMessage());
 					}
 				}
 			});
