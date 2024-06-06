@@ -4,6 +4,7 @@ import controller.AuthController;
 import model.enums.EnumTipoFuncionario;
 import model.exceptions.EmailAndPasswordIncorrectException;
 import model.persistence.DatabaseConnection;
+import view.guiMenu.MenuPanel;
 
 public class Main {
 
@@ -11,25 +12,25 @@ public class Main {
 		DatabaseConnection dbConnection = new DatabaseConnection();
 		dbConnection.connectAndExecute();
 
-		AuthController authController = new AuthController();
-		try {
-			EnumTipoFuncionario tipoFuncionario = authController.auth("paula.marinho@examhub.com", "password123");
-			JOptionPane.showMessageDialog(null,
-					"Login bem-sucedido! Tipo de funcionário: " + tipoFuncionario.getDescription());
-		} catch (EmailAndPasswordIncorrectException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
-		}
-
-		try {
-			EnumTipoFuncionario tipoFuncionario = authController.auth("emailerrado@email.com", "senhaerrada");
-			JOptionPane.showMessageDialog(null, "Login bem-sucedido! Tipo de funcionário: " + tipoFuncionario);
-		} catch (EmailAndPasswordIncorrectException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
-		}
+//		AuthController authController = new AuthController();
+//		try {
+//			EnumTipoFuncionario tipoFuncionario = authController.auth("paula.marinho@examhub.com", "password123");
+//			JOptionPane.showMessageDialog(null,
+//					"Login bem-sucedido! Tipo de funcionário: " + tipoFuncionario.getDescription());
+//		} catch (EmailAndPasswordIncorrectException e) {
+//			JOptionPane.showMessageDialog(null, e.getMessage());
+//		} catch (Exception e) {
+//			JOptionPane.showMessageDialog(null, e.getMessage());
+//		}
+//
+//		try {
+//			EnumTipoFuncionario tipoFuncionario = authController.auth("emailerrado@email.com", "senhaerrada");
+//			JOptionPane.showMessageDialog(null, "Login bem-sucedido! Tipo de funcionário: " + tipoFuncionario);
+//		} catch (EmailAndPasswordIncorrectException e) {
+//			JOptionPane.showMessageDialog(null, e.getMessage());
+//		} catch (Exception e) {
+//			JOptionPane.showMessageDialog(null, e.getMessage());
+//		}
 
 		/*
 		 * PacienteController pacienteController = new PacienteController();
@@ -63,12 +64,12 @@ public class Main {
 		// System.out.println("java.sql.Timestamp: " + new java.sql.Timestamp(2000, 03,
 		// 25, 10, 20, 0, 0));
 
-//		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-//			public void run() {
-//				MenuPanel tela = new MenuPanel();
-//				tela.setVisible(true);
-//			}
-//		});
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				MenuPanel tela = new MenuPanel();
+				tela.setVisible(true);
+			}
+		});
 
 	}
 }

@@ -1,17 +1,18 @@
-package service;
+package model.service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.UnknownHostException;
 
-import service.exception.ViaCEPException;
+import model.exceptions.ViaCEPException;
 
 public class ViaCEPClient {
 	private static final String BASE_URL = "https://viacep.com.br/ws/";
 
-	public static String getAddressInfo(String address) throws ViaCEPException, IOException {
+	public static String getAddressInfo(String address) throws ViaCEPException {
 		try {
 			@SuppressWarnings("deprecation")
 			URL url = new URL(BASE_URL + address + "/json");
@@ -28,18 +29,19 @@ public class ViaCEPClient {
 				}
 
 				if (response.toString().contains("\"erro\": true")) {
-					throw new ViaCEPException("CEP not recognized.");
+					throw new ViaCEPException("CEP inválido. Insira um CEP válido para continuar.");
 				}
 
 				reader.close();
 				connection.disconnect();
 
 				return response.toString();
-			} else {
-				throw new ViaCEPException("Failed to connect. Error code: " + connection.getResponseCode());
 			}
+			throw new ViaCEPException("Falha durante a conexão. Conecte-se a internet para continuar o cadastro.");
+		} catch (UnknownHostException e) {
+			throw new ViaCEPException("Falha durante a conexão. Conecte-se a internet para continuar o cadastro.");
 		} catch (IOException e) {
-			throw new ViaCEPException("Error while accessing ViaCEP API: " + e.getMessage(), e);
+			throw new ViaCEPException("CEP inválido. Insira um CEP válido para continuar.");
 		}
 	}
 }

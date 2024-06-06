@@ -1,4 +1,4 @@
-package service;
+package model.entities.external;
 
 import com.google.gson.annotations.SerializedName;
 
