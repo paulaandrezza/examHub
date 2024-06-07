@@ -1,9 +1,10 @@
+import java.time.LocalDateTime;
+
 import javax.swing.JOptionPane;
 
-import controller.AuthController;
-import model.enums.EnumTipoFuncionario;
-import model.exceptions.EmailAndPasswordIncorrectException;
+import controller.AgendamentoController;
 import model.persistence.DatabaseConnection;
+import model.persistence.dao.agendamento.AgendamentoDTO;
 import view.guiMenu.MenuPanel;
 
 public class Main {
@@ -11,6 +12,16 @@ public class Main {
 	public static void main(String[] args) {
 		DatabaseConnection dbConnection = new DatabaseConnection();
 		dbConnection.connectAndExecute();
+
+		AgendamentoController agendamentoController = new AgendamentoController();
+		AgendamentoDTO agendamentoDTO = new AgendamentoDTO(LocalDateTime.parse("2024-06-06T10:30:00"), 1,
+				"Medica paulinha");
+		try {
+			agendamentoController.create(agendamentoDTO);
+			System.out.println(agendamentoController.getAll());
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
 
 //		AuthController authController = new AuthController();
 //		try {
