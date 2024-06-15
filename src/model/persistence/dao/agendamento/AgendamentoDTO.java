@@ -10,29 +10,31 @@ public class AgendamentoDTO {
 	private int paciente_id;
 	private String medicoSolicitante;
 	private int statusAgendamento;
+	private int tipoExame;
 
-	public AgendamentoDTO(int id, LocalDateTime dataEhorario, int paciente_id, String medicoSolicitante,
-			int statusAgendamento) {
+	public AgendamentoDTO(Integer id, LocalDateTime dataEhorario, int paciente_id, String medicoSolicitante,
+			int statusAgendamento, int tipoExame) {
 		this.id = id;
 		this.dataEhorario = dataEhorario;
 		this.paciente_id = paciente_id;
 		this.medicoSolicitante = medicoSolicitante;
 		this.statusAgendamento = statusAgendamento;
+		this.tipoExame = tipoExame;
 	}
 
-	public AgendamentoDTO(LocalDateTime dataEhorario, int paciente_id, String medicoSolicitante) {
-		this.id = null;
+	public AgendamentoDTO(LocalDateTime dataEhorario, int paciente_id, String medicoSolicitante, int tipoExame) {
 		this.dataEhorario = dataEhorario;
 		this.paciente_id = paciente_id;
 		this.medicoSolicitante = medicoSolicitante;
 		this.statusAgendamento = EnumStatusAgendamento.AGENDADO.getValue();
+		this.tipoExame = tipoExame;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -68,10 +70,19 @@ public class AgendamentoDTO {
 		this.statusAgendamento = statusAgendamento;
 	}
 
+	public int getTipoExame() {
+		return tipoExame;
+	}
+
+	public void setTipoExame(int tipoExame) {
+		this.tipoExame = tipoExame;
+	}
+
 	@Override
 	public String toString() {
 		return "AgendamentoDTO [id=" + id + ", dataEhorario=" + dataEhorario + ", paciente_id=" + paciente_id
-				+ ", medicoSolicitante=" + medicoSolicitante + ", statusAgendamento=" + statusAgendamento + "]";
+				+ ", medicoSolicitante=" + medicoSolicitante + ", statusAgendamento=" + statusAgendamento
+				+ ", tipoExame=" + tipoExame + "]";
 	}
 
 }

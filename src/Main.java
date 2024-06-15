@@ -3,6 +3,7 @@ import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 
 import controller.AgendamentoController;
+import model.enums.EnumTipoExame;
 import model.persistence.DatabaseConnection;
 import model.persistence.dao.agendamento.AgendamentoDTO;
 import view.guiMenu.MenuPanel;
@@ -15,7 +16,7 @@ public class Main {
 
 		AgendamentoController agendamentoController = new AgendamentoController();
 		AgendamentoDTO agendamentoDTO = new AgendamentoDTO(LocalDateTime.parse("2024-06-06T10:30:00"), 1,
-				"Medica paulinha");
+				"Medica paulinha", EnumTipoExame.ECOCARDIOGRAMA.getValue());
 		try {
 			agendamentoController.create(agendamentoDTO);
 			System.out.println(agendamentoController.getAll());

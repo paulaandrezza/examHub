@@ -7,6 +7,7 @@ import java.util.List;
 import model.entities.Paciente;
 import model.entities.exames.Agendamento;
 import model.enums.EnumStatusAgendamento;
+import model.enums.EnumTipoExame;
 import model.exceptions.EntityNotFoundException;
 import model.persistence.dao.agendamento.AgendamentoDAO;
 import model.persistence.dao.agendamento.AgendamentoDTO;
@@ -60,7 +61,8 @@ public class AgendamentoController implements IController<AgendamentoDTO, Agenda
 		if (!pacientes.isEmpty()) {
 			paciente = pacientes.get(0);
 			return new Agendamento(dto.getDataEhorario(), paciente, dto.getMedicoSolicitante(),
-					EnumStatusAgendamento.fromInt(dto.getStatusAgendamento()));
+					EnumStatusAgendamento.fromInt(dto.getStatusAgendamento()),
+					EnumTipoExame.fromInt(dto.getTipoExame()));
 		}
 
 		throw new EntityNotFoundException(dto.getId(), "paciente");
