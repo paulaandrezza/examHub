@@ -20,8 +20,6 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 
-import view.guiMenu.MenuPanel;
-
 public class LoginPanel extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -108,7 +106,7 @@ public class LoginPanel extends JFrame {
 		passwordSenha = new JPasswordField();
 		passwordSenha.setFont(new Font("Verdana", Font.PLAIN, 14));
 		passwordSenha.setColumns(20);
-		passwordSenha.setMaximumSize(passwordSenha.getPreferredSize()); // Definindo o tamanho máximo
+		passwordSenha.setMaximumSize(passwordSenha.getPreferredSize());
 		panelSenha.add(passwordSenha);
 
 		Component login_vertical_2 = Box.createVerticalStrut(32);
@@ -120,13 +118,8 @@ public class LoginPanel extends JFrame {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				javax.swing.SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
-						MenuPanel tela = new MenuPanel();
-						tela.setVisible(true);
-					}
-				});
-				dispose();
+				LoginValidation login = new LoginValidation(textEmail.getText(), new String(passwordSenha.getPassword()));
+				login.run();
 			}
 		});
 
@@ -136,4 +129,5 @@ public class LoginPanel extends JFrame {
 		Component login_vertical_glue_2 = Box.createVerticalGlue();
 		getContentPane().add(login_vertical_glue_2);
 	}
+
 }
