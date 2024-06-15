@@ -118,7 +118,8 @@ public class LoginPanel extends JFrame {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				LoginValidation login = new LoginValidation(textEmail.getText(), new String(passwordSenha.getPassword()));
+				LoginValidation login = new LoginValidation(textEmail.getText(),
+						new String(passwordSenha.getPassword()));
 				login.run();
 			}
 		});
