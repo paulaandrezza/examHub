@@ -9,48 +9,54 @@ import model.entities.Endereco;
 import model.entities.HistoricoMedico;
 import model.entities.Paciente;
 import model.entities.Pessoa;
+import model.exceptions.EntityNotFoundException;
 import model.persistence.dao.paciente.PacienteDAO;
 import model.persistence.dao.paciente.PacienteFullDTO;
 
 public class PacienteController implements IController<PacienteFullDTO, Paciente> {
-	private PacienteDAO pacienteDao;
+	private PacienteDAO pacienteDAO;
 
 	public PacienteController() {
-		this.pacienteDao = new PacienteDAO();
+		this.pacienteDAO = new PacienteDAO();
 	}
 
 	@Override
-	public int create(PacienteFullDTO dto) {
+	public int create(PacienteFullDTO dto) throws Exception {
 		Paciente paciente = convertDtoToEntity(dto);
 		try {
-			return pacienteDao.save(paciente);
+			return pacienteDAO.save(paciente);
 		} catch (Exception e) {
 			System.out.println("Erro ao adicionar paciente: " + e.getMessage());
 			throw e;
 		}
 	}
 
-	@Override
-	public void delete(int id) {
-		try {
-			pacienteDao.delete(id);
-			System.out.println("Entity deleted successfully.");
-		} catch (SQLException e) {
-			System.err.println("Error during entity deletion: " + e.getMessage());
-		}
-	}
+//	@Override
+//	public void delete(int id) {
+//		try {
+//			pacienteDao.delete(id);
+//			System.out.println("Entity deleted successfully.");
+//		} catch (SQLException e) {
+//			System.err.println("Error during entity deletion: " + e.getMessage());
+//		}
+//	}
 
 	@Override
 	public List<Paciente> getAll() {
-		List<PacienteFullDTO> pacientesFullDTO = pacienteDao.getAll();
+		List<PacienteFullDTO> pacientesFullDTO = pacienteDAO.getAll();
 
 		return convertDtoListToEntityList(pacientesFullDTO);
 	}
 
 	@Override
+	public Paciente getById(int id) throws SQLException, EntityNotFoundException {
+		return convertDtoToEntity(pacienteDAO.getById(id));
+	}
+
+	@Override
 	public List<Paciente> searchByField(String fieldName, Object fieldValue) {
 		try {
-			List<PacienteFullDTO> pacientesFullDTO = pacienteDao.findByField(fieldName, fieldValue);
+			List<PacienteFullDTO> pacientesFullDTO = pacienteDAO.findByField(fieldName, fieldValue);
 			return convertDtoListToEntityList(pacientesFullDTO);
 		} catch (SQLException e) {
 			System.err.println("Erro ao buscar pacientes: " + e.getMessage());
@@ -87,4 +93,5 @@ public class PacienteController implements IController<PacienteFullDTO, Paciente
 
 		return pacientes;
 	}
+
 }

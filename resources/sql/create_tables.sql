@@ -76,24 +76,28 @@ CREATE TABLE IF NOT EXISTS HorarioAtendimento (
 );
 
 
+-- table Agendamento 
+CREATE TABLE IF NOT EXISTS Agendamento (
+    id INTEGER PRIMARY KEY,
+    dataEhorario DATETIME NOT NULL,
+    paciente_id INT NOT NULL,
+    medicoSolicitante VARCHAR(255) NOT NULL,
+    statusAgendamento INT NOT NULL,
+    tipoExame INT NOT NULL,
+    FOREIGN KEY (paciente_id) REFERENCES Paciente(id)
+);
+
 -- table Exame
 CREATE TABLE IF NOT EXISTS Exame (
     id INTEGER PRIMARY KEY,
+    agendamento_int INT NOT NULL,
     peso FLOAT NOT NULL,
     medicoResponsavel_id INT NOT NULL,
     conclusoes TEXT,
     detalhes TEXT,
     diagnosticoClinico INT,
+    FOREIGN KEY (agendamento_int) REFERENCES Agendamento(id)
     FOREIGN KEY (medicoResponsavel_id) REFERENCES Medico(id)
-);
-
--- table HorarioExame 
-CREATE TABLE IF NOT EXISTS HorarioExame (
-    id INTEGER PRIMARY KEY,
-    dataEhorario DATETIME NOT NULL,
-    paciente_id INT NOT NULL,
-    medicoSolicitante VARCHAR(255) NOT NULL,
-    FOREIGN KEY (paciente_id) REFERENCES Paciente(id)
 );
 
 -- table ControleEntrega

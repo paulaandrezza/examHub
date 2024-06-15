@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.exceptions.EntityNotFoundException;
 import model.persistence.DatabaseConnection;
 import model.persistence.dao.interfaces.IGenericDAO;
 
@@ -25,6 +26,7 @@ public abstract class GenericDAO<DTO> implements IGenericDAO<DTO> {
 	@Override
 	public List<DTO> getAll() {
 		List<DTO> list = new ArrayList<>();
+		System.out.println(sqlQuery);
 		try (PreparedStatement statement = connection.prepareStatement(sqlQuery);
 				ResultSet resultSet = statement.executeQuery()) {
 			while (resultSet.next()) {
@@ -95,6 +97,16 @@ public abstract class GenericDAO<DTO> implements IGenericDAO<DTO> {
 			throw e;
 		}
 		return resultList;
+	}
+
+	@Override
+	public DTO getById(int id) throws SQLException, EntityNotFoundException {
+		List<DTO> resultList = findByField("id", id);
+		if (!resultList.isEmpty()) {
+			return resultList.get(0);
+		} else {
+			throw new EntityNotFoundException(id, tableName);
+		}
 	}
 
 	@Override

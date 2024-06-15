@@ -4,8 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface ICommonDAO<DTO, Entity> {
-	int save(Entity entity);
+public interface ICommonDAO<DTO> {
+	int save(DTO dto) throws SQLException;
 
 	List<DTO> getAll();
 

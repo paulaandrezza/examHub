@@ -7,16 +7,16 @@ import java.time.LocalDate;
 import model.entities.Paciente;
 import model.enums.EnumGenero;
 import model.persistence.dao.GenericDAO;
-import model.persistence.dao.interfaces.ICommonDAO;
+import model.persistence.dao.interfaces.IPacienteDAO;
 
-public class PacienteDAO extends GenericDAO<PacienteFullDTO> implements ICommonDAO<PacienteFullDTO, Paciente> {
+public class PacienteDAO extends GenericDAO<PacienteFullDTO> implements IPacienteDAO {
 
 	public PacienteDAO() {
 		super("paciente");
 	}
 
 	@Override
-	public int save(Paciente paciente) {
+	public int save(Paciente paciente) throws SQLException {
 		try {
 			connection.setAutoCommit(false);
 
@@ -38,13 +38,7 @@ public class PacienteDAO extends GenericDAO<PacienteFullDTO> implements ICommonD
 
 			return pacienteId;
 		} catch (SQLException e) {
-			System.err.println("Erro ao salvar paciente: " + e.getMessage());
-			try {
-				connection.rollback();
-			} catch (SQLException ex) {
-				System.err.println("Erro ao reverter transação: " + ex.getMessage());
-			}
-			return -1;
+			throw new SQLException("Erro ao salvar paciente: " + e.getMessage());
 		}
 	}
 
