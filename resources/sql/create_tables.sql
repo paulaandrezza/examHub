@@ -83,6 +83,7 @@ CREATE TABLE IF NOT EXISTS Agendamento (
     paciente_id INT NOT NULL,
     medicoSolicitante VARCHAR(255) NOT NULL,
     statusAgendamento INT NOT NULL,
+    tipoExame INT NOT NULL,
     FOREIGN KEY (paciente_id) REFERENCES Paciente(id)
 );
 

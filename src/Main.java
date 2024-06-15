@@ -3,6 +3,7 @@ import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 
 import controller.AgendamentoController;
+import model.enums.EnumTipoExame;
 import model.persistence.DatabaseConnection;
 import model.persistence.dao.agendamento.AgendamentoDTO;
 import view.guiMenu.MenuPanel;
