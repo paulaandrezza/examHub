@@ -1,3 +1,8 @@
+import javax.swing.JOptionPane;
+
+import controller.AuthController;
+import model.enums.EnumTipoFuncionario;
+import model.exceptions.EmailAndPasswordIncorrectException;
 import model.persistence.DatabaseConnection;
 import view.guiLogin.LoginPanel;
 
@@ -13,6 +18,7 @@ public class Main {
 				tela.setVisible(true);
 			}
 		});
+
 
 	}
 }
