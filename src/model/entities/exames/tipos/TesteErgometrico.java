@@ -1,26 +1,23 @@
 package model.entities.exames.tipos;
 
-import model.entities.BaseEntity;
+import model.entities.Funcionario;
+import model.entities.exames.Agendamento;
 import model.entities.exames.Exame;
 import model.enums.EnumDiagnostico;
 
-
-public class TesteErgometrico extends BaseEntity {
+public class TesteErgometrico extends Exame {
+	int id;
 	int ritmo;
 	int fc;
-	String detalhes;
-	String conclusoes;
-	EnumDiagnostico diagnosticoClinico;
 	Exame exame;
-	
-	public TesteErgometrico(int id, int ritmo, int fc, String detalhes, String conclusoes,
-			EnumDiagnostico diagnosticoClinico, Exame exame) {
-		super(id);
+
+	public TesteErgometrico(int id, float peso, Funcionario medicoResponsavel, String conclusoes, String detalhes,
+			EnumDiagnostico diagnosticoClinico, Agendamento agendamento, int id2, int ritmo, int fc, Exame exame) {
+		super(id, peso, medicoResponsavel, conclusoes, detalhes, diagnosticoClinico, agendamento);
+		id = id2;
 		this.ritmo = ritmo;
 		this.fc = fc;
-		this.detalhes = detalhes;
-		this.conclusoes = conclusoes;
-		this.diagnosticoClinico = diagnosticoClinico;
 		this.exame = exame;
 	}
+
 }

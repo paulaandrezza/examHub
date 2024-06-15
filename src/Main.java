@@ -3,9 +3,12 @@ import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 
 import controller.AgendamentoController;
+import controller.ExameController;
+import model.enums.EnumDiagnostico;
 import model.enums.EnumTipoExame;
 import model.persistence.DatabaseConnection;
 import model.persistence.dao.agendamento.AgendamentoDTO;
+import model.persistence.dao.exame.EcocardiogramaDTO;
 import view.guiMenu.MenuPanel;
 
 public class Main {
@@ -15,11 +18,15 @@ public class Main {
 		dbConnection.connectAndExecute();
 
 		AgendamentoController agendamentoController = new AgendamentoController();
+		ExameController exameController = new ExameController();
 		AgendamentoDTO agendamentoDTO = new AgendamentoDTO(LocalDateTime.parse("2024-06-06T10:30:00"), 1,
 				"Medica paulinha", EnumTipoExame.ECOCARDIOGRAMA.getValue());
 		try {
-			agendamentoController.create(agendamentoDTO);
-			System.out.println(agendamentoController.getAll());
+			int id = agendamentoController.create(agendamentoDTO);
+			EcocardiogramaDTO ecocardiogramaDTO = new EcocardiogramaDTO(40, 1, "sdhjgf", "drjkgh",
+					EnumDiagnostico.NORMAL_CRIANCA.getValue(), id, 10, 10, 10, 10, 10, 6, 7, (float) 0.5);
+			exameController.create(ecocardiogramaDTO);
+//			System.out.println(agendamentoController.getAll());
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}

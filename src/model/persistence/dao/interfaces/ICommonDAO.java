@@ -7,7 +7,7 @@ import java.util.List;
 public interface ICommonDAO<DTO> {
 	int save(DTO dto) throws SQLException;
 
-	List<DTO> getAll();
+	List<DTO> getAll(String table);
 
 	void update(int id, String[] params);
 

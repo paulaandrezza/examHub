@@ -1,19 +1,24 @@
 package model.entities.exames.tipos;
 
-import model.entities.BaseEntity;
+import model.entities.Funcionario;
+import model.entities.exames.Agendamento;
 import model.entities.exames.Exame;
+import model.enums.EnumDiagnostico;
 
-public class Holter extends BaseEntity {
+public class Holter extends Exame {
+	int id;
 	int arritmia;
 	int isquemiaCardiaca;
 	int dcIntravicular;
 	int dcAtriovencular;
 	boolean apneiaSono;
 	Exame exame;
-	
-	public Holter(int id, int arritmia, int isquemiaCardiaca, int dcIntravicular, int dcAtriovencular,
-			boolean apneiaSono, Exame exame) {
-		super(id);
+
+	public Holter(int id, float peso, Funcionario medicoResponsavel, String conclusoes, String detalhes,
+			EnumDiagnostico diagnosticoClinico, Agendamento agendamento, int id2, int arritmia, int isquemiaCardiaca,
+			int dcIntravicular, int dcAtriovencular, boolean apneiaSono, Exame exame) {
+		super(id, peso, medicoResponsavel, conclusoes, detalhes, diagnosticoClinico, agendamento);
+		id = id2;
 		this.arritmia = arritmia;
 		this.isquemiaCardiaca = isquemiaCardiaca;
 		this.dcIntravicular = dcIntravicular;
@@ -21,4 +26,5 @@ public class Holter extends BaseEntity {
 		this.apneiaSono = apneiaSono;
 		this.exame = exame;
 	}
+
 }
