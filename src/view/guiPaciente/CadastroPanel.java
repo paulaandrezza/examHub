@@ -21,7 +21,7 @@ public class CadastroPanel extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	JTabbedPane tabbedPanel = new JTabbedPane(JTabbedPane.TOP);
+	private JTabbedPane tabbedPanel = new JTabbedPane(JTabbedPane.TOP);
 
 	private PacienteController pacienteController = new PacienteController();
 	private PacienteFullDTO pacienteFullDTO = new PacienteFullDTO();

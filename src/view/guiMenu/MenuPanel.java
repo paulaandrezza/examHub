@@ -6,7 +6,6 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -25,8 +24,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 
-import model.exceptions.EntityNotFoundException;
-import view.guiAgenda.ListaAgendaPanel;
+import view.guiAgenda.AgendaPanel;
 import view.guiPaciente.CadastroPanel;
 
 public class MenuPanel extends JFrame {
@@ -99,13 +97,7 @@ public class MenuPanel extends JFrame {
 		boxVerticalMenuTitulo.add(vertical_menu_1);
 
 		addMenuItem(panelMenuLista, "Cadastrar Novo Paciente", e -> openInternalFrame(new CadastroPanel()));
-		addMenuItem(panelMenuLista, "Consultar Agenda", e -> {
-			try {
-				openInternalFrame(new ListaAgendaPanel());
-			} catch (SQLException | EntityNotFoundException f) {
-				f.printStackTrace();
-			}
-		});
+		addMenuItem(panelMenuLista, "Consultar Agenda", e -> openInternalFrame(new AgendaPanel()));
 
 		desktopPanelMenuWindow.setBackground(SystemColor.activeCaption);
 		desktopPanelMenuWindow.setMaximumSize(new java.awt.Dimension(850, Integer.MAX_VALUE));

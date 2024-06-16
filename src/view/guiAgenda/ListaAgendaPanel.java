@@ -10,8 +10,9 @@ import java.util.List;
 
 import javax.swing.Box;
 import javax.swing.JButton;
-import javax.swing.JInternalFrame;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
@@ -23,7 +24,7 @@ import controller.AgendamentoController;
 import model.entities.exames.Agendamento;
 import model.exceptions.EntityNotFoundException;
 
-public class ListaAgendaPanel extends JInternalFrame {
+public class ListaAgendaPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
@@ -31,7 +32,10 @@ public class ListaAgendaPanel extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ListaAgendaPanel frame = new ListaAgendaPanel();
+					JFrame frame = new JFrame();
+					frame.setContentPane(new ListaAgendaPanel());
+					frame.setBounds(100, 100, 768, 811);
+					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,18 +45,18 @@ public class ListaAgendaPanel extends JInternalFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Create the panel.
 	 * 
 	 * @throws EntityNotFoundException
 	 * @throws SQLException
 	 */
 	public ListaAgendaPanel() throws SQLException, EntityNotFoundException {
 		setBounds(100, 100, 768, 811);
-		getContentPane().setLayout(null);
+		setLayout(null);
 
 		Box tituloBoxVerticalListaAgenda = Box.createVerticalBox();
 		tituloBoxVerticalListaAgenda.setBounds(10, 10, 750, 45);
-		getContentPane().add(tituloBoxVerticalListaAgenda);
+		add(tituloBoxVerticalListaAgenda);
 
 		JLabel labelListaAgendaTitulo = new JLabel("LISTA AGENDA");
 		labelListaAgendaTitulo.setHorizontalAlignment(SwingConstants.LEFT);
@@ -65,7 +69,7 @@ public class ListaAgendaPanel extends JInternalFrame {
 		JTable table = new JTable();
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(10, 70, 750, 700);
-		getContentPane().add(scrollPane);
+		add(scrollPane);
 
 		String[] columnNames = { "Nome", "Data", "Hora", "Médico Solicitante", "Editar", "Excluir" };
 		DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
