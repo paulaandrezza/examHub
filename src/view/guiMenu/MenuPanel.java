@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -16,7 +17,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
@@ -25,6 +25,8 @@ import javax.swing.border.EmptyBorder;
 
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 
+import model.exceptions.EntityNotFoundException;
+import view.guiAgenda.AgendaPanel;
 import view.guiPaciente.CadastroPanel;
 
 public class MenuPanel extends JFrame {
@@ -93,13 +95,17 @@ public class MenuPanel extends JFrame {
 		titleLabel.setAlignmentX(0.5f);
 		boxVerticalMenuTitulo.add(titleLabel);
 
-		JSeparator hr_endereco_1 = new JSeparator();
-		boxVerticalMenuTitulo.add(hr_endereco_1);
-
 		Component vertical_menu_1 = Box.createVerticalStrut(32);
 		boxVerticalMenuTitulo.add(vertical_menu_1);
 
 		addMenuItem(panelMenuLista, "Cadastrar Novo Paciente", e -> openInternalFrame(new CadastroPanel()));
+		addMenuItem(panelMenuLista, "Consultar Agenda", e -> {
+			try {
+				openInternalFrame(new AgendaPanel());
+			} catch (SQLException | EntityNotFoundException f) {
+				f.printStackTrace();
+			}
+		});
 
 		desktopPanelMenuWindow.setBackground(SystemColor.activeCaption);
 		desktopPanelMenuWindow.setMaximumSize(new java.awt.Dimension(850, Integer.MAX_VALUE));
