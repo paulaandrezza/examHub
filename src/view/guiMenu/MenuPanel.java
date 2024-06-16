@@ -26,7 +26,7 @@ import javax.swing.border.EmptyBorder;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 import model.exceptions.EntityNotFoundException;
-import view.guiAgenda.AgendaPanel;
+import view.guiAgenda.ListaAgendaPanel;
 import view.guiPaciente.CadastroPanel;
 
 public class MenuPanel extends JFrame {
@@ -101,7 +101,7 @@ public class MenuPanel extends JFrame {
 		addMenuItem(panelMenuLista, "Cadastrar Novo Paciente", e -> openInternalFrame(new CadastroPanel()));
 		addMenuItem(panelMenuLista, "Consultar Agenda", e -> {
 			try {
-				openInternalFrame(new AgendaPanel());
+				openInternalFrame(new ListaAgendaPanel());
 			} catch (SQLException | EntityNotFoundException f) {
 				f.printStackTrace();
 			}

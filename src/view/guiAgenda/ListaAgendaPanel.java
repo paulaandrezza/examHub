@@ -23,7 +23,7 @@ import controller.AgendamentoController;
 import model.entities.exames.Agendamento;
 import model.exceptions.EntityNotFoundException;
 
-public class AgendaPanel extends JInternalFrame {
+public class ListaAgendaPanel extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
 
@@ -31,7 +31,7 @@ public class AgendaPanel extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AgendaPanel frame = new AgendaPanel();
+					ListaAgendaPanel frame = new ListaAgendaPanel();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,7 +46,7 @@ public class AgendaPanel extends JInternalFrame {
 	 * @throws EntityNotFoundException
 	 * @throws SQLException
 	 */
-	public AgendaPanel() throws SQLException, EntityNotFoundException {
+	public ListaAgendaPanel() throws SQLException, EntityNotFoundException {
 		setBounds(100, 100, 768, 811);
 		getContentPane().setLayout(null);
 
