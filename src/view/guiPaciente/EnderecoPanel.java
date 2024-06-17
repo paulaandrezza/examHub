@@ -340,6 +340,7 @@ public class EnderecoPanel extends JPanel {
 					pacienteController.create(pacienteFullDTO);
 				} catch (Exception a) {
 					System.out.println("Error: " + a.getMessage());
+					JOptionPane.showMessageDialog(null, cadastroPanel.errorMessage());
 				}
 			}
 		});

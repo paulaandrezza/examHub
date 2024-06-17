@@ -20,6 +20,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -30,6 +31,8 @@ import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JTextFieldDateEditor;
 
 import controller.AgendamentoController;
+import controller.PacienteController;
+import model.entities.Paciente;
 import model.enums.EnumExame;
 import model.persistence.dao.agendamento.AgendamentoDTO;
 import view.utils.FieldMask;
@@ -231,7 +234,7 @@ public class CadastrarAgendaPanel extends JPanel {
 
 		Box boxHorizontalAcao = Box.createHorizontalBox();
 		boxHorizontalAcao.setAlignmentY(0.5f);
-		boxHorizontalAcao.setBounds(10, 570, 750, 32);
+		boxHorizontalAcao.setBounds(10, 570, 740, 32);
 		add(boxHorizontalAcao);
 
 		Box boxHorizontalVoltar = Box.createHorizontalBox();
@@ -266,8 +269,21 @@ public class CadastrarAgendaPanel extends JPanel {
 					agendamentoDTO.setDataEhorario(dataEhorario);
 					agendamentoDTO.setTipoExame(comboBoxTipoExame.getSelectedIndex());
 					agendamentoDTO.setMedicoSolicitante(textMedicoSolicitante.getText());
+
+					PacienteController pacienteController = new PacienteController();
+					List<Paciente> paciente = pacienteController.searchByField("nome", textNome.getText());
+
+					agendamentoDTO.setPaciente_id(ABORT);
+
+					System.out.println(paciente);
+					if (paciente.isEmpty())
+						JOptionPane.showConfirmDialog(null, "Nenhum Paciente com esses dados foi encontrado", "Erro",
+								JOptionPane.DEFAULT_OPTION);
+
+					agendamentoController.create(agendamentoDTO);
 				} catch (Exception a) {
 					System.out.println("Error: " + a.getMessage());
+					JOptionPane.showMessageDialog(null, agendaPanel.errorMessage());
 				}
 			}
 		});

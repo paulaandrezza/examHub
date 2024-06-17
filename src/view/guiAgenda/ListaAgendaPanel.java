@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.swing.Box;
@@ -67,11 +68,12 @@ public class ListaAgendaPanel extends JPanel {
 		tituloBoxVerticalListaAgenda.add(hr_listaagenda_1);
 
 		JTable table = new JTable();
+		table.setEnabled(false);
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(10, 70, 750, 700);
 		add(scrollPane);
 
-		String[] columnNames = { "Nome", "Data", "Hora", "Médico Solicitante", "Editar", "Excluir" };
+		String[] columnNames = { "Nome do Paciente", "Data", "Hora", "Médico Solicitante" };
 		DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
 		table.setModel(tableModel);
 
@@ -80,15 +82,14 @@ public class ListaAgendaPanel extends JPanel {
 
 		for (Agendamento agendamento : listaAgendamentos) {
 			LocalDate data = agendamento.getDataEhorario().toLocalDate();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			String dataFormatada = data.format(formatter);
 			LocalTime hora = agendamento.getDataEhorario().toLocalTime();
 
-			Object[] rowData = { agendamento.getPaciente().getPessoa().getNome(), data, hora,
-					agendamento.getMedicoSolicitante(), "Editar", "Excluir" };
+			Object[] rowData = { agendamento.getPaciente().getPessoa().getNome(), dataFormatada, hora,
+					agendamento.getMedicoSolicitante() };
 			tableModel.addRow(rowData);
 		}
-
-		table.getColumnModel().getColumn(4).setCellRenderer(new ButtonRenderer());
-		table.getColumnModel().getColumn(5).setCellRenderer(new ButtonRenderer());
 	}
 
 	@SuppressWarnings("serial")

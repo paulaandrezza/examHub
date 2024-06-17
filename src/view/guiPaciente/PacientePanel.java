@@ -14,6 +14,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -429,6 +430,7 @@ public class PacientePanel extends JPanel {
 					cadastroPanel.switchToNextTab();
 				} catch (Exception a) {
 					System.out.println(a);
+					JOptionPane.showMessageDialog(null, cadastroPanel.errorMessage());
 				}
 			}
 		});

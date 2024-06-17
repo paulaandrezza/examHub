@@ -35,6 +35,10 @@ public class Paciente extends BaseEntity {
 				+ convenio + ", historicoMedico=" + historicoMedico + ", pessoa=" + pessoa + ", id=" + id + "]";
 	}
 
+	public int getId() {
+		return id;
+	}
+
 	public float getAltura() {
 		return altura;
 	}
