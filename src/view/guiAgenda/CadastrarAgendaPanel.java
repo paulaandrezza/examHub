@@ -2,26 +2,25 @@ package view.guiAgenda;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.Box;
-import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -30,35 +29,31 @@ import javax.swing.text.MaskFormatter;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JTextFieldDateEditor;
 
+import controller.AgendamentoController;
+import model.enums.EnumExame;
+import model.persistence.dao.agendamento.AgendamentoDTO;
 import view.utils.FieldMask;
 
 public class CadastrarAgendaPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private FieldMask fieldMask = new FieldMask();
 
-	private JFormattedTextField textCpf = new JFormattedTextField((Object) null);
+	private JDateChooser textDataExame = new JDateChooser();
 	private JTextField textNome;
+	private JFormattedTextField textCpf = new JFormattedTextField((Object) null);
 	private JTextField textMedicoSolicitante;
-	private final ButtonGroup exameGroup = new ButtonGroup();
+	private JComboBox<String> comboBoxHorarioExame = new JComboBox<>();
+	private JComboBox<Object> comboBoxTipoExame = new JComboBox<Object>();
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JFrame frame = new JFrame();
-					frame.setContentPane(new CadastrarAgendaPanel());
-					frame.setBounds(100, 100, 782, 811);
-					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public void clearAgendaFields() {
+		textDataExame.setDate(null);
+		textNome.setText("");
+		textCpf.setText("");
+		textMedicoSolicitante.setText("");
 	}
 
-	public CadastrarAgendaPanel() {
+	public CadastrarAgendaPanel(AgendamentoDTO agendamentoDTO, AgendamentoController agendamentoController,
+			AgendaPanel agendaPanel) {
 		setBounds(100, 100, 782, 603);
 		setLayout(null);
 
@@ -75,7 +70,7 @@ public class CadastrarAgendaPanel extends JPanel {
 		tituloBoxVerticalCadastrarAgenda.add(hr_cadastraragenda);
 
 		Box boxVerticalCadastrarAgenda = Box.createVerticalBox();
-		boxVerticalCadastrarAgenda.setBounds(10, 64, 740, 320);
+		boxVerticalCadastrarAgenda.setBounds(10, 64, 740, 335);
 		add(boxVerticalCadastrarAgenda);
 
 		Box boxHorizontalDataExame = Box.createHorizontalBox();
@@ -93,7 +88,6 @@ public class CadastrarAgendaPanel extends JPanel {
 		Component horizontal_cadastraragenda_1 = Box.createHorizontalStrut(8);
 		boxHorizontalDataExame.add(horizontal_cadastraragenda_1);
 
-		JDateChooser textDataExame = new JDateChooser();
 		textDataExame.setToolTipText("");
 		textDataExame.setFont(new Font("Verdana", Font.PLAIN, 12));
 		textDataExame.setDateFormatString("dd/MM/yyyy");
@@ -123,8 +117,10 @@ public class CadastrarAgendaPanel extends JPanel {
 		textNome = new JTextField();
 		textNome.setFont(new Font("Verdana", Font.PLAIN, 12));
 		textNome.setColumns(15);
-		fieldMask.setMaskType(FieldMask.MaskType.LETTERS_ONLY);
-		textNome.setDocument(fieldMask);
+
+		FieldMask fieldMaskNome = new FieldMask();
+		fieldMaskNome.setMaskType(FieldMask.MaskType.LETTERS_ONLY);
+		textNome.setDocument(fieldMaskNome);
 		boxHorizontalNome.add(textNome);
 
 		Component vertical_cadastraragenda_2 = Box.createVerticalStrut(32);
@@ -176,56 +172,39 @@ public class CadastrarAgendaPanel extends JPanel {
 		textMedicoSolicitante = new JTextField();
 		textMedicoSolicitante.setFont(new Font("Verdana", Font.PLAIN, 12));
 		textMedicoSolicitante.setColumns(15);
-		fieldMask.setMaskType(FieldMask.MaskType.LETTERS_ONLY);
-		textMedicoSolicitante.setDocument(fieldMask);
+
+		FieldMask fieldMaskMedicoSolicitante = new FieldMask();
+		fieldMaskMedicoSolicitante.setMaskType(FieldMask.MaskType.LETTERS_ONLY);
+		textMedicoSolicitante.setDocument(fieldMaskMedicoSolicitante);
 		boxHorizontalMedicoSolicitante.add(textMedicoSolicitante);
 
 		Component vertical_cadastraragenda_5 = Box.createVerticalStrut(32);
 		boxVerticalCadastrarAgenda.add(vertical_cadastraragenda_5);
-
-		Box boxHorizontalTipoExame = Box.createHorizontalBox();
-		boxVerticalCadastrarAgenda.add(boxHorizontalTipoExame);
-
-		JLabel labelTipoExame = new JLabel("Tipo Exame:");
-		labelTipoExame.setFont(new Font("Verdana", Font.BOLD, 16));
-		boxHorizontalTipoExame.add(labelTipoExame);
-
-		JLabel labelInfo_6 = new JLabel("*");
-		labelInfo_6.setForeground(Color.RED);
-		labelInfo_6.setFont(new Font("Verdana", Font.BOLD, 16));
-		boxHorizontalTipoExame.add(labelInfo_6);
-
-		Component horizontal_cadastraragenda_6 = Box.createHorizontalStrut(8);
-		boxHorizontalTipoExame.add(horizontal_cadastraragenda_6);
-
-		Box radioBoxExame = Box.createHorizontalBox();
-		radioBoxExame.setAlignmentY(Component.CENTER_ALIGNMENT);
-		boxHorizontalTipoExame.add(radioBoxExame);
-
-		JRadioButton rdbtnExameMapa = new JRadioButton("MAPA");
-		exameGroup.add(rdbtnExameMapa);
-		radioBoxExame.add(rdbtnExameMapa);
-
-		JRadioButton btnExameEletrocardiograma = new JRadioButton("Eletrocardiograma");
-		exameGroup.add(btnExameEletrocardiograma);
-		radioBoxExame.add(btnExameEletrocardiograma);
-
-		JRadioButton btnExameEcocardiograma = new JRadioButton("Ecocardiograma");
-		exameGroup.add(btnExameEcocardiograma);
-		radioBoxExame.add(btnExameEcocardiograma);
-
-		JRadioButton btnExameHolter = new JRadioButton("Holter");
-		exameGroup.add(btnExameHolter);
-		radioBoxExame.add(btnExameHolter);
-
-		Component horizontal_glue_cadastraragenda_1 = Box.createHorizontalGlue();
-		boxHorizontalTipoExame.add(horizontal_glue_cadastraragenda_1);
 
 		JTextFieldDateEditor editor = (JTextFieldDateEditor) textDataExame.getDateEditor();
 		editor.setForeground(Color.BLACK);
 		editor.setFont(new Font("Verdana", Font.PLAIN, 12));
 		editor.setDateFormatString("dd/MM/yyyy");
 		editor.setFocusLostBehavior(JFormattedTextField.PERSIST);
+
+		Box boxHorizontalTipoExame = Box.createHorizontalBox();
+		boxVerticalCadastrarAgenda.add(boxHorizontalTipoExame);
+
+		JLabel labelTipoExame = new JLabel("Tipo de Exame:");
+		labelTipoExame.setFont(new Font("Verdana", Font.BOLD, 16));
+		boxHorizontalTipoExame.add(labelTipoExame);
+
+		JLabel labelInfo_8 = new JLabel("*");
+		labelInfo_8.setForeground(Color.RED);
+		labelInfo_8.setFont(new Font("Verdana", Font.BOLD, 16));
+		boxHorizontalTipoExame.add(labelInfo_8);
+
+		Component horizontal_cadastraragenda_8 = Box.createHorizontalStrut(8);
+		boxHorizontalTipoExame.add(horizontal_cadastraragenda_8);
+
+		comboBoxTipoExame.setModel(new DefaultComboBoxModel<Object>(EnumExame.values()));
+		comboBoxTipoExame.setSelectedIndex(0);
+		boxHorizontalTipoExame.add(comboBoxTipoExame);
 
 		Component vertical_cadastraragenda_6 = Box.createVerticalStrut(32);
 		boxVerticalCadastrarAgenda.add(vertical_cadastraragenda_6);
@@ -245,7 +224,6 @@ public class CadastrarAgendaPanel extends JPanel {
 		Component horizontal_cadastraragenda_7 = Box.createHorizontalStrut(8);
 		boxHorizontalHorarioExame.add(horizontal_cadastraragenda_7);
 
-		JComboBox<String> comboBoxHorarioExame = new JComboBox<>();
 		comboBoxHorarioExame.setFont(new Font("Verdana", Font.PLAIN, 12));
 		boxHorizontalHorarioExame.add(comboBoxHorarioExame);
 
@@ -269,7 +247,7 @@ public class CadastrarAgendaPanel extends JPanel {
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO acrescentar a função de apagar
+				agendaPanel.switchToCancelTab();
 			}
 		});
 		boxHorizontalCancelarEProximo.add(btnCancelar);
@@ -277,13 +255,23 @@ public class CadastrarAgendaPanel extends JPanel {
 		Component horizontal_acao_2 = Box.createHorizontalStrut(8);
 		boxHorizontalCancelarEProximo.add(horizontal_acao_2);
 
-		JButton btnCadastra = new JButton("Cadastrar");
-		btnCadastra.addActionListener(new ActionListener() {
+		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO acrescentar a função de cadastrar agenda
+				try {
+					LocalDate dia = textDataExame.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+					String horarioStr = (String) comboBoxHorarioExame.getSelectedItem();
+					LocalTime horario = LocalTime.parse(horarioStr);
+					LocalDateTime dataEhorario = LocalDateTime.of(dia, horario);
+					agendamentoDTO.setDataEhorario(dataEhorario);
+					agendamentoDTO.setTipoExame(comboBoxTipoExame.getSelectedIndex());
+					agendamentoDTO.setMedicoSolicitante(textMedicoSolicitante.getText());
+				} catch (Exception a) {
+					System.out.println("Error: " + a.getMessage());
+				}
 			}
 		});
-		boxHorizontalCancelarEProximo.add(btnCadastra);
+		boxHorizontalCancelarEProximo.add(btnCadastrar);
 	}
 
 	private void populateHorarioExame(JComboBox<String> comboBox) {

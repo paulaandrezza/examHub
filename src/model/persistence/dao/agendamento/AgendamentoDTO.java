@@ -30,6 +30,10 @@ public class AgendamentoDTO {
 		this.tipoExame = tipoExame;
 	}
 
+	public AgendamentoDTO() {
+		super();
+	}
+
 	public Integer getId() {
 		return id;
 	}

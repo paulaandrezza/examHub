@@ -6,11 +6,14 @@ import java.sql.SQLException;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
 
+import controller.AgendamentoController;
 import model.exceptions.EntityNotFoundException;
+import model.persistence.dao.agendamento.AgendamentoDTO;
 
 public class AgendaPanel extends JInternalFrame {
 
@@ -18,8 +21,12 @@ public class AgendaPanel extends JInternalFrame {
 	private JTabbedPane tabbedPanel = new JTabbedPane(JTabbedPane.TOP);
 	private JPanel contentPane;
 
+	private AgendamentoController agendamentoController = new AgendamentoController();
+	private AgendamentoDTO agendamentoDTO = new AgendamentoDTO();
+
 	private ListaAgendaPanel listaAgendaPanel;
-	private CadastrarAgendaPanel cadastrarAgendaPanel;
+	private CadastrarAgendaPanel cadastrarAgendaPanel = new CadastrarAgendaPanel(agendamentoDTO, agendamentoController,
+			this);
 
 	public AgendaPanel() {
 		setBackground(SystemColor.menu);
@@ -37,7 +44,6 @@ public class AgendaPanel extends JInternalFrame {
 
 		try {
 			listaAgendaPanel = new ListaAgendaPanel();
-			cadastrarAgendaPanel = new CadastrarAgendaPanel();
 
 			JLabel labelListaAgenda = new JLabel("Lista Agendas");
 			JLabel labelCadastrarAgenda = new JLabel("Cadastrar Nova Agenda");
@@ -79,15 +85,11 @@ public class AgendaPanel extends JInternalFrame {
 		}
 	}
 
-//    public void switchToCancelTab() {
-//        int resposta = JOptionPane.showConfirmDialog(null, "Esta ação irá apagar todos os dados salvos.",
-//                "Apagar Dados", JOptionPane.OK_CANCEL_OPTION);
-//        if (resposta == JOptionPane.OK_OPTION) {
-//            tabbedPanel.setSelectedIndex(0);
-//
-//            pessoaPanel.clearPessoaFields();
-//            pacientePanel.clearPacienteFields();
-//            enderecoPanel.clearEnderecoFields();
-//        }
-//    }
+	public void switchToCancelTab() {
+		int resposta = JOptionPane.showConfirmDialog(null, "Esta ação irá apagar todos os dados salvos.",
+				"Apagar Dados", JOptionPane.OK_CANCEL_OPTION);
+		if (resposta == JOptionPane.OK_OPTION) {
+			cadastrarAgendaPanel.clearAgendaFields();
+		}
+	}
 }
