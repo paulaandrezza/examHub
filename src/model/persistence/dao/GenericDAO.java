@@ -26,7 +26,6 @@ public abstract class GenericDAO<DTO> implements IGenericDAO<DTO> {
 	@Override
 	public List<DTO> getAll() {
 		List<DTO> list = new ArrayList<>();
-		System.out.println(sqlQuery);
 		try (PreparedStatement statement = connection.prepareStatement(sqlQuery);
 				ResultSet resultSet = statement.executeQuery()) {
 			while (resultSet.next()) {

@@ -3,6 +3,7 @@ package view.guiAgenda;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -59,6 +60,8 @@ public class CadastrarAgendaPanel extends JPanel {
 			AgendaPanel agendaPanel) {
 		setBounds(100, 100, 782, 603);
 		setLayout(null);
+
+		setBackground(SystemColor.menu);
 
 		Box tituloBoxVerticalCadastrarAgenda = Box.createVerticalBox();
 		tituloBoxVerticalCadastrarAgenda.setBounds(10, 10, 750, 42);
@@ -271,16 +274,23 @@ public class CadastrarAgendaPanel extends JPanel {
 					agendamentoDTO.setMedicoSolicitante(textMedicoSolicitante.getText());
 
 					PacienteController pacienteController = new PacienteController();
-					List<Paciente> paciente = pacienteController.searchByField("nome", textNome.getText());
+					List<Paciente> paciente = pacienteController.searchByField("cpf", textCpf.getText());
 
-					agendamentoDTO.setPaciente_id(ABORT);
-
-					System.out.println(paciente);
 					if (paciente.isEmpty())
 						JOptionPane.showConfirmDialog(null, "Nenhum Paciente com esses dados foi encontrado", "Erro",
 								JOptionPane.DEFAULT_OPTION);
+					else {
+						int id = paciente.get(0).getId();
+						agendamentoDTO.setPaciente_id(id + 1);
+					}
 
 					agendamentoController.create(agendamentoDTO);
+
+					String mensagem = String.format("Exame de %s agendado com sucesso!",
+							comboBoxTipoExame.getSelectedItem().toString());
+					JOptionPane.showMessageDialog(null, mensagem, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+
+					agendaPanel.switchToBackTab();
 				} catch (Exception a) {
 					System.out.println("Error: " + a.getMessage());
 					JOptionPane.showMessageDialog(null, agendaPanel.errorMessage());

@@ -31,6 +31,9 @@ public class AgendaPanel extends JInternalFrame {
 	public AgendaPanel() {
 		setBackground(SystemColor.menu);
 		setTitle("Manter Agenda");
+		setVisible(true);
+		setClosable(true);
+		setIconifiable(true);
 		setBounds(100, 100, 450, 300);
 		setLocation(50, 50);
 
