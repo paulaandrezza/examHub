@@ -24,10 +24,13 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import controller.AgendamentoController;
 import model.entities.exames.Agendamento;
+import model.enums.EnumStatusAgendamento;
+import model.enums.EnumTipoExame;
 import model.exceptions.EntityNotFoundException;
 
 public class ListaAgendaPanel extends JPanel {
@@ -52,12 +55,6 @@ public class ListaAgendaPanel extends JPanel {
 		});
 	}
 
-	/**
-	 * Create the panel.
-	 * 
-	 * @throws EntityNotFoundException
-	 * @throws SQLException
-	 */
 	public ListaAgendaPanel() throws SQLException, EntityNotFoundException {
 		setBounds(100, 100, 900, 811);
 		setLayout(null);
@@ -75,23 +72,21 @@ public class ListaAgendaPanel extends JPanel {
 		tituloBoxVerticalListaAgenda.add(hr_listaagenda_1);
 
 		table = new JTable() {
-			/**
-			 * 
-			 */
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			public boolean isCellEditable(int row, int column) {
-				return column == 4 || column == 5;
+				return column == 5 || column == 6;
 			}
 		};
-		table.setRowSelectionAllowed(false);
 		table.setShowVerticalLines(false);
+		table.setFont(new Font("Verdana", Font.PLAIN, 10));
+		table.setRowSelectionAllowed(false);
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(10, 70, 740, 650);
 		add(scrollPane);
 
-		String[] columnNames = { "Nome do Paciente", "Data", "Hora", "Médico Solicitante", "Editar", "Deletar" };
+		String[] columnNames = { "Nome do Paciente", "Data", "Hora", "Exame", "Status", "Editar", "Deletar" };
 		tableModel = new DefaultTableModel(columnNames, 0);
 		table.setModel(tableModel);
 
@@ -105,17 +100,24 @@ public class ListaAgendaPanel extends JPanel {
 			LocalTime hora = agendamento.getDataEhorario().toLocalTime();
 
 			String nome = agendamento.getPaciente().getPessoa().getNome();
-			String medico = agendamento.getMedicoSolicitante();
+			EnumTipoExame exame = agendamento.getTipoExame();
+			EnumStatusAgendamento status = agendamento.getStatusAgendamento();
 
-			Object[] rowData = { nome, dataFormatada, hora, medico, "Editar", "Deletar" };
+			Object[] rowData = { nome, dataFormatada, hora, exame, status, "Editar", "Deletar" };
 			tableModel.addRow(rowData);
 		}
 
 		TableColumnModel columnModel = table.getColumnModel();
-		columnModel.getColumn(4).setCellRenderer(new ButtonRenderer());
-		columnModel.getColumn(4).setCellEditor(new ButtonEditor(new JButton("Editar")));
+		int[] columnWidths = { 160, 80, 50, 150, 90, 70, 70 };
+		for (int i = 0; i < columnWidths.length; i++) {
+			TableColumn column = columnModel.getColumn(i);
+			column.setPreferredWidth(columnWidths[i]);
+		}
+
 		columnModel.getColumn(5).setCellRenderer(new ButtonRenderer());
-		columnModel.getColumn(5).setCellEditor(new ButtonEditor(new JButton("Deletar")));
+		columnModel.getColumn(5).setCellEditor(new ButtonEditor(new JButton("Editar")));
+		columnModel.getColumn(6).setCellRenderer(new ButtonRenderer());
+		columnModel.getColumn(6).setCellEditor(new ButtonEditor(new JButton("Deletar")));
 	}
 
 	@SuppressWarnings("serial")
@@ -162,10 +164,9 @@ public class ListaAgendaPanel extends JPanel {
 		public Object getCellEditorValue() {
 			if (isPushed) {
 				if (label.equals("Editar")) {
-					// TODO push da tela de edição
+					System.out.println("Botão Editar pressionado na linha: " + table.getSelectedRow());
 				} else if (label.equals("Deletar")) {
-					// TODO executar a rotina de delete
-					// tableModel.removeRow(row);
+					System.out.println("Botão Deletar pressionado na linha: " + table.getSelectedRow());
 				}
 			}
 			isPushed = false;
@@ -183,5 +184,4 @@ public class ListaAgendaPanel extends JPanel {
 			super.fireEditingStopped();
 		}
 	}
-
 }

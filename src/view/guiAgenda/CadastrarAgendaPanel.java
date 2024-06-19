@@ -272,11 +272,13 @@ public class CadastrarAgendaPanel extends JPanel {
 					agendamentoDTO.setDataEhorario(dataEhorario);
 					agendamentoDTO.setTipoExame(comboBoxTipoExame.getSelectedIndex());
 					agendamentoDTO.setMedicoSolicitante(textMedicoSolicitante.getText());
+					agendamentoDTO.setStatusAgendamento(1);
 
 					PacienteController pacienteController = new PacienteController();
 					List<Paciente> paciente = pacienteController.searchByField("cpf", textCpf.getText());
+					String nomePaciente = paciente.get(0).getPessoa().getNome();
 
-					if (paciente.isEmpty())
+					if (paciente.isEmpty() || nomePaciente != textNome.getText())
 						JOptionPane.showConfirmDialog(null, "Nenhum Paciente com esses dados foi encontrado", "Erro",
 								JOptionPane.DEFAULT_OPTION);
 					else {
