@@ -1,4 +1,4 @@
-package view.guiCadastro;
+package view.guiPaciente;
 
 import java.awt.BorderLayout;
 import java.awt.SystemColor;

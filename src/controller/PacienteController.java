@@ -54,13 +54,20 @@ public class PacienteController implements IController<PacienteFullDTO, Paciente
 	}
 
 	@Override
-	public List<Paciente> searchByField(String fieldName, Object fieldValue) {
+	public List<Paciente> searchByField(String fieldName, Object fieldValue) throws SQLException {
 		try {
 			List<PacienteFullDTO> pacientesFullDTO = pacienteDAO.findByField(fieldName, fieldValue, null);
 			return convertDtoListToEntityList(pacientesFullDTO);
 		} catch (SQLException e) {
-			System.err.println("Erro ao buscar pacientes: " + e.getMessage());
-			return null;
+			throw e;
+		}
+	}
+
+	public Paciente getByEmail(String value) throws SQLException {
+		try {
+			return searchByField("email", value).get(0);
+		} catch (SQLException e) {
+			throw e;
 		}
 	}
 
