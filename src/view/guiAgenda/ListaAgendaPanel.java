@@ -93,6 +93,8 @@ public class ListaAgendaPanel extends JPanel {
 		AgendamentoController agendamentoController = new AgendamentoController();
 		List<Agendamento> listaAgendamentos = agendamentoController.getAll();
 
+		System.out.println(listaAgendamentos);
+
 		for (Agendamento agendamento : listaAgendamentos) {
 			LocalDate data = agendamento.getDataEhorario().toLocalDate();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
