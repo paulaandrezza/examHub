@@ -56,8 +56,7 @@ public class CadastrarAgendaPanel extends JPanel {
 		textMedicoSolicitante.setText("");
 	}
 
-	public CadastrarAgendaPanel(AgendamentoDTO agendamentoDTO, AgendamentoController agendamentoController,
-			AgendaPanel agendaPanel) {
+	public CadastrarAgendaPanel(AgendamentoController agendamentoController, AgendaPanel agendaPanel) {
 		setBounds(100, 100, 782, 603);
 		setLayout(null);
 
@@ -269,23 +268,21 @@ public class CadastrarAgendaPanel extends JPanel {
 					String horarioStr = (String) comboBoxHorarioExame.getSelectedItem();
 					LocalTime horario = LocalTime.parse(horarioStr);
 					LocalDateTime dataEhorario = LocalDateTime.of(dia, horario);
-					agendamentoDTO.setDataEhorario(dataEhorario);
-					agendamentoDTO.setTipoExame(comboBoxTipoExame.getSelectedIndex());
-					agendamentoDTO.setMedicoSolicitante(textMedicoSolicitante.getText());
-					agendamentoDTO.setStatusAgendamento(1);
+					String nomeMedico = textMedicoSolicitante.getText();
+					int exame = comboBoxTipoExame.getSelectedIndex();
 
 					PacienteController pacienteController = new PacienteController();
-					List<Paciente> paciente = pacienteController.searchByField("cpf", textCpf.getText());
-					String nomePaciente = paciente.get(0).getPessoa().getNome();
+					List<Paciente> pacientes = pacienteController.searchByField("cpf", textCpf.getText());
 
-					if (paciente.isEmpty() || nomePaciente != textNome.getText())
+					String nomePaciente = pacientes.get(0).getPessoa().getNome();
+					if (pacientes.isEmpty() || nomePaciente == textNome.getName())
 						JOptionPane.showConfirmDialog(null, "Nenhum Paciente com esses dados foi encontrado", "Erro",
 								JOptionPane.DEFAULT_OPTION);
-					else {
-						int id = paciente.get(0).getId();
-						agendamentoDTO.setPaciente_id(id + 1);
-					}
 
+//					TODO verificar porque o id retorna 0 ao invés de 1
+					int id = pacientes.get(0).getId() + 1;
+
+					AgendamentoDTO agendamentoDTO = new AgendamentoDTO(dataEhorario, id, nomeMedico, exame);
 					agendamentoController.create(agendamentoDTO);
 
 					String mensagem = String.format("Exame de %s agendado com sucesso!",

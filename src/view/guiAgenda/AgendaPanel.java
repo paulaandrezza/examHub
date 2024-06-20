@@ -13,7 +13,6 @@ import javax.swing.border.EmptyBorder;
 
 import controller.AgendamentoController;
 import model.exceptions.EntityNotFoundException;
-import model.persistence.dao.agendamento.AgendamentoDTO;
 
 public class AgendaPanel extends JInternalFrame {
 
@@ -22,11 +21,8 @@ public class AgendaPanel extends JInternalFrame {
 	private JPanel contentPane;
 
 	private AgendamentoController agendamentoController = new AgendamentoController();
-	private AgendamentoDTO agendamentoDTO = new AgendamentoDTO();
-
 	private ListaAgendaPanel listaAgendaPanel;
-	private CadastrarAgendaPanel cadastrarAgendaPanel = new CadastrarAgendaPanel(agendamentoDTO, agendamentoController,
-			this);
+	private CadastrarAgendaPanel cadastrarAgendaPanel = new CadastrarAgendaPanel(agendamentoController, this);
 
 	public AgendaPanel() {
 		setBackground(SystemColor.menu);
