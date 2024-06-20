@@ -2,7 +2,6 @@ import javax.swing.JOptionPane;
 
 import controller.AgendamentoController;
 import controller.ExameController;
-import controller.PacienteController;
 import model.persistence.DatabaseConnection;
 import view.guiLogin.LoginPanel;
 
@@ -12,7 +11,6 @@ public class Main {
 		DatabaseConnection dbConnection = new DatabaseConnection();
 		dbConnection.connectAndExecute();
 
-		PacienteController pacienteController = new PacienteController();
 		AgendamentoController agendamentoController = new AgendamentoController();
 		ExameController exameController = new ExameController();
 
@@ -72,8 +70,7 @@ public class Main {
 
 			System.out.println(exameController.getAll());
 
-			pacienteController.delete(1);
-			System.out.println(pacienteController.getAll());
+//			pacienteController.delete(1);
 
 //			System.out.println(agendamentoController.getAll());
 		} catch (Exception e) {
@@ -89,4 +86,5 @@ public class Main {
 		});
 
 	}
+
 }

@@ -2,8 +2,7 @@ package model.persistence.dao.paciente;
 
 import java.time.LocalDate;
 
-public class PessoaDTO {
-	int id;
+public class PessoaPacienteDTO {
 	String nome;
 	String cpf;
 	String rg;
@@ -14,21 +13,7 @@ public class PessoaDTO {
 	int genero;
 	int endereco_id;
 
-	public PessoaDTO(int id, String nome, String cpf, String rg, LocalDate dataNascimento, long celular, long telefone,
-			String email, int genero, int endereco_id) {
-		this.id = id;
-		this.nome = nome;
-		this.cpf = cpf;
-		this.rg = rg;
-		this.dataNascimento = dataNascimento;
-		this.celular = celular;
-		this.telefone = telefone;
-		this.email = email;
-		this.genero = genero;
-		this.endereco_id = endereco_id;
-	}
-
-	public PessoaDTO(String nome, String cpf, String rg, LocalDate dataNascimento, long celular, long telefone,
+	public PessoaPacienteDTO(String nome, String cpf, String rg, LocalDate dataNascimento, long celular, long telefone,
 			String email, int genero, int endereco_id) {
 		this.nome = nome;
 		this.cpf = cpf;
@@ -39,14 +24,6 @@ public class PessoaDTO {
 		this.email = email;
 		this.genero = genero;
 		this.endereco_id = endereco_id;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getNome() {
@@ -119,6 +96,13 @@ public class PessoaDTO {
 
 	public void setEndereco_id(int endereco_id) {
 		this.endereco_id = endereco_id;
+	}
+
+	@Override
+	public String toString() {
+		return "PessoaDTO [nome=" + nome + ", cpf=" + cpf + ", rg=" + rg + ", dataNascimento=" + dataNascimento
+				+ ", celular=" + celular + ", telefone=" + telefone + ", email=" + email + ", genero=" + genero
+				+ ", endereco_id=" + endereco_id + "]";
 	}
 
 }

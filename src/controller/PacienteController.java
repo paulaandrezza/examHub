@@ -35,6 +35,10 @@ public class PacienteController implements IController<PacienteFullDTO, Paciente
 		pacienteDAO.delete(paciente_id);
 	}
 
+	public void update(PacienteFullDTO pacienteFullDTO) throws SQLException, EntityNotFoundException {
+		pacienteDAO.update(pacienteFullDTO);
+	}
+
 	@Override
 	public List<Paciente> getAll() {
 		List<PacienteFullDTO> pacientesFullDTO = pacienteDAO.getAll(null);
@@ -43,23 +47,10 @@ public class PacienteController implements IController<PacienteFullDTO, Paciente
 	}
 
 	@Override
-	public Paciente getById(int id) throws SQLException, EntityNotFoundException {
-		return convertDtoToEntity(pacienteDAO.getById(id));
-	}
-
-	@Override
 	public List<Paciente> searchByField(String fieldName, Object fieldValue) throws SQLException {
 		try {
 			List<PacienteFullDTO> pacientesFullDTO = pacienteDAO.findByField(fieldName, fieldValue, null);
 			return convertDtoListToEntityList(pacientesFullDTO);
-		} catch (SQLException e) {
-			throw e;
-		}
-	}
-
-	public Paciente getByEmail(String value) throws SQLException {
-		try {
-			return searchByField("email", value).get(0);
 		} catch (SQLException e) {
 			throw e;
 		}
