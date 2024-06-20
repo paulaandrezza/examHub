@@ -76,7 +76,7 @@ public class Agendamento extends BaseEntity {
 	@Override
 	public String toString() {
 		return "Agendamento [dataEhorario=" + dataEhorario + ", Paciente=" + Paciente + ", medicoSolicitante="
-				+ medicoSolicitante + ", statusAgendamento=" + statusAgendamento + ", tipoExame=" + tipoExame + "]";
+				+ medicoSolicitante + ", statusAgendamento=" + statusAgendamento + ", tipoExame=" + tipoExame + "]\n";
 	}
 
 }
