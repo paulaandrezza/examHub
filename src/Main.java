@@ -3,10 +3,13 @@ import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 
 import controller.AgendamentoController;
-import controller.PacienteController;
+import model.enums.EnumTipoExame;
+import controller.AgendamentoController;
 import model.enums.EnumTipoExame;
 import model.persistence.DatabaseConnection;
 import model.persistence.dao.agendamento.AgendamentoDTO;
+import model.persistence.dao.agendamento.AgendamentoDTO;
+import view.guiMenu.MenuPanel;
 
 public class Main {
 
@@ -29,12 +32,13 @@ public class Main {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 
-//		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-//			public void run() {
-//				LoginPanel tela = new LoginPanel();
-//				tela.setVisible(true);
-//			}
-//		});
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				LoginPanel tela = new LoginPanel();
+				tela.setVisible(true);
+			}
+		});
+
 
 	}
 }
