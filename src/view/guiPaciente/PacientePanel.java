@@ -274,6 +274,11 @@ public class PacientePanel extends JPanel {
 		labelPlano.setAlignmentX(0.5f);
 		boxHorizontalPlano.add(labelPlano);
 
+		JLabel labelInfo_6 = new JLabel("*");
+		labelInfo_6.setForeground(Color.RED);
+		labelInfo_6.setFont(new Font("Verdana", Font.BOLD, 16));
+		boxHorizontalPlano.add(labelInfo_6);
+
 		Component horizontal_convenio_3 = Box.createHorizontalStrut(20);
 		horizontal_convenio_3.setMaximumSize(new Dimension(16, 32767));
 		boxHorizontalPlano.add(horizontal_convenio_3);

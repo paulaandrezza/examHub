@@ -262,11 +262,16 @@ public class PessoaPanel extends JPanel {
 		labelTelefone.setFont(new Font("Verdana", Font.BOLD, 16));
 		boxHorizontalTelefone.add(labelTelefone);
 
+		JLabel labelInfo_8 = new JLabel("*");
+		labelInfo_8.setForeground(Color.RED);
+		labelInfo_8.setFont(new Font("Verdana", Font.BOLD, 16));
+		boxHorizontalTelefone.add(labelInfo_8);
+
 		Component horizontal_contato_2 = Box.createHorizontalStrut(8);
 		boxHorizontalTelefone.add(horizontal_contato_2);
 
 		try {
-			MaskFormatter mascaraTelefone = new MaskFormatter("(+55) ## ####-####");
+			MaskFormatter mascaraTelefone = new MaskFormatter("(+55) ####-####");
 			textTelefone = new JFormattedTextField(mascaraTelefone);
 			textTelefone.setFont(new Font("Verdana", Font.PLAIN, 12));
 			boxHorizontalTelefone.add(textTelefone);
