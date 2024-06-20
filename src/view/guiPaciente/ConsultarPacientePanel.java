@@ -10,6 +10,7 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
@@ -107,8 +108,12 @@ public class ConsultarPacientePanel extends JInternalFrame {
 		PacienteController pacienteController = new PacienteController();
 		List<Paciente> listapacientes = new ArrayList<>();
 
-		List<Paciente> pacientesPorNome = pacienteController.searchByField("nome", searchText);
-		listapacientes.addAll(pacientesPorNome);
+		try {
+			List<Paciente> pacientesPorNome = pacienteController.searchByField("nome", searchText);
+			listapacientes.addAll(pacientesPorNome);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
 
 		tableModel.setRowCount(0);
 

@@ -4,8 +4,7 @@ import javax.swing.JOptionPane;
 
 import controller.AgendamentoController;
 import controller.ExameController;
-import model.enums.EnumTipoExame;
-import controller.AgendamentoController;
+import controller.PacienteController;
 import model.enums.EnumDiagnostico;
 import model.enums.EnumTipoExame;
 import model.persistence.DatabaseConnection;
@@ -15,8 +14,7 @@ import model.persistence.dao.exame.EletrocardiogramaDTO;
 import model.persistence.dao.exame.HolterDTO;
 import model.persistence.dao.exame.MapaDTO;
 import model.persistence.dao.exame.TesteErgometricoDTO;
-import model.persistence.dao.agendamento.AgendamentoDTO;
-import view.guiMenu.MenuPanel;
+import view.guiLogin.LoginPanel;
 
 public class Main {
 
@@ -95,7 +93,6 @@ public class Main {
 				tela.setVisible(true);
 			}
 		});
-
 
 	}
 }
