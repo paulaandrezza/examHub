@@ -281,8 +281,6 @@ public class CadastrarAgendaPanel extends JPanel {
 
 					int id = pacientes.get(0).getId();
 
-					System.out.println("\n\n id: " + id + "\n\n");
-
 					AgendamentoDTO agendamentoDTO = new AgendamentoDTO(dataEhorario, id, nomeMedico, exame);
 					agendamentoController.create(agendamentoDTO);
 

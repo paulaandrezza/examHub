@@ -1,4 +1,4 @@
-package view.guiPaciente;
+package view.guiPaciente.update;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -29,7 +29,7 @@ import model.enums.EnumGenero;
 import model.persistence.dao.paciente.PacienteFullDTO;
 import view.utils.FieldMask;
 
-public class PessoaPanel extends JPanel {
+public class EditarPessoaPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private FieldMask fieldMask = new FieldMask();
@@ -57,7 +57,7 @@ public class PessoaPanel extends JPanel {
 		comboBoxGenero.setSelectedIndex(0);
 	}
 
-	public PessoaPanel(PacienteFullDTO pacienteFullDTO, CadastroPanel cadastroPanel) {
+	public EditarPessoaPanel(PacienteFullDTO pacienteFullDTO, EditarPanel cadastroPanel) {
 		setBackground(UIManager.getColor("menu"));
 		setLayout(null);
 

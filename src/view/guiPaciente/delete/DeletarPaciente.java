@@ -1,4 +1,4 @@
-package view.guiPaciente;
+package view.guiPaciente.delete;
 
 import java.sql.SQLException;
 

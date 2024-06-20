@@ -1,4 +1,4 @@
-package view.guiPaciente;
+package view.guiPaciente.read;
 
 import java.awt.Component;
 import java.awt.Font;
@@ -30,6 +30,8 @@ import model.entities.Convenio;
 import model.entities.Paciente;
 import model.entities.Pessoa;
 import model.exceptions.EntityNotFoundException;
+import view.guiPaciente.delete.DeletarPaciente;
+import view.guiPaciente.update.EditarPacientePanel;
 
 public class ConsultarPacientePanel extends JInternalFrame {
 
@@ -212,8 +214,10 @@ public class ConsultarPacientePanel extends JInternalFrame {
 				int selectedRow = table.getSelectedRow();
 				int patientId = (Integer) table.getValueAt(selectedRow, 6);
 				if (label.equals("Editar")) {
-					System.out.println("Botão Editar pressionado na linha: " + selectedRow + " com ID: " + patientId);
-					// Adicione a lógica para editar o paciente aqui
+					EditarPacientePanel frame = new EditarPacientePanel(patientId);
+					getParent().add(frame);
+					frame.setVisible(true);
+					// dispose();
 				} else if (label.equals("Deletar")) {
 					String menssagem = String.format(
 							"Essa ação irá deletar os dados de %s%nClique em OK se deseja continuar com a ação.",
@@ -256,4 +260,5 @@ public class ConsultarPacientePanel extends JInternalFrame {
 			super.fireEditingStopped();
 		}
 	}
+
 }
