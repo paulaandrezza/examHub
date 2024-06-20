@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +29,7 @@ import controller.PacienteController;
 import model.entities.Convenio;
 import model.entities.Paciente;
 import model.entities.Pessoa;
+import model.exceptions.EntityNotFoundException;
 
 public class ConsultarPacientePanel extends JInternalFrame {
 
@@ -213,8 +215,6 @@ public class ConsultarPacientePanel extends JInternalFrame {
 					System.out.println("Botão Editar pressionado na linha: " + selectedRow + " com ID: " + patientId);
 					// Adicione a lógica para editar o paciente aqui
 				} else if (label.equals("Deletar")) {
-					System.out.println("Botão Deletar pressionado na linha: " + selectedRow + " com ID: " + patientId);
-
 					String menssagem = String.format(
 							"Essa ação irá deletar os dados de %s%nClique em OK se deseja continuar com a ação.",
 							table.getValueAt(selectedRow, 0));
@@ -223,11 +223,23 @@ public class ConsultarPacientePanel extends JInternalFrame {
 							JOptionPane.OK_CANCEL_OPTION);
 					if (resposta == JOptionPane.OK_OPTION) {
 						DeletarPaciente delete = new DeletarPaciente(patientId);
-						JOptionPane.showMessageDialog(null, "Paciente deletado com sucesso!", "Sucesso",
-								JOptionPane.INFORMATION_MESSAGE);
+						try {
+							delete.delete();
+							JOptionPane.showMessageDialog(null, "Paciente deletado com sucesso!", "Sucesso",
+									JOptionPane.INFORMATION_MESSAGE);
+						} catch (SQLException | EntityNotFoundException e) {
+							JOptionPane.showMessageDialog(null,
+									"Erro ao deletar Paciente!\nTente executar a ação novamente.", "Falha",
+									JOptionPane.INFORMATION_MESSAGE);
+
+							e.printStackTrace();
+						}
+
 					}
 
 				}
+				tableModel.setRowCount(0);
+				loadAllPatients();
 			}
 			isPushed = false;
 			return new String(label);
