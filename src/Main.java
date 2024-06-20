@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+
 import javax.swing.JOptionPane;
 
 import controller.AgendamentoController;
@@ -23,7 +25,6 @@ public class Main {
 		PacienteController pacienteController = new PacienteController();
 		AgendamentoController agendamentoController = new AgendamentoController();
 		ExameController exameController = new ExameController();
-		PacienteController pacienteController = new PacienteController();
 
 		try {
 			// Criar agendamento para Ecocardiograma
