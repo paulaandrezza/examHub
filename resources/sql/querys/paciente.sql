@@ -38,3 +38,4 @@ FROM
     LEFT JOIN Endereco e ON pe.endereco_id = e.id
     LEFT JOIN Convenio c ON p.convenio_id = c.id
     LEFT JOIN HistoricoMedico h ON p.historicoMedico_id = h.id
+WHERE isDeleted is false
