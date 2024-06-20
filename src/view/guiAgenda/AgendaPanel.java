@@ -55,7 +55,7 @@ public class AgendaPanel extends JInternalFrame {
 			tabbedPanel.addTab("Cadastrar Agenda", cadastrarAgendaPanel);
 			tabbedPanel.setTabComponentAt(tabbedPanel.indexOfComponent(listaAgendaPanel), labelListaAgenda);
 		} catch (SQLException | EntityNotFoundException e) {
-			System.out.println("Erro ao carregar o painel");
+			System.out.println("Erro ao carregar o painel: ");
 			e.printStackTrace();
 		}
 

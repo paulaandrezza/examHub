@@ -1,4 +1,4 @@
-package view.guiPaciente;
+package view.guiPaciente.create;
 
 import java.awt.BorderLayout;
 import java.awt.SystemColor;

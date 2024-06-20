@@ -1,4 +1,4 @@
-package view.guiPaciente;
+package view.guiPaciente.create;
 
 import java.awt.Color;
 import java.awt.Component;

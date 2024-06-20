@@ -62,7 +62,6 @@ public abstract class GenericDAO<DTO> implements IGenericDAO<DTO> {
 		}
 
 		String sql = "INSERT INTO " + tableName + " (" + columns.toString() + ") VALUES (" + values.toString() + ")";
-		System.out.println(sql);
 
 		PreparedStatement statement = connection.prepareStatement(sql);
 		for (int i = 0; i < valueList.size(); i++) {

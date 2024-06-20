@@ -1,5 +1,3 @@
-import javax.swing.JOptionPane;
-
 import controller.AgendamentoController;
 import controller.ExameController;
 import model.persistence.DatabaseConnection;
@@ -14,7 +12,7 @@ public class Main {
 		AgendamentoController agendamentoController = new AgendamentoController();
 		ExameController exameController = new ExameController();
 
-		try {
+//		try {
 //			// Criar agendamento para Ecocardiograma
 //			AgendamentoDTO agendamentoEcocardiogramaDTO = new AgendamentoDTO(LocalDateTime.parse("2024-06-06T10:30:00"),
 //					1, "Medico Dr. João", EnumTipoExame.ECOCARDIOGRAMA.getValue());
@@ -67,20 +65,19 @@ public class Main {
 //					80);
 //
 //			exameController.create(testeErgometricoDTO);
-
-			System.out.println(exameController.getAll());
-
-//			pacienteController.delete(1);
+//
+//			System.out.println(exameController.getAll());
 
 //			System.out.println(agendamentoController.getAll());
-		} catch (Exception e) {
-			System.out.println(e.fillInStackTrace());
-			JOptionPane.showMessageDialog(null, e.getMessage());
-		}
+//		} catch (Exception e) {
+//			System.out.println(e.fillInStackTrace());
+//			JOptionPane.showMessageDialog(null, e.getMessage());
+//		}
 
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				LoginPanel tela = new LoginPanel();
+				// MenuPanel tela = new MenuPanel();
 				tela.setVisible(true);
 			}
 		});
