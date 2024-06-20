@@ -13,8 +13,6 @@ public interface IController<DTO, Entity> {
 
 	List<Entity> searchByField(String fieldName, Object fieldValue) throws SQLException, EntityNotFoundException;
 
-	Entity getById(int id) throws SQLException, EntityNotFoundException;
-
 	List<Entity> getAll() throws SQLException, EntityNotFoundException;
 
 	Entity convertDtoToEntity(DTO dto) throws SQLException, EntityNotFoundException;

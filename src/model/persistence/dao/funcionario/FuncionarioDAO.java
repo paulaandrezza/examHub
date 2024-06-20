@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import model.persistence.dao.GenericDAO;
 import model.persistence.dao.auth.FuncionarioDTO;
 import model.persistence.dao.interfaces.ICommonDAO;
-import model.persistence.dao.paciente.PessoaDTO;
 
 public class FuncionarioDAO extends GenericDAO<FuncionarioDTO> implements ICommonDAO<FuncionarioDTO> {
 

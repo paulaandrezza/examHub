@@ -55,7 +55,7 @@ public class EnderecoPanel extends JPanel {
 		setLayout(null);
 
 		Box tituloBoxVerticalEndereco = Box.createVerticalBox();
-		tituloBoxVerticalEndereco.setBounds(10, 10, 750, 45);
+		tituloBoxVerticalEndereco.setBounds(125, 10, 750, 45);
 		add(tituloBoxVerticalEndereco);
 
 		JLabel labelEnderecoTitulo = new JLabel("ENDEREÇO");
@@ -67,7 +67,7 @@ public class EnderecoPanel extends JPanel {
 		tituloBoxVerticalEndereco.add(hr_endereco_1);
 
 		Box boxVerticalEndereco = Box.createVerticalBox();
-		boxVerticalEndereco.setBounds(10, 65, 750, 350);
+		boxVerticalEndereco.setBounds(125, 65, 750, 350);
 		add(boxVerticalEndereco);
 
 		Box boxHorizontalCep = Box.createHorizontalBox();
@@ -264,7 +264,7 @@ public class EnderecoPanel extends JPanel {
 
 		Box boxHorizontalAcao = Box.createHorizontalBox();
 		boxHorizontalAcao.setAlignmentY(0.5f);
-		boxHorizontalAcao.setBounds(10, 570, 750, 32);
+		boxHorizontalAcao.setBounds(125, 570, 750, 32);
 		add(boxHorizontalAcao);
 
 		Box boxHorizontalVoltar = Box.createHorizontalBox();

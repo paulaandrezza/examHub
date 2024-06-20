@@ -31,15 +31,13 @@ public class PacienteController implements IController<PacienteFullDTO, Paciente
 		}
 	}
 
-//	@Override
-//	public void delete(int id) {
-//		try {
-//			pacienteDao.delete(id);
-//			System.out.println("Entity deleted successfully.");
-//		} catch (SQLException e) {
-//			System.err.println("Error during entity deletion: " + e.getMessage());
-//		}
-//	}
+	public void delete(int paciente_id) throws SQLException, EntityNotFoundException {
+		pacienteDAO.delete(paciente_id);
+	}
+
+	public void update(PacienteFullDTO pacienteFullDTO) throws SQLException, EntityNotFoundException {
+		pacienteDAO.update(pacienteFullDTO);
+	}
 
 	@Override
 	public List<Paciente> getAll() {
@@ -49,23 +47,10 @@ public class PacienteController implements IController<PacienteFullDTO, Paciente
 	}
 
 	@Override
-	public Paciente getById(int id) throws SQLException, EntityNotFoundException {
-		return convertDtoToEntity(pacienteDAO.getById(id));
-	}
-
-	@Override
 	public List<Paciente> searchByField(String fieldName, Object fieldValue) throws SQLException {
 		try {
 			List<PacienteFullDTO> pacientesFullDTO = pacienteDAO.findByField(fieldName, fieldValue, null);
 			return convertDtoListToEntityList(pacientesFullDTO);
-		} catch (SQLException e) {
-			throw e;
-		}
-	}
-
-	public Paciente getByEmail(String value) throws SQLException {
-		try {
-			return searchByField("email", value).get(0);
 		} catch (SQLException e) {
 			throw e;
 		}

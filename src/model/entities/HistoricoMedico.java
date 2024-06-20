@@ -20,8 +20,32 @@ public class HistoricoMedico extends BaseEntity {
 
 	@Override
 	public String toString() {
-		return "HistoricoMedico [alergias=" + alergias + ", medicamentos=" + medicamentos + ", condicaoMedica=" + condicaoMedica
-				+ "]";
+		return "HistoricoMedico [alergias=" + alergias + ", medicamentos=" + medicamentos + ", condicaoMedica="
+				+ condicaoMedica + "]";
+	}
+
+	public String getAlergias() {
+		return alergias;
+	}
+
+	public void setAlergias(String alergias) {
+		this.alergias = alergias;
+	}
+
+	public String getMedicamentos() {
+		return medicamentos;
+	}
+
+	public void setMedicamentos(String medicamentos) {
+		this.medicamentos = medicamentos;
+	}
+
+	public String getCondicaoMedica() {
+		return condicaoMedica;
+	}
+
+	public void setCondicaoMedica(String condicaoMedica) {
+		this.condicaoMedica = condicaoMedica;
 	}
 
 }

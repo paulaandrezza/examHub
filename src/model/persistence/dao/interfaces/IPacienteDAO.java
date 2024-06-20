@@ -12,7 +12,7 @@ public interface IPacienteDAO {
 
 	List<PacienteFullDTO> getAll(String table);
 
-	void update(int id, String[] params);
+	void update(PacienteFullDTO pacienteFullDTO) throws SQLException;
 
 	PacienteFullDTO convertResultSetToEntityDTO(ResultSet resultSet) throws SQLException;
 }

@@ -63,7 +63,7 @@ public class CadastrarAgendaPanel extends JPanel {
 		setBackground(SystemColor.menu);
 
 		Box tituloBoxVerticalCadastrarAgenda = Box.createVerticalBox();
-		tituloBoxVerticalCadastrarAgenda.setBounds(10, 10, 750, 42);
+		tituloBoxVerticalCadastrarAgenda.setBounds(125, 10, 750, 42);
 		add(tituloBoxVerticalCadastrarAgenda);
 
 		JLabel tituloCadastrarAgenda = new JLabel("CADASTRAR AGENDA");
@@ -75,7 +75,7 @@ public class CadastrarAgendaPanel extends JPanel {
 		tituloBoxVerticalCadastrarAgenda.add(hr_cadastraragenda);
 
 		Box boxVerticalCadastrarAgenda = Box.createVerticalBox();
-		boxVerticalCadastrarAgenda.setBounds(10, 64, 740, 335);
+		boxVerticalCadastrarAgenda.setBounds(125, 64, 740, 335);
 		add(boxVerticalCadastrarAgenda);
 
 		Box boxHorizontalDataExame = Box.createHorizontalBox();
@@ -236,7 +236,7 @@ public class CadastrarAgendaPanel extends JPanel {
 
 		Box boxHorizontalAcao = Box.createHorizontalBox();
 		boxHorizontalAcao.setAlignmentY(0.5f);
-		boxHorizontalAcao.setBounds(10, 570, 740, 32);
+		boxHorizontalAcao.setBounds(125, 570, 740, 32);
 		add(boxHorizontalAcao);
 
 		Box boxHorizontalVoltar = Box.createHorizontalBox();

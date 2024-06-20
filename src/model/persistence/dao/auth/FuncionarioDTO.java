@@ -1,6 +1,6 @@
 package model.persistence.dao.auth;
 
-import model.persistence.dao.paciente.PessoaDTO;
+import model.persistence.dao.funcionario.PessoaDTO;
 
 public class FuncionarioDTO {
 	int id;

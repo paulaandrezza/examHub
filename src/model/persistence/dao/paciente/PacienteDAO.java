@@ -1,9 +1,9 @@
 package model.persistence.dao.paciente;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.List;
 
 import model.entities.Paciente;
 import model.enums.EnumGenero;
@@ -25,10 +25,12 @@ public class PacienteDAO extends GenericDAO<PacienteFullDTO> implements IPacient
 			int convenioId = super.save(paciente.getConvenio(), "convenio");
 			int historicoMedicoId = super.save(paciente.getHistoricoMedico(), "historicoMedico");
 
-			PessoaDTO pessoaDTO = new PessoaDTO(paciente.getPessoa().getNome(), paciente.getPessoa().getCpf(),
-					paciente.getPessoa().getRg(), paciente.getPessoa().getDataNascimento(),
-					paciente.getPessoa().getCelular(), paciente.getPessoa().getTelefone(),
-					paciente.getPessoa().getEmail(), paciente.getPessoa().getGenero().getValue(), enderecoId);
+			PessoaPacienteDTO pessoaDTO = new PessoaPacienteDTO(paciente.getPessoa().getNome(),
+					paciente.getPessoa().getCpf(), paciente.getPessoa().getRg(),
+					paciente.getPessoa().getDataNascimento(), paciente.getPessoa().getCelular(),
+					paciente.getPessoa().getTelefone(), paciente.getPessoa().getEmail(),
+					paciente.getPessoa().getGenero().getValue(), enderecoId);
+
 			int pessoaId = super.save(pessoaDTO, "pessoa");
 
 			PacienteDTO pacienteDAO = new PacienteDTO(paciente.getAltura(), paciente.isFumante(),
@@ -43,10 +45,93 @@ public class PacienteDAO extends GenericDAO<PacienteFullDTO> implements IPacient
 		}
 	}
 
-	@Override
-	public void update(int id, String[] params) {
-		// TODO Auto-generated method stub
+	public void update(PacienteFullDTO pacienteFullDTO) throws SQLException {
+		try {
+			connection.setAutoCommit(false);
 
+			updateEndereco(pacienteFullDTO);
+			updateConvenio(pacienteFullDTO);
+			updateHistoricoMedico(pacienteFullDTO);
+			updatePessoa(pacienteFullDTO);
+			updatePaciente(pacienteFullDTO);
+
+			connection.commit();
+		} catch (SQLException e) {
+			connection.rollback();
+			throw new SQLException("Erro ao atualizar paciente: " + e.getMessage());
+		}
+	}
+
+	private void updateEndereco(PacienteFullDTO pacienteFullDTO) throws SQLException {
+		String sql = "UPDATE endereco SET cep = ?, estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, complemento = ? WHERE id = ?";
+		try (PreparedStatement statement = connection.prepareStatement(sql)) {
+			statement.setInt(1, pacienteFullDTO.getCep());
+			statement.setString(2, pacienteFullDTO.getEstado());
+			statement.setString(3, pacienteFullDTO.getCidade());
+			statement.setString(4, pacienteFullDTO.getBairro());
+			statement.setString(5, pacienteFullDTO.getRua());
+			statement.setString(6, pacienteFullDTO.getNumero());
+			statement.setString(7, pacienteFullDTO.getComplemento());
+			statement.setInt(8, pacienteFullDTO.getIdEndereco());
+			statement.executeUpdate();
+		}
+	}
+
+	private void updateConvenio(PacienteFullDTO pacienteFullDTO) throws SQLException {
+		String sql = "UPDATE convenio SET numeroCarteirinha = ?, prestadora = ?, plano = ? WHERE id = ?";
+		try (PreparedStatement statement = connection.prepareStatement(sql)) {
+			statement.setInt(1, pacienteFullDTO.getNumeroCarteirinha());
+			statement.setString(2, pacienteFullDTO.getPrestadora());
+			statement.setString(3, pacienteFullDTO.getPlano());
+			statement.setInt(4, pacienteFullDTO.getIdConvenio());
+			statement.executeUpdate();
+		}
+	}
+
+	private void updateHistoricoMedico(PacienteFullDTO pacienteFullDTO) throws SQLException {
+		String sql = "UPDATE historicoMedico SET alergias = ?, medicamentos = ?, condicaoMedica = ? WHERE id = ?";
+		try (PreparedStatement statement = connection.prepareStatement(sql)) {
+			statement.setString(1, pacienteFullDTO.getAlergias());
+			statement.setString(2, pacienteFullDTO.getMedicamentos());
+			statement.setString(3, pacienteFullDTO.getCondicaoMedica());
+			statement.setInt(4, pacienteFullDTO.getIdHistoricoMedico());
+			statement.executeUpdate();
+		}
+	}
+
+	private void updatePessoa(PacienteFullDTO pacienteFullDTO) throws SQLException {
+		String sql = "UPDATE pessoa SET nome = ?, cpf = ?, rg = ?, dataNascimento = ?, celular = ?, telefone = ?, email = ?, genero = ?, endereco_id = ? WHERE id = ?";
+		try (PreparedStatement statement = connection.prepareStatement(sql)) {
+			statement.setString(1, pacienteFullDTO.getNome());
+			statement.setString(2, pacienteFullDTO.getCpf());
+			statement.setString(3, pacienteFullDTO.getRg());
+			statement.setObject(4, pacienteFullDTO.getDataNascimento());
+			statement.setLong(5, pacienteFullDTO.getCelular());
+			statement.setLong(6, pacienteFullDTO.getTelefone());
+			statement.setString(7, pacienteFullDTO.getEmail());
+			statement.setInt(8, pacienteFullDTO.getGenero().getValue());
+			statement.setInt(9, pacienteFullDTO.getIdEndereco());
+			statement.setInt(10, pacienteFullDTO.getIdPessoa());
+			statement.executeUpdate();
+		}
+	}
+
+	private void updatePaciente(PacienteFullDTO pacienteFullDTO) throws SQLException {
+		String sql = "UPDATE paciente SET altura = ?, fumante = ?, marcaPasso = ?, convenio_id = ?, historicoMedico_id = ?, pessoa_id = ? WHERE id = ?";
+		try (PreparedStatement statement = connection.prepareStatement(sql)) {
+			statement.setFloat(1, pacienteFullDTO.getAltura());
+			statement.setBoolean(2, pacienteFullDTO.isFumante());
+			statement.setBoolean(3, pacienteFullDTO.isMarcaPasso());
+			statement.setInt(4, pacienteFullDTO.getIdConvenio());
+			statement.setInt(5, pacienteFullDTO.getIdHistoricoMedico());
+			statement.setInt(6, pacienteFullDTO.getIdPessoa());
+			statement.setInt(7, pacienteFullDTO.getIdPaciente());
+			statement.executeUpdate();
+		}
+	}
+
+	public void delete(int paciente_id) throws SQLException {
+		super.update("paciente", "isDeleted", true, paciente_id);
 	}
 
 	@Override

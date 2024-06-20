@@ -86,6 +86,9 @@ public class LoginPanel extends JFrame {
 		lblEmail.setFont(new Font("Verdana", Font.PLAIN, 14));
 		panelEmail.add(lblEmail);
 
+		Component login_horizontal_1 = Box.createHorizontalStrut(8);
+		panelEmail.add(login_horizontal_1);
+
 		textEmail = new JTextField();
 		textEmail.setFont(new Font("Verdana", Font.PLAIN, 14));
 		textEmail.setColumns(20);
@@ -102,6 +105,9 @@ public class LoginPanel extends JFrame {
 		JLabel lblSenha = new JLabel("Senha:");
 		lblSenha.setFont(new Font("Verdana", Font.PLAIN, 14));
 		panelSenha.add(lblSenha);
+
+		Component login_horizontal_2 = Box.createHorizontalStrut(8);
+		panelSenha.add(login_horizontal_2);
 
 		passwordSenha = new JPasswordField();
 		passwordSenha.setFont(new Font("Verdana", Font.PLAIN, 14));

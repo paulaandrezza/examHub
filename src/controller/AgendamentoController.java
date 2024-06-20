@@ -43,11 +43,6 @@ public class AgendamentoController implements IController<AgendamentoDTO, Agenda
 	}
 
 	@Override
-	public Agendamento getById(int id) throws SQLException, EntityNotFoundException {
-		return convertDtoToEntity(agendamentoDAO.getById(id));
-	}
-
-	@Override
 	public List<Agendamento> getAll() throws SQLException, EntityNotFoundException {
 		List<AgendamentoDTO> agendamentoDTO = agendamentoDAO.getAll(null);
 
