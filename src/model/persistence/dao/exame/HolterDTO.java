@@ -1,5 +1,7 @@
 package model.persistence.dao.exame;
 
+import model.persistence.dao.agendamento.AgendamentoDTO;
+
 public class HolterDTO extends ExameDTO {
 	int id;
 	int arritmia;
@@ -9,11 +11,12 @@ public class HolterDTO extends ExameDTO {
 	boolean apneiaSono;
 	int exame_id;
 
-	public HolterDTO(int id, float peso, int medicoResponsavel_id, String conclusoes, String detalhes,
-			int diagnosticoClinico, int agendamento_id, int id2, int arritmia, int isquemiaCardiaca, int dcIntravicular,
-			int dcAtriovencular, boolean apneiaSono, int exame_id) {
-		super(id, peso, medicoResponsavel_id, conclusoes, detalhes, diagnosticoClinico, agendamento_id);
-		id = id2;
+	public HolterDTO(float peso, int medicoResponsavel_id, String conclusoes, String detalhes, int diagnosticoClinico,
+			int agendamento_id, AgendamentoDTO agendamentoDTO, int id, int arritmia, int isquemiaCardiaca,
+			int dcIntravicular, int dcAtriovencular, boolean apneiaSono, int exame_id) {
+		super(exame_id, peso, medicoResponsavel_id, conclusoes, detalhes, diagnosticoClinico, agendamento_id,
+				agendamentoDTO);
+		this.id = id;
 		this.arritmia = arritmia;
 		this.isquemiaCardiaca = isquemiaCardiaca;
 		this.dcIntravicular = dcIntravicular;
@@ -24,14 +27,13 @@ public class HolterDTO extends ExameDTO {
 
 	public HolterDTO(float peso, int medicoResponsavel_id, String conclusoes, String detalhes, int diagnosticoClinico,
 			int agendamento_id, int arritmia, int isquemiaCardiaca, int dcIntravicular, int dcAtriovencular,
-			boolean apneiaSono, int exame_id) {
+			boolean apneiaSono) {
 		super(peso, medicoResponsavel_id, conclusoes, detalhes, diagnosticoClinico, agendamento_id);
 		this.arritmia = arritmia;
 		this.isquemiaCardiaca = isquemiaCardiaca;
 		this.dcIntravicular = dcIntravicular;
 		this.dcAtriovencular = dcAtriovencular;
 		this.apneiaSono = apneiaSono;
-		this.exame_id = exame_id;
 	}
 
 	public int getId() {

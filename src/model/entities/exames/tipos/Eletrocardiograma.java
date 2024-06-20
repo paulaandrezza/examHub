@@ -6,25 +6,29 @@ import model.entities.exames.Exame;
 import model.enums.EnumDiagnostico;
 
 public class Eletrocardiograma extends Exame {
-	int id;
+	int idEletrocardiograma;
 	String ritmo;
 	int fc;
 	float ondaP;
 	int complexoQRS;
 	int eixoEletrico;
-	Exame exame;
 
 	public Eletrocardiograma(int id, float peso, Funcionario medicoResponsavel, String conclusoes, String detalhes,
-			EnumDiagnostico diagnosticoClinico, Agendamento agendamento, int id2, String ritmo, int fc, float ondaP,
-			int complexoQRS, int eixoEletrico, Exame exame) {
+			EnumDiagnostico diagnosticoClinico, Agendamento agendamento, int idEletrocardiograma, String ritmo, int fc,
+			float ondaP, int complexoQRS, int eixoEletrico) {
 		super(id, peso, medicoResponsavel, conclusoes, detalhes, diagnosticoClinico, agendamento);
-		id = id2;
+		this.idEletrocardiograma = idEletrocardiograma;
 		this.ritmo = ritmo;
 		this.fc = fc;
 		this.ondaP = ondaP;
 		this.complexoQRS = complexoQRS;
 		this.eixoEletrico = eixoEletrico;
-		this.exame = exame;
+	}
+
+	@Override
+	public String toString() {
+		return "Eletrocardiograma [idEletrocardiograma=" + idEletrocardiograma + ", ritmo=" + ritmo + ", fc=" + fc
+				+ ", ondaP=" + ondaP + ", complexoQRS=" + complexoQRS + ", eixoEletrico=" + eixoEletrico + "]\n";
 	}
 
 }

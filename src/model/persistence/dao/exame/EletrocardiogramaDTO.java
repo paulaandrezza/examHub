@@ -1,5 +1,7 @@
 package model.persistence.dao.exame;
 
+import model.persistence.dao.agendamento.AgendamentoDTO;
+
 public class EletrocardiogramaDTO extends ExameDTO {
 	int id;
 	String ritmo;
@@ -9,11 +11,12 @@ public class EletrocardiogramaDTO extends ExameDTO {
 	int eixoEletrico;
 	int exame_id;
 
-	public EletrocardiogramaDTO(int id, float peso, int medicoResponsavel_id, String conclusoes, String detalhes,
-			int diagnosticoClinico, int agendamento_id, int id2, String ritmo, int fc, float ondaP, int complexoQRS,
-			int eixoEletrico, int exame_id) {
-		super(id, peso, medicoResponsavel_id, conclusoes, detalhes, diagnosticoClinico, agendamento_id);
-		id = id2;
+	public EletrocardiogramaDTO(float peso, int medicoResponsavel_id, String conclusoes, String detalhes,
+			int diagnosticoClinico, int agendamento_id, AgendamentoDTO agendamentoDTO, int id, String ritmo, int fc,
+			float ondaP, int complexoQRS, int eixoEletrico, int exame_id) {
+		super(exame_id, peso, medicoResponsavel_id, conclusoes, detalhes, diagnosticoClinico, agendamento_id,
+				agendamentoDTO);
+		this.id = id;
 		this.ritmo = ritmo;
 		this.fc = fc;
 		this.ondaP = ondaP;
@@ -24,14 +27,13 @@ public class EletrocardiogramaDTO extends ExameDTO {
 
 	public EletrocardiogramaDTO(float peso, int medicoResponsavel_id, String conclusoes, String detalhes,
 			int diagnosticoClinico, int agendamento_id, String ritmo, int fc, float ondaP, int complexoQRS,
-			int eixoEletrico, int exame_id) {
+			int eixoEletrico) {
 		super(peso, medicoResponsavel_id, conclusoes, detalhes, diagnosticoClinico, agendamento_id);
 		this.ritmo = ritmo;
 		this.fc = fc;
 		this.ondaP = ondaP;
 		this.complexoQRS = complexoQRS;
 		this.eixoEletrico = eixoEletrico;
-		this.exame_id = exame_id;
 	}
 
 	public int getId() {

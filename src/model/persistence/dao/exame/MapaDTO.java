@@ -1,5 +1,7 @@
 package model.persistence.dao.exame;
 
+import model.persistence.dao.agendamento.AgendamentoDTO;
+
 public class MapaDTO extends ExameDTO {
 	int id;
 	String mediaHoras;
@@ -7,11 +9,12 @@ public class MapaDTO extends ExameDTO {
 	String paSono;
 	int exame_id;
 
-	public MapaDTO(int id, float peso, int medicoResponsavel_id, String conclusoes, String detalhes,
-			int diagnosticoClinico, int agendamento_id, int id2, String mediaHoras, String paVirgula, String paSono,
-			int exame_id) {
-		super(id, peso, medicoResponsavel_id, conclusoes, detalhes, diagnosticoClinico, agendamento_id);
-		id = id2;
+	public MapaDTO(float peso, int medicoResponsavel_id, String conclusoes, String detalhes, int diagnosticoClinico,
+			int agendamento_id, AgendamentoDTO agendamentoDTO, int id, String mediaHoras, String paVirgula,
+			String paSono, int exame_id) {
+		super(exame_id, peso, medicoResponsavel_id, conclusoes, detalhes, diagnosticoClinico, agendamento_id,
+				agendamentoDTO);
+		this.id = id;
 		this.mediaHoras = mediaHoras;
 		this.paVirgula = paVirgula;
 		this.paSono = paSono;
@@ -19,12 +22,11 @@ public class MapaDTO extends ExameDTO {
 	}
 
 	public MapaDTO(float peso, int medicoResponsavel_id, String conclusoes, String detalhes, int diagnosticoClinico,
-			int agendamento_id, String mediaHoras, String paVirgula, String paSono, int exame_id) {
+			int agendamento_id, String mediaHoras, String paVirgula, String paSono) {
 		super(peso, medicoResponsavel_id, conclusoes, detalhes, diagnosticoClinico, agendamento_id);
 		this.mediaHoras = mediaHoras;
 		this.paVirgula = paVirgula;
 		this.paSono = paSono;
-		this.exame_id = exame_id;
 	}
 
 	public int getId() {

@@ -6,21 +6,25 @@ import model.entities.exames.Exame;
 import model.enums.EnumDiagnostico;
 
 public class Mapa extends Exame {
-	int id;
+	int idMapa;
 	String mediaHoras;
 	String paVirgula;
 	String paSono;
-	Exame exame;
 
 	public Mapa(int id, float peso, Funcionario medicoResponsavel, String conclusoes, String detalhes,
-			EnumDiagnostico diagnosticoClinico, Agendamento agendamento, int id2, String mediaHoras, String paVirgula,
-			String paSono, Exame exame) {
+			EnumDiagnostico diagnosticoClinico, Agendamento agendamento, int idMapa, String mediaHoras,
+			String paVirgula, String paSono) {
 		super(id, peso, medicoResponsavel, conclusoes, detalhes, diagnosticoClinico, agendamento);
-		id = id2;
+		this.idMapa = idMapa;
 		this.mediaHoras = mediaHoras;
 		this.paVirgula = paVirgula;
 		this.paSono = paSono;
-		this.exame = exame;
+	}
+
+	@Override
+	public String toString() {
+		return "Mapa [idMapa=" + idMapa + ", mediaHoras=" + mediaHoras + ", paVirgula=" + paVirgula + ", paSono="
+				+ paSono + "]\n";
 	}
 
 }

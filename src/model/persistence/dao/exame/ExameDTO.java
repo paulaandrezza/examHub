@@ -1,5 +1,7 @@
 package model.persistence.dao.exame;
 
+import model.persistence.dao.agendamento.AgendamentoDTO;
+
 public class ExameDTO {
 	int id;
 	float peso;
@@ -8,10 +10,10 @@ public class ExameDTO {
 	String detalhes;
 	int diagnosticoClinico;
 	int agendamento_id;
+	AgendamentoDTO agendamentoDTO;
 
 	public ExameDTO(int id, float peso, int medicoResponsavel_id, String conclusoes, String detalhes,
-			int diagnosticoClinico, int agendamento_id) {
-		super();
+			int diagnosticoClinico, int agendamento_id, AgendamentoDTO agendamentoDTO) {
 		this.id = id;
 		this.peso = peso;
 		this.medicoResponsavel_id = medicoResponsavel_id;
@@ -19,6 +21,7 @@ public class ExameDTO {
 		this.detalhes = detalhes;
 		this.diagnosticoClinico = diagnosticoClinico;
 		this.agendamento_id = agendamento_id;
+		this.agendamentoDTO = agendamentoDTO;
 	}
 
 	public ExameDTO(float peso, int medicoResponsavel_id, String conclusoes, String detalhes, int diagnosticoClinico,
@@ -29,6 +32,13 @@ public class ExameDTO {
 		this.detalhes = detalhes;
 		this.diagnosticoClinico = diagnosticoClinico;
 		this.agendamento_id = agendamento_id;
+	}
+
+	@Override
+	public String toString() {
+		return "ExameDTO [id=" + id + ", peso=" + peso + ", medicoResponsavel_id=" + medicoResponsavel_id
+				+ ", conclusoes=" + conclusoes + ", detalhes=" + detalhes + ", diagnosticoClinico=" + diagnosticoClinico
+				+ ", agendamento_id=" + agendamento_id + ", agendamentoDTO=" + agendamentoDTO + "]";
 	}
 
 	public ExameDTO() {
@@ -88,6 +98,14 @@ public class ExameDTO {
 
 	public void setAgendamento_id(int agendamento_id) {
 		this.agendamento_id = agendamento_id;
+	}
+
+	public AgendamentoDTO getAgendamentoDTO() {
+		return agendamentoDTO;
+	}
+
+	public void setAgendamentoDTO(AgendamentoDTO agendamentoDTO) {
+		this.agendamentoDTO = agendamentoDTO;
 	}
 
 }

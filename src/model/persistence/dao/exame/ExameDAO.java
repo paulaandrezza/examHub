@@ -4,8 +4,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 
+import model.enums.EnumTipoExame;
 import model.persistence.dao.GenericDAO;
+import model.persistence.dao.agendamento.AgendamentoDTO;
 import model.persistence.dao.interfaces.ICommonDAO;
 
 public class ExameDAO extends GenericDAO<ExameDTO> implements ICommonDAO<ExameDTO> {
@@ -135,8 +138,83 @@ public class ExameDAO extends GenericDAO<ExameDTO> implements ICommonDAO<ExameDT
 
 	@Override
 	public ExameDTO convertResultSetToEntityDTO(ResultSet resultSet) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		int agendamentoId = resultSet.getInt("agendamento_id");
+		Object dbSqlDate = resultSet.getObject("dataEhorario");
+		LocalDateTime dataEhorario = LocalDateTime.parse(dbSqlDate.toString());
+		int paciente_id = resultSet.getInt("paciente_id");
+		String medicoSolicitante = resultSet.getString("medicoSolicitante");
+		int statusAgendamento = resultSet.getInt("statusAgendamento");
+		int tipoExame = resultSet.getInt("tipoExame");
+
+		AgendamentoDTO agendamentoDTO = new AgendamentoDTO(agendamentoId, dataEhorario, paciente_id, medicoSolicitante,
+				statusAgendamento, tipoExame);
+
+		int exameId = resultSet.getInt("exame_id");
+		float peso = resultSet.getFloat("peso");
+		int medicoResponsavelId = resultSet.getInt("medicoResponsavel_id");
+		String conclusoes = resultSet.getString("conclusoes");
+		String detalhes = resultSet.getString("detalhes");
+		int diagnosticoClinico = resultSet.getInt("diagnosticoClinico");
+
+		EnumTipoExame enumTipoExame = EnumTipoExame.fromInt(tipoExame);
+		ExameDTO exameDTO = null;
+
+		switch (enumTipoExame) {
+		case ECOCARDIOGRAMA:
+			int ecocardiogramaId = resultSet.getInt("ecocardiograma_id");
+			int raizAorta = resultSet.getInt("raizAorta");
+			int atrioEsquerdo = resultSet.getInt("atrioEsquerdo");
+			int vdDiastolico = resultSet.getInt("vdDiastolico");
+			int veSistolico = resultSet.getInt("veSistolico");
+			int vePosterior = resultSet.getInt("vePosterior");
+			int septoIntraventricular = resultSet.getInt("septoIntraventricular");
+			int fracaoEncurtamento = resultSet.getInt("fracaoEncurtamento");
+			float fracaoEjecao = resultSet.getFloat("fracaoEjecao");
+			exameDTO = new EcocardiogramaDTO(peso, medicoResponsavelId, conclusoes, detalhes, diagnosticoClinico,
+					agendamentoId, agendamentoDTO, ecocardiogramaId, raizAorta, atrioEsquerdo, vdDiastolico,
+					veSistolico, vePosterior, septoIntraventricular, fracaoEncurtamento, fracaoEjecao, exameId);
+			break;
+		case ELETROCARDIOGRAMA:
+			int eletrocardiogramaId = resultSet.getInt("eletrocardiograma_id");
+			String ritmo = resultSet.getString("ritmo");
+			int fc = resultSet.getInt("fc");
+			float ondaP = resultSet.getFloat("ondaP");
+			int complexoQRS = resultSet.getInt("complexoQRS");
+			int eixoEletrico = resultSet.getInt("eixoEletrico");
+			exameDTO = new EletrocardiogramaDTO(peso, medicoResponsavelId, conclusoes, detalhes, diagnosticoClinico,
+					agendamentoId, agendamentoDTO, eletrocardiogramaId, ritmo, fc, ondaP, complexoQRS, eixoEletrico,
+					exameId);
+			break;
+		case HOLTER:
+			int holterId = resultSet.getInt("holter_id");
+			int arritmia = resultSet.getInt("arritmia");
+			int isquemiaCardiaca = resultSet.getInt("isquemiaCardiaca");
+			int dcIntravicular = resultSet.getInt("dcIntravicular");
+			int dcAtriovencular = resultSet.getInt("dcAtriovencular");
+			boolean apneiaSono = resultSet.getBoolean("apneiaSono");
+			exameDTO = new HolterDTO(peso, medicoResponsavelId, conclusoes, detalhes, diagnosticoClinico, agendamentoId,
+					agendamentoDTO, holterId, arritmia, isquemiaCardiaca, dcIntravicular, dcAtriovencular, apneiaSono,
+					exameId);
+			break;
+		case MAPA:
+			int mapaId = resultSet.getInt("mapa_id");
+			String mediaHoras = resultSet.getString("mediaHoras");
+			String paVirgula = resultSet.getString("paVirgula");
+			String paSono = resultSet.getString("paSono");
+			exameDTO = new MapaDTO(peso, medicoResponsavelId, conclusoes, detalhes, diagnosticoClinico, agendamentoId,
+					agendamentoDTO, mapaId, mediaHoras, paVirgula, paSono, exameId);
+			break;
+		case TESTE_ERGOMETRICO:
+			int testeErgometricoId = resultSet.getInt("testeErgometrico_id");
+			int ritmoTeste = resultSet.getInt("testeErgometrico_ritmo");
+			int fcTeste = resultSet.getInt("testeErgometrico_fc");
+			exameDTO = new TesteErgometricoDTO(peso, medicoResponsavelId, conclusoes, detalhes, diagnosticoClinico,
+					agendamentoId, agendamentoDTO, testeErgometricoId, ritmoTeste, fcTeste, exameId);
+			break;
+		default:
+			throw new SQLException("Tipo de exame desconhecido: " + enumTipoExame);
+		}
+		return exameDTO;
 	}
 
 }

@@ -29,6 +29,19 @@ public class Pessoa extends BaseEntity {
 		this.endereco = endereco;
 	}
 
+	public Pessoa(int id, String nome, String cpf, String rg, LocalDate dataNascimento, long celular, long telefone,
+			String email, EnumGenero genero) {
+		super(id);
+		this.nome = nome;
+		this.cpf = cpf;
+		this.rg = rg;
+		this.dataNascimento = dataNascimento;
+		this.celular = celular;
+		this.telefone = telefone;
+		this.email = email;
+		this.genero = genero;
+	}
+
 	public Pessoa(String nome, String cpf, String rg, LocalDate dataNascimento, long celular, long telefone,
 			String email, EnumGenero genero, Endereco endereco) {
 		this.nome = nome;

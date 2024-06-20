@@ -6,7 +6,7 @@ import model.entities.exames.Exame;
 import model.enums.EnumDiagnostico;
 
 public class Ecocardiograma extends Exame {
-	int id;
+	int idEcocardiograma;
 	int raizAorta;
 	int atrioEsquerdo;
 	int vdDiastolico;
@@ -15,14 +15,13 @@ public class Ecocardiograma extends Exame {
 	int septoIntraventricular;
 	int fracaoEncurtamento;
 	float fracaoEjecao;
-	Exame exame;
 
 	public Ecocardiograma(int id, float peso, Funcionario medicoResponsavel, String conclusoes, String detalhes,
-			EnumDiagnostico diagnosticoClinico, Agendamento agendamento, int id2, int raizAorta, int atrioEsquerdo,
-			int vdDiastolico, int veSistolico, int vePosterior, int septoIntraventricular, int fracaoEncurtamento,
-			float fracaoEjecao, Exame exame) {
+			EnumDiagnostico diagnosticoClinico, Agendamento agendamento, int idEcocardiograma, int raizAorta,
+			int atrioEsquerdo, int vdDiastolico, int veSistolico, int vePosterior, int septoIntraventricular,
+			int fracaoEncurtamento, float fracaoEjecao) {
 		super(id, peso, medicoResponsavel, conclusoes, detalhes, diagnosticoClinico, agendamento);
-		id = id2;
+		this.idEcocardiograma = idEcocardiograma;
 		this.raizAorta = raizAorta;
 		this.atrioEsquerdo = atrioEsquerdo;
 		this.vdDiastolico = vdDiastolico;
@@ -31,7 +30,14 @@ public class Ecocardiograma extends Exame {
 		this.septoIntraventricular = septoIntraventricular;
 		this.fracaoEncurtamento = fracaoEncurtamento;
 		this.fracaoEjecao = fracaoEjecao;
-		this.exame = exame;
+	}
+
+	@Override
+	public String toString() {
+		return "Ecocardiograma [idEcocardiograma=" + idEcocardiograma + ", raizAorta=" + raizAorta + ", atrioEsquerdo="
+				+ atrioEsquerdo + ", vdDiastolico=" + vdDiastolico + ", veSistolico=" + veSistolico + ", vePosterior="
+				+ vePosterior + ", septoIntraventricular=" + septoIntraventricular + ", fracaoEncurtamento="
+				+ fracaoEncurtamento + ", fracaoEjecao=" + fracaoEjecao + "]\n";
 	}
 
 }

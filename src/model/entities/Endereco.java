@@ -8,7 +8,7 @@ public class Endereco extends BaseEntity {
 	String rua;
 	String numero;
 	String complemento;
-	
+
 	public Endereco(int id, int cep, String estado, String cidade, String bairro, String rua, String numero,
 			String complemento) {
 		super(id);
@@ -20,7 +20,7 @@ public class Endereco extends BaseEntity {
 		this.numero = numero;
 		this.complemento = complemento;
 	}
-	
+
 	public Endereco(int cep, String estado, String cidade, String bairro, String rua, String numero,
 			String complemento) {
 		this.cep = cep;
@@ -32,11 +32,13 @@ public class Endereco extends BaseEntity {
 		this.complemento = complemento;
 	}
 
+	public Endereco() {
+	}
+
 	@Override
 	public String toString() {
 		return "Endereco [cep=" + cep + ", estado=" + estado + ", cidade=" + cidade + ", bairro=" + bairro + ", rua="
 				+ rua + ", numero=" + numero + ", complemento=" + complemento + ", id=" + id + "]";
 	}
-	
-	
+
 }

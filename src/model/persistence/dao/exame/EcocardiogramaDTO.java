@@ -1,5 +1,7 @@
 package model.persistence.dao.exame;
 
+import model.persistence.dao.agendamento.AgendamentoDTO;
+
 public class EcocardiogramaDTO extends ExameDTO {
 	int id;
 	int raizAorta;
@@ -12,12 +14,13 @@ public class EcocardiogramaDTO extends ExameDTO {
 	float fracaoEjecao;
 	int exame_id;
 
-	public EcocardiogramaDTO(int id, float peso, int medicoResponsavel_id, String conclusoes, String detalhes,
-			int diagnosticoClinico, int agendamento_id, int id2, int raizAorta, int atrioEsquerdo, int vdDiastolico,
-			int veSistolico, int vePosterior, int septoIntraventricular, int fracaoEncurtamento, float fracaoEjecao,
-			int exame_id) {
-		super(id, peso, medicoResponsavel_id, conclusoes, detalhes, diagnosticoClinico, agendamento_id);
-		id = id2;
+	public EcocardiogramaDTO(float peso, int medicoResponsavel_id, String conclusoes, String detalhes,
+			int diagnosticoClinico, int agendamento_id, AgendamentoDTO agendamentoDTO, int id, int raizAorta,
+			int atrioEsquerdo, int vdDiastolico, int veSistolico, int vePosterior, int septoIntraventricular,
+			int fracaoEncurtamento, float fracaoEjecao, int exame_id) {
+		super(exame_id, peso, medicoResponsavel_id, conclusoes, detalhes, diagnosticoClinico, agendamento_id,
+				agendamentoDTO);
+		this.id = id;
 		this.raizAorta = raizAorta;
 		this.atrioEsquerdo = atrioEsquerdo;
 		this.vdDiastolico = vdDiastolico;
