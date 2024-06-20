@@ -17,7 +17,6 @@ public class ExameController implements IController<ExameDTO, Exame> {
 
 	@Override
 	public int create(ExameDTO dto) throws Exception {
-		System.out.println("chegou aqui");
 		try {
 			return exameDAO.save(dto);
 		} catch (Exception e) {

@@ -4,8 +4,8 @@ import javax.swing.JOptionPane;
 
 import controller.AgendamentoController;
 import controller.ExameController;
-import model.enums.EnumDiagnostico;
 import controller.PacienteController;
+import model.enums.EnumDiagnostico;
 import model.enums.EnumTipoExame;
 import model.persistence.DatabaseConnection;
 import model.persistence.dao.agendamento.AgendamentoDTO;
@@ -28,7 +28,7 @@ public class Main {
 			System.out.println("\n\n" + pacienteController.getByEmail("michele.nonato@example.com") + "\n\n");
 
 			int id = agendamentoController.create(agendamentoDTO);
-			EcocardiogramaDTO ecocardiogramaDTO = new EcocardiogramaDTO(40, 1, "sdhjgf", "drjkgh",
+			EcocardiogramaDTO ecocardiogramaDTO = new EcocardiogramaDTO(40, 1, "paulinha", "drjkgh",
 					EnumDiagnostico.NORMAL_CRIANCA.getValue(), id, 10, 10, 10, 10, 10, 6, 7, (float) 0.5);
 			exameController.create(ecocardiogramaDTO);
 //			System.out.println(agendamentoController.getAll());

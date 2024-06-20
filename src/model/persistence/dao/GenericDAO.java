@@ -26,7 +26,7 @@ public abstract class GenericDAO<DTO> implements IGenericDAO<DTO> {
 	@Override
 	public List<DTO> getAll(String table) {
 		List<DTO> list = new ArrayList<>();
-		if (table.length() > 0)
+		if (table != null)
 			this.sqlQuery = DatabaseConnection.loadSQL("resources/sql/querys/exames/" + table + ".sql");
 		System.out.println(sqlQuery);
 		try (PreparedStatement statement = connection.prepareStatement(sqlQuery);
@@ -85,7 +85,8 @@ public abstract class GenericDAO<DTO> implements IGenericDAO<DTO> {
 	@Override
 	public List<DTO> findByField(String fieldName, Object fieldValue, String table) throws SQLException {
 		List<DTO> resultList = new ArrayList<>();
-		if (table.length() > 0)
+		System.out.println(table);
+		if (table != null)
 			this.sqlQuery = DatabaseConnection.loadSQL("resources/sql/querys/exames/" + table + ".sql");
 		String query = sqlQuery + " WHERE " + fieldName + " = ?";
 		try (PreparedStatement statement = connection.prepareStatement(query)) {
