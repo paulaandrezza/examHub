@@ -14,6 +14,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -273,6 +274,11 @@ public class PacientePanel extends JPanel {
 		labelPlano.setAlignmentX(0.5f);
 		boxHorizontalPlano.add(labelPlano);
 
+		JLabel labelInfo_6 = new JLabel("*");
+		labelInfo_6.setForeground(Color.RED);
+		labelInfo_6.setFont(new Font("Verdana", Font.BOLD, 16));
+		boxHorizontalPlano.add(labelInfo_6);
+
 		Component horizontal_convenio_3 = Box.createHorizontalStrut(20);
 		horizontal_convenio_3.setMaximumSize(new Dimension(16, 32767));
 		boxHorizontalPlano.add(horizontal_convenio_3);
@@ -429,6 +435,7 @@ public class PacientePanel extends JPanel {
 					cadastroPanel.switchToNextTab();
 				} catch (Exception a) {
 					System.out.println(a);
+					JOptionPane.showMessageDialog(null, cadastroPanel.errorMessage());
 				}
 			}
 		});

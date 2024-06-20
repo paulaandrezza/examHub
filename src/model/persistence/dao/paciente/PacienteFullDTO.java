@@ -5,8 +5,7 @@ import java.time.LocalDate;
 import model.enums.EnumGenero;
 
 public class PacienteFullDTO {
-	private int idPaciente;
-
+	private int idPessoa;
 	private String nome;
 	private String cpf;
 	private String rg;
@@ -16,6 +15,7 @@ public class PacienteFullDTO {
 	private String email;
 	private EnumGenero genero;
 
+	private int idEndereco;
 	private int cep;
 	private String estado;
 	private String cidade;
@@ -24,24 +24,28 @@ public class PacienteFullDTO {
 	private String numero;
 	private String complemento;
 
+	private int idPaciente;
 	private float altura;
 	private boolean fumante;
 	private boolean marcaPasso;
 
+	private int idConvenio;
 	private int numeroCarteirinha;
 	private String prestadora;
 	private String plano;
 
+	private int idHistoricoMedico;
 	private String alergias;
 	private String medicamentos;
 	private String condicaoMedica;
 
-	public PacienteFullDTO(int idPaciente, String nome, String cpf, String rg, LocalDate dataNascimento, long celular,
-			long telefone, String email, EnumGenero genero, int cep, String estado, String cidade, String bairro,
-			String rua, String numero, String complemento, float altura, boolean fumante, boolean marcaPasso,
-			int numeroCarteirinha, String prestadora, String plano, String alergias, String medicamentos,
-			String condicaoMedica) {
-		this.idPaciente = idPaciente;
+	public PacienteFullDTO(int idPessoa, String nome, String cpf, String rg, LocalDate dataNascimento, long celular,
+			long telefone, String email, EnumGenero genero, int idEndereco, int cep, String estado, String cidade,
+			String bairro, String rua, String numero, String complemento, int idPaciente, float altura, boolean fumante,
+			boolean marcaPasso, int idConvenio, int numeroCarteirinha, String prestadora, String plano,
+			int idHistoricoMedico, String alergias, String medicamentos, String condicaoMedica) {
+		super();
+		this.idPessoa = idPessoa;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.rg = rg;
@@ -50,6 +54,7 @@ public class PacienteFullDTO {
 		this.telefone = telefone;
 		this.email = email;
 		this.genero = genero;
+		this.idEndereco = idEndereco;
 		this.cep = cep;
 		this.estado = estado;
 		this.cidade = cidade;
@@ -57,12 +62,15 @@ public class PacienteFullDTO {
 		this.rua = rua;
 		this.numero = numero;
 		this.complemento = complemento;
+		this.idPaciente = idPaciente;
 		this.altura = altura;
 		this.fumante = fumante;
 		this.marcaPasso = marcaPasso;
+		this.idConvenio = idConvenio;
 		this.numeroCarteirinha = numeroCarteirinha;
 		this.prestadora = prestadora;
 		this.plano = plano;
+		this.idHistoricoMedico = idHistoricoMedico;
 		this.alergias = alergias;
 		this.medicamentos = medicamentos;
 		this.condicaoMedica = condicaoMedica;
@@ -72,6 +80,7 @@ public class PacienteFullDTO {
 			String email, EnumGenero genero, int cep, String estado, String cidade, String bairro, String rua,
 			String numero, String complemento, float altura, boolean fumante, boolean marcaPasso, int numeroCarteirinha,
 			String prestadora, String plano, String alergias, String medicamentos, String condicaoMedica) {
+		super();
 		this.nome = nome;
 		this.cpf = cpf;
 		this.rg = rg;
@@ -104,21 +113,23 @@ public class PacienteFullDTO {
 
 	@Override
 	public String toString() {
-		return "PacienteFullDTO [idPaciente=" + idPaciente + ", nome=" + nome + ", cpf=" + cpf + ", rg=" + rg
+		return "PacienteFullDTO [idPessoa=" + idPessoa + ", nome=" + nome + ", cpf=" + cpf + ", rg=" + rg
 				+ ", dataNascimento=" + dataNascimento + ", celular=" + celular + ", telefone=" + telefone + ", email="
-				+ email + ", genero=" + genero + ", cep=" + cep + ", estado=" + estado + ", cidade=" + cidade
-				+ ", bairro=" + bairro + ", rua=" + rua + ", numero=" + numero + ", complemento=" + complemento
-				+ ", altura=" + altura + ", fumante=" + fumante + ", marcaPasso=" + marcaPasso + ", numeroCarteirinha="
-				+ numeroCarteirinha + ", prestadora=" + prestadora + ", plano=" + plano + ", alergias=" + alergias
-				+ ", medicamentos=" + medicamentos + ", condicaoMedica=" + condicaoMedica + "]";
+				+ email + ", genero=" + genero + ", idEndereco=" + idEndereco + ", cep=" + cep + ", estado=" + estado
+				+ ", cidade=" + cidade + ", bairro=" + bairro + ", rua=" + rua + ", numero=" + numero + ", complemento="
+				+ complemento + ", idPaciente=" + idPaciente + ", altura=" + altura + ", fumante=" + fumante
+				+ ", marcaPasso=" + marcaPasso + ", idConvenio=" + idConvenio + ", numeroCarteirinha="
+				+ numeroCarteirinha + ", prestadora=" + prestadora + ", plano=" + plano + ", idHistoricoMedico="
+				+ idHistoricoMedico + ", alergias=" + alergias + ", medicamentos=" + medicamentos + ", condicaoMedica="
+				+ condicaoMedica + "]";
 	}
 
-	public int getIdPaciente() {
-		return idPaciente;
+	public int getIdPessoa() {
+		return idPessoa;
 	}
 
-	public void setIdPaciente(int idPaciente) {
-		this.idPaciente = idPaciente;
+	public void setIdPessoa(int idPessoa) {
+		this.idPessoa = idPessoa;
 	}
 
 	public String getNome() {
@@ -185,6 +196,14 @@ public class PacienteFullDTO {
 		this.genero = genero;
 	}
 
+	public int getIdEndereco() {
+		return idEndereco;
+	}
+
+	public void setIdEndereco(int idEndereco) {
+		this.idEndereco = idEndereco;
+	}
+
 	public int getCep() {
 		return cep;
 	}
@@ -241,6 +260,14 @@ public class PacienteFullDTO {
 		this.complemento = complemento;
 	}
 
+	public int getIdPaciente() {
+		return idPaciente;
+	}
+
+	public void setIdPaciente(int idPaciente) {
+		this.idPaciente = idPaciente;
+	}
+
 	public float getAltura() {
 		return altura;
 	}
@@ -265,6 +292,14 @@ public class PacienteFullDTO {
 		this.marcaPasso = marcaPasso;
 	}
 
+	public int getIdConvenio() {
+		return idConvenio;
+	}
+
+	public void setIdConvenio(int idConvenio) {
+		this.idConvenio = idConvenio;
+	}
+
 	public int getNumeroCarteirinha() {
 		return numeroCarteirinha;
 	}
@@ -287,6 +322,14 @@ public class PacienteFullDTO {
 
 	public void setPlano(String plano) {
 		this.plano = plano;
+	}
+
+	public int getIdHistoricoMedico() {
+		return idHistoricoMedico;
+	}
+
+	public void setIdHistoricoMedico(int idHistoricoMedico) {
+		this.idHistoricoMedico = idHistoricoMedico;
 	}
 
 	public String getAlergias() {

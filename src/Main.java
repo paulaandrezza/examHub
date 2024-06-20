@@ -22,9 +22,9 @@ public class Main {
 		DatabaseConnection dbConnection = new DatabaseConnection();
 		dbConnection.connectAndExecute();
 
+		PacienteController pacienteController = new PacienteController();
 		AgendamentoController agendamentoController = new AgendamentoController();
 		ExameController exameController = new ExameController();
-		PacienteController pacienteController = new PacienteController();
 
 		try {
 			// Criar agendamento para Ecocardiograma

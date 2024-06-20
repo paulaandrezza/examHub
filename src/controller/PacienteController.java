@@ -73,19 +73,20 @@ public class PacienteController implements IController<PacienteFullDTO, Paciente
 
 	@Override
 	public Paciente convertDtoToEntity(PacienteFullDTO dto) {
-		Endereco endereco = new Endereco(dto.getCep(), dto.getEstado(), dto.getCidade(), dto.getBairro(), dto.getRua(),
-				dto.getNumero(), dto.getComplemento());
+		Endereco endereco = new Endereco(dto.getIdEndereco(), dto.getCep(), dto.getEstado(), dto.getCidade(),
+				dto.getBairro(), dto.getRua(), dto.getNumero(), dto.getComplemento());
 
-		Pessoa pessoa = new Pessoa(dto.getNome(), dto.getCpf(), dto.getRg(), dto.getDataNascimento(), dto.getCelular(),
-				dto.getTelefone(), dto.getEmail(), dto.getGenero(), endereco);
+		Pessoa pessoa = new Pessoa(dto.getIdPessoa(), dto.getNome(), dto.getCpf(), dto.getRg(), dto.getDataNascimento(),
+				dto.getCelular(), dto.getTelefone(), dto.getEmail(), dto.getGenero(), endereco);
 
-		Convenio convenio = new Convenio(dto.getNumeroCarteirinha(), dto.getPrestadora(), dto.getPlano());
+		Convenio convenio = new Convenio(dto.getIdConvenio(), dto.getNumeroCarteirinha(), dto.getPrestadora(),
+				dto.getPlano());
 
-		HistoricoMedico historicoMedico = new HistoricoMedico(dto.getAlergias(), dto.getMedicamentos(),
-				dto.getCondicaoMedica());
+		HistoricoMedico historicoMedico = new HistoricoMedico(dto.getIdHistoricoMedico(), dto.getAlergias(),
+				dto.getMedicamentos(), dto.getCondicaoMedica());
 
-		Paciente paciente = new Paciente(dto.getAltura(), dto.isFumante(), dto.isMarcaPasso(), convenio,
-				historicoMedico, pessoa);
+		Paciente paciente = new Paciente(dto.getIdPaciente(), dto.getAltura(), dto.isFumante(), dto.isMarcaPasso(),
+				convenio, historicoMedico, pessoa);
 
 		return paciente;
 	}

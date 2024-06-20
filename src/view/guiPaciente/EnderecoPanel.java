@@ -300,7 +300,7 @@ public class EnderecoPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					String cep = textCep.getText().replaceAll("[^0-9]", "");
-					System.out.println(cep);
+
 					pacienteFullDTO.setCep(Integer.parseInt(cep));
 					pacienteFullDTO.setEstado(textEstado.getText());
 					pacienteFullDTO.setCidade(textCidade.getText());
@@ -319,27 +319,12 @@ public class EnderecoPanel extends JPanel {
 						pacienteFullDTO.setComplemento(textComplemento.getText());
 					}
 
-					pacienteFullDTO.setCep(Integer.parseInt(textCep.getText()));
-					pacienteFullDTO.setEstado(textEstado.getText());
-					pacienteFullDTO.setCidade(textCidade.getText());
-					pacienteFullDTO.setRua(textRua.getText());
-					pacienteFullDTO.setBairro(textBairro.getText());
-
-					if (textNumero.getText().equals("")) {
-						pacienteFullDTO.setNumero(null);
-					} else {
-						pacienteFullDTO.setNumero(textNumero.getText());
-					}
-
-					if (textNumero.getText().equals("")) {
-						pacienteFullDTO.setComplemento(null);
-					} else {
-						pacienteFullDTO.setComplemento(textComplemento.getText());
-					}
-
 					pacienteController.create(pacienteFullDTO);
+					JOptionPane.showMessageDialog(null, "Novo paciente cadastrado com sucesso!", "Sucesso",
+							JOptionPane.INFORMATION_MESSAGE);
 				} catch (Exception a) {
 					System.out.println("Error: " + a.getMessage());
+					JOptionPane.showMessageDialog(null, cadastroPanel.errorMessage());
 				}
 			}
 		});
