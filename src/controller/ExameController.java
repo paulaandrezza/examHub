@@ -58,11 +58,6 @@ public class ExameController implements IController<ExameDTO, Exame> {
 	}
 
 	@Override
-	public Exame getById(int id) throws SQLException, EntityNotFoundException {
-		return convertDtoToEntity(exameDAO.getById(id));
-	}
-
-	@Override
 	public List<Exame> getAll() throws SQLException, EntityNotFoundException {
 		List<ExameDTO> exameDTO = exameDAO.getAll(null);
 		return convertDtoListToEntityList(exameDTO);
