@@ -1,19 +1,30 @@
 package model.entities.exames.tipos;
 
-import model.entities.BaseEntity;
+import model.entities.Funcionario;
+import model.entities.exames.Agendamento;
 import model.entities.exames.Exame;
+import model.enums.EnumDiagnostico;
 
-public class Mapa extends BaseEntity {
+public class Mapa extends Exame {
+	int idMapa;
 	String mediaHoras;
 	String paVirgula;
 	String paSono;
-	Exame exame;
-	
-	public Mapa(int id, String mediaHoras, String paVirgula, String paSono, Exame exame) {
-		super(id);
+
+	public Mapa(int id, float peso, Funcionario medicoResponsavel, String conclusoes, String detalhes,
+			EnumDiagnostico diagnosticoClinico, Agendamento agendamento, int idMapa, String mediaHoras,
+			String paVirgula, String paSono) {
+		super(id, peso, medicoResponsavel, conclusoes, detalhes, diagnosticoClinico, agendamento);
+		this.idMapa = idMapa;
 		this.mediaHoras = mediaHoras;
 		this.paVirgula = paVirgula;
 		this.paSono = paSono;
-		this.exame = exame;
 	}
+
+	@Override
+	public String toString() {
+		return "Mapa [idMapa=" + idMapa + ", mediaHoras=" + mediaHoras + ", paVirgula=" + paVirgula + ", paSono="
+				+ paSono + "]\n";
+	}
+
 }

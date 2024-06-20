@@ -90,14 +90,14 @@ CREATE TABLE IF NOT EXISTS Agendamento (
 -- table Exame
 CREATE TABLE IF NOT EXISTS Exame (
     id INTEGER PRIMARY KEY,
-    agendamento_int INT NOT NULL,
+    agendamento_id INT NOT NULL,
     peso FLOAT NOT NULL,
     medicoResponsavel_id INT NOT NULL,
     conclusoes TEXT,
     detalhes TEXT,
     diagnosticoClinico INT,
-    FOREIGN KEY (agendamento_int) REFERENCES Agendamento(id)
-    FOREIGN KEY (medicoResponsavel_id) REFERENCES Medico(id)
+    FOREIGN KEY (agendamento_id) REFERENCES Agendamento(id)
+    FOREIGN KEY (medicoResponsavel_id) REFERENCES Funcionario(id)
 );
 
 -- table ControleEntrega
@@ -165,11 +165,7 @@ CREATE TABLE IF NOT EXISTS TesteErgometrico (
     id INTEGER PRIMARY KEY,
     ritmo INT NOT NULL,
     fc INT NOT NULL,
-    detalhes TEXT,
-    conclusoes TEXT,
-    diagnosticoClinico INT NOT NULL,
     exame_id INT NOT NULL,
-    FOREIGN KEY (exame_id) REFERENCES Exame(id),
-    FOREIGN KEY (diagnosticoClinico) REFERENCES Diagnostico(id)
+    FOREIGN KEY (exame_id) REFERENCES Exame(id)
 );
 

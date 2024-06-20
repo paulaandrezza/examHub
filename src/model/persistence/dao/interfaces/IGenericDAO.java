@@ -6,9 +6,9 @@ import java.util.List;
 import model.exceptions.EntityNotFoundException;
 
 public interface IGenericDAO<DTO> {
-	List<DTO> getAll();
+	List<DTO> getAll(String table);
 
-	List<DTO> findByField(String fieldName, Object fieldValue) throws SQLException;
+	List<DTO> findByField(String fieldName, Object fieldValue, String table) throws SQLException;
 
 	DTO getById(int id) throws SQLException, EntityNotFoundException;
 

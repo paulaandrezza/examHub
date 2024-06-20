@@ -1,11 +1,14 @@
 package model.persistence.dao.auth;
 
+import model.persistence.dao.paciente.PessoaDTO;
+
 public class FuncionarioDTO {
 	int id;
 	String emailCorporativo;
 	String senha;
 	int tipoFuncionario;
 	int pessoa_id;
+	PessoaDTO pessoa;
 
 	public FuncionarioDTO(int id, String emailCorporativo, String senha, int tipoFuncionario, int pessoa_id) {
 		this.id = id;
@@ -13,6 +16,17 @@ public class FuncionarioDTO {
 		this.senha = senha;
 		this.tipoFuncionario = tipoFuncionario;
 		this.pessoa_id = pessoa_id;
+	}
+
+	public FuncionarioDTO(int id, String emailCorporativo, String senha, int tipoFuncionario, int pessoa_id,
+			PessoaDTO pessoa) {
+		super();
+		this.id = id;
+		this.emailCorporativo = emailCorporativo;
+		this.senha = senha;
+		this.tipoFuncionario = tipoFuncionario;
+		this.pessoa_id = pessoa_id;
+		this.pessoa = pessoa;
 	}
 
 	public int getId() {
@@ -53,6 +67,14 @@ public class FuncionarioDTO {
 
 	public void setPessoa_id(int pessoa_id) {
 		this.pessoa_id = pessoa_id;
+	}
+
+	public PessoaDTO getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(PessoaDTO pessoa) {
+		this.pessoa = pessoa;
 	}
 
 	@Override

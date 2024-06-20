@@ -3,6 +3,7 @@ package model.persistence.dao.paciente;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
 import model.entities.Paciente;
 import model.enums.EnumGenero;
