@@ -62,7 +62,7 @@ public class PacientePanel extends JPanel {
 		setLayout(null);
 
 		Box tituloBoxHorizontalPaciente = Box.createVerticalBox();
-		tituloBoxHorizontalPaciente.setBounds(10, 10, 750, 45);
+		tituloBoxHorizontalPaciente.setBounds(125, 10, 750, 45);
 		add(tituloBoxHorizontalPaciente);
 
 		JLabel labelPaciente = new JLabel("PACIENTE");
@@ -75,7 +75,7 @@ public class PacientePanel extends JPanel {
 
 		Box boxHorizontalPaciente = Box.createHorizontalBox();
 		boxHorizontalPaciente.setAlignmentY(Component.CENTER_ALIGNMENT);
-		boxHorizontalPaciente.setBounds(10, 65, 750, 32);
+		boxHorizontalPaciente.setBounds(125, 65, 750, 32);
 		add(boxHorizontalPaciente);
 
 		Box boxHorizontalAltura = Box.createHorizontalBox();
@@ -191,7 +191,7 @@ public class PacientePanel extends JPanel {
 		add(horizontal_pacientepanel_1);
 
 		Box tituloBoxHorizontalConvenio = Box.createVerticalBox();
-		tituloBoxHorizontalConvenio.setBounds(10, 162, 750, 45);
+		tituloBoxHorizontalConvenio.setBounds(125, 162, 750, 45);
 		add(tituloBoxHorizontalConvenio);
 
 		JLabel labelConvenio = new JLabel("CONVÊNIO");
@@ -204,7 +204,7 @@ public class PacientePanel extends JPanel {
 
 		Box boxVerticalConvenio = Box.createVerticalBox();
 		boxVerticalConvenio.setAlignmentY(0.5f);
-		boxVerticalConvenio.setBounds(10, 210, 750, 128);
+		boxVerticalConvenio.setBounds(125, 210, 750, 128);
 		add(boxVerticalConvenio);
 
 		Box boxHorizontalNumeroCarterinha = Box.createHorizontalBox();
@@ -292,7 +292,7 @@ public class PacientePanel extends JPanel {
 		add(horizontal_pacientePanel_2);
 
 		Box tituloBoxVerticalHistoricoMedico = Box.createVerticalBox();
-		tituloBoxVerticalHistoricoMedico.setBounds(10, 393, 750, 45);
+		tituloBoxVerticalHistoricoMedico.setBounds(125, 393, 750, 45);
 		add(tituloBoxVerticalHistoricoMedico);
 
 		JLabel labelHistoricoMedicoTitulo = new JLabel("HISTÓRICO MÉDICO");
@@ -305,7 +305,7 @@ public class PacientePanel extends JPanel {
 
 		Box boxHorizontalhistoricoMedico = Box.createHorizontalBox();
 		boxHorizontalhistoricoMedico.setAlignmentY(0.5f);
-		boxHorizontalhistoricoMedico.setBounds(10, 448, 750, 96);
+		boxHorizontalhistoricoMedico.setBounds(125, 448, 750, 96);
 		add(boxHorizontalhistoricoMedico);
 
 		Box boxVerticalAlergias = Box.createVerticalBox();
@@ -364,7 +364,7 @@ public class PacientePanel extends JPanel {
 
 		Box boxHorizontalAcao = Box.createHorizontalBox();
 		boxHorizontalAcao.setAlignmentY(Component.CENTER_ALIGNMENT);
-		boxHorizontalAcao.setBounds(10, 570, 750, 32);
+		boxHorizontalAcao.setBounds(125, 570, 750, 32);
 		add(boxHorizontalAcao);
 
 		Box boxHorizontalVoltar = Box.createHorizontalBox();

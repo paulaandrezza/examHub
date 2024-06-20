@@ -1,5 +1,6 @@
 package view.guiMenu;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -122,6 +123,9 @@ public class MenuPanel extends JFrame {
 		boxHorizontal.add(itemLabel);
 
 		JButton btnOpen = new JButton("Abrir");
+		btnOpen.setBackground(Color.WHITE);
+		btnOpen.setFont(new Font("Verdana", Font.PLAIN, 12));
+
 		btnOpen.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		btnOpen.addActionListener(actionListener);
 

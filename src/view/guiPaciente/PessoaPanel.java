@@ -62,7 +62,7 @@ public class PessoaPanel extends JPanel {
 		setLayout(null);
 
 		Box tituloBoxVerticalDadosPessoais = Box.createVerticalBox();
-		tituloBoxVerticalDadosPessoais.setBounds(10, 10, 750, 45);
+		tituloBoxVerticalDadosPessoais.setBounds(125, 10, 750, 45);
 		add(tituloBoxVerticalDadosPessoais);
 
 		JLabel tituloDadosPessoais = new JLabel("DADOS PESSOAIS");
@@ -74,7 +74,7 @@ public class PessoaPanel extends JPanel {
 		tituloBoxVerticalDadosPessoais.add(hr_dadosPessoais);
 
 		Box boxHorizontalDadosPessoais = Box.createHorizontalBox();
-		boxHorizontalDadosPessoais.setBounds(10, 65, 750, 32);
+		boxHorizontalDadosPessoais.setBounds(125, 65, 750, 32);
 		add(boxHorizontalDadosPessoais);
 
 		Box boxHorizontalNome = Box.createHorizontalBox();
@@ -104,7 +104,7 @@ public class PessoaPanel extends JPanel {
 		add(horizontal_pessoapanel_1);
 
 		Box tituloBoxVerticalDocumentos = Box.createVerticalBox();
-		tituloBoxVerticalDocumentos.setBounds(10, 129, 750, 45);
+		tituloBoxVerticalDocumentos.setBounds(125, 129, 750, 45);
 		add(tituloBoxVerticalDocumentos);
 
 		JLabel documentosLabel = new JLabel("DOCUMENTOS");
@@ -116,7 +116,7 @@ public class PessoaPanel extends JPanel {
 		tituloBoxVerticalDocumentos.add(hr_documentos);
 
 		Box boxHorizontalDocumentos = Box.createHorizontalBox();
-		boxHorizontalDocumentos.setBounds(10, 177, 750, 32);
+		boxHorizontalDocumentos.setBounds(125, 177, 750, 32);
 		add(boxHorizontalDocumentos);
 
 		Box boxHorizontalCpf = Box.createHorizontalBox();
@@ -211,7 +211,7 @@ public class PessoaPanel extends JPanel {
 		add(horizontal_pessoapanel_2);
 
 		Box tituloBoxVerticalContato = Box.createVerticalBox();
-		tituloBoxVerticalContato.setBounds(10, 241, 750, 45);
+		tituloBoxVerticalContato.setBounds(125, 241, 750, 45);
 		add(tituloBoxVerticalContato);
 
 		JLabel labelContato = new JLabel("CONTATO");
@@ -223,7 +223,7 @@ public class PessoaPanel extends JPanel {
 		tituloBoxVerticalContato.add(hr_contato);
 
 		Box boxVerticalContato = Box.createVerticalBox();
-		boxVerticalContato.setBounds(10, 289, 750, 128);
+		boxVerticalContato.setBounds(125, 289, 750, 128);
 		add(boxVerticalContato);
 
 		Box boxHorizontalCelular = Box.createHorizontalBox();
@@ -307,7 +307,7 @@ public class PessoaPanel extends JPanel {
 		add(horizontal_contato_4);
 
 		Box tituloBoxVerticalOutrasInformacoes = Box.createVerticalBox();
-		tituloBoxVerticalOutrasInformacoes.setBounds(10, 451, 750, 45);
+		tituloBoxVerticalOutrasInformacoes.setBounds(125, 451, 750, 45);
 		add(tituloBoxVerticalOutrasInformacoes);
 
 		JLabel labelOutrasInformacoes = new JLabel("OUTRAS INFORMAÇÕES");
@@ -319,7 +319,7 @@ public class PessoaPanel extends JPanel {
 		tituloBoxVerticalOutrasInformacoes.add(hr_outrasInformacoes);
 
 		Box boxHorizontalOutrasInformacoes = Box.createHorizontalBox();
-		boxHorizontalOutrasInformacoes.setBounds(10, 504, 750, 32);
+		boxHorizontalOutrasInformacoes.setBounds(125, 504, 750, 32);
 		add(boxHorizontalOutrasInformacoes);
 
 		Box boxHorizontalGenero = Box.createHorizontalBox();
@@ -345,7 +345,7 @@ public class PessoaPanel extends JPanel {
 
 		Box boxHorizontalAcao = Box.createHorizontalBox();
 		boxHorizontalAcao.setAlignmentY(0.5f);
-		boxHorizontalAcao.setBounds(10, 570, 750, 32);
+		boxHorizontalAcao.setBounds(125, 570, 750, 32);
 		add(boxHorizontalAcao);
 
 		Component horizontal_acao_1 = Box.createHorizontalStrut(570);
