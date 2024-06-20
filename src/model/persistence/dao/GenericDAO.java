@@ -86,7 +86,14 @@ public abstract class GenericDAO<DTO> implements IGenericDAO<DTO> {
 		List<DTO> resultList = new ArrayList<>();
 		if (table != null)
 			this.sqlQuery = DatabaseConnection.loadSQL("resources/sql/querys/exames/" + table + ".sql");
-		String query = sqlQuery + " WHERE " + fieldName + " = ?";
+
+		String query;
+		if (tableName.equals("paciente")) {
+			query = sqlQuery + " AND " + fieldName + " = ?";
+		} else {
+			query = sqlQuery + " WHERE " + fieldName + " = ?";
+		}
+
 		try (PreparedStatement statement = connection.prepareStatement(query)) {
 			statement.setObject(1, fieldValue);
 			try (ResultSet resultSet = statement.executeQuery()) {
@@ -113,18 +120,31 @@ public abstract class GenericDAO<DTO> implements IGenericDAO<DTO> {
 	}
 
 	@Override
-	public void delete(int id) throws SQLException {
-		String sql = "DELETE FROM " + tableName + " WHERE id = ?";
+	public void update(String tableName, String fieldName, Object fieldValue, int id) throws SQLException {
+		String sql = "UPDATE " + tableName + " SET " + fieldName + " = ? WHERE id = ?";
 		try (PreparedStatement statement = connection.prepareStatement(sql)) {
-			connection.setAutoCommit(false);
-			statement.setInt(1, id);
+			statement.setObject(1, fieldValue);
+			statement.setInt(2, id);
 			int affectedRows = statement.executeUpdate();
-			connection.commit();
 			if (affectedRows == 0) {
-				throw new SQLException("Deleting failed, no rows affected.");
+				throw new SQLException("Updating " + tableName + " failed, no rows affected.");
 			}
 		}
 	}
+
+//	@Override
+//	public void delete(int id, String tableName) throws SQLException {
+//		String sql = "DELETE FROM " + tableName + " WHERE id = ?";
+//		try (PreparedStatement statement = connection.prepareStatement(sql)) {
+//			connection.setAutoCommit(false);
+//			statement.setInt(1, id);
+//			int affectedRows = statement.executeUpdate();
+//			connection.commit();
+//			if (affectedRows == 0) {
+//				throw new SQLException("Deleting failed, no rows affected.");
+//			}
+//		}
+//	}
 
 	protected abstract DTO convertResultSetToEntityDTO(ResultSet resultSet) throws SQLException;
 }

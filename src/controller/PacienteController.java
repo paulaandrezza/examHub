@@ -31,15 +31,9 @@ public class PacienteController implements IController<PacienteFullDTO, Paciente
 		}
 	}
 
-//	@Override
-//	public void delete(int id) {
-//		try {
-//			pacienteDao.delete(id);
-//			System.out.println("Entity deleted successfully.");
-//		} catch (SQLException e) {
-//			System.err.println("Error during entity deletion: " + e.getMessage());
-//		}
-//	}
+	public void delete(int paciente_id) throws SQLException, EntityNotFoundException {
+		pacienteDAO.delete(paciente_id);
+	}
 
 	@Override
 	public List<Paciente> getAll() {

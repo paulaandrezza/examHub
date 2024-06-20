@@ -3,7 +3,6 @@ package model.persistence.dao.paciente;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.List;
 
 import model.entities.Paciente;
 import model.enums.EnumGenero;
@@ -47,6 +46,10 @@ public class PacienteDAO extends GenericDAO<PacienteFullDTO> implements IPacient
 	public void update(int id, String[] params) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public void delete(int paciente_id) throws SQLException {
+		super.update("paciente", "isDeleted", true, paciente_id);
 	}
 
 	@Override

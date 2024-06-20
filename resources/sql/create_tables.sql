@@ -50,6 +50,7 @@ CREATE TABLE IF NOT EXISTS Paciente (
     convenio_id INT NOT NULL,
     historicoMedico_id INT NOT NULL,
     pessoa_id INT NOT NULL,
+    isDeleted BOOLEAN NOT NULL DEFAULT FALSE,
     FOREIGN KEY (convenio_id) REFERENCES Convenio(id) ON DELETE CASCADE,
     FOREIGN KEY (historicoMedico_id) REFERENCES HistoricoMedico(id) ON DELETE CASCADE,
     FOREIGN KEY (pessoa_id) REFERENCES Pessoa(id) ON DELETE CASCADE

@@ -14,5 +14,7 @@ public interface IGenericDAO<DTO> {
 
 	<E> int save(E entity, String tableName) throws SQLException;
 
-	void delete(int id) throws SQLException;
+	void update(String tableName, String fieldName, Object fieldValue, int id) throws SQLException;
+
+//	void delete(int id, String tableName) throws SQLException;
 }
