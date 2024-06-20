@@ -2,17 +2,18 @@ package model.entities.exames;
 
 import model.entities.BaseEntity;
 import model.entities.Funcionario;
+import model.enums.EnumDiagnostico;
 
-public class Exame extends BaseEntity {
+public abstract class Exame extends BaseEntity {
 	float peso;
 	Funcionario medicoResponsavel;
 	String conclusoes;
 	String detalhes;
-	int diagnosticoClinico;
+	EnumDiagnostico diagnosticoClinico;
 	Agendamento agendamento;
 
 	public Exame(int id, float peso, Funcionario medicoResponsavel, String conclusoes, String detalhes,
-			int diagnosticoClinico, Agendamento agendamento) {
+			EnumDiagnostico diagnosticoClinico, Agendamento agendamento) {
 		super(id);
 		this.peso = peso;
 		this.medicoResponsavel = medicoResponsavel;
@@ -22,8 +23,8 @@ public class Exame extends BaseEntity {
 		this.agendamento = agendamento;
 	}
 
-	public Exame(float peso, Funcionario medicoResponsavel, String conclusoes, String detalhes, int diagnosticoClinico,
-			Agendamento agendamento) {
+	public Exame(float peso, Funcionario medicoResponsavel, String conclusoes, String detalhes,
+			EnumDiagnostico diagnosticoClinico, Agendamento agendamento) {
 		this.peso = peso;
 		this.medicoResponsavel = medicoResponsavel;
 		this.conclusoes = conclusoes;

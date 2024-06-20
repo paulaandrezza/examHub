@@ -26,6 +26,7 @@ import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 import view.guiAgenda.AgendaPanel;
 import view.guiPaciente.CadastroPanel;
+import view.guiPaciente.ConsultarPacientePanel;
 
 public class MenuPanel extends JFrame {
 
@@ -97,6 +98,7 @@ public class MenuPanel extends JFrame {
 		boxVerticalMenuTitulo.add(vertical_menu_1);
 
 		addMenuItem(panelMenuLista, "Cadastrar Novo Paciente", e -> openInternalFrame(new CadastroPanel()));
+		addMenuItem(panelMenuLista, "Consultar Paciente", e -> openInternalFrame(new ConsultarPacientePanel()));
 		addMenuItem(panelMenuLista, "Consultar Agenda", e -> openInternalFrame(new AgendaPanel()));
 
 		desktopPanelMenuWindow.setBackground(SystemColor.activeCaption);

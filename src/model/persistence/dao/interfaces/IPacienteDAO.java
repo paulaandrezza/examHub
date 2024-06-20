@@ -10,7 +10,7 @@ import model.persistence.dao.paciente.PacienteFullDTO;
 public interface IPacienteDAO {
 	int save(Paciente paciente) throws SQLException;
 
-	List<PacienteFullDTO> getAll();
+	List<PacienteFullDTO> getAll(String table);
 
 	void update(int id, String[] params);
 

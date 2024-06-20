@@ -43,7 +43,7 @@ public class PacienteController implements IController<PacienteFullDTO, Paciente
 
 	@Override
 	public List<Paciente> getAll() {
-		List<PacienteFullDTO> pacientesFullDTO = pacienteDAO.getAll();
+		List<PacienteFullDTO> pacientesFullDTO = pacienteDAO.getAll(null);
 
 		return convertDtoListToEntityList(pacientesFullDTO);
 	}
@@ -56,7 +56,7 @@ public class PacienteController implements IController<PacienteFullDTO, Paciente
 	@Override
 	public List<Paciente> searchByField(String fieldName, Object fieldValue) throws SQLException {
 		try {
-			List<PacienteFullDTO> pacientesFullDTO = pacienteDAO.findByField(fieldName, fieldValue);
+			List<PacienteFullDTO> pacientesFullDTO = pacienteDAO.findByField(fieldName, fieldValue, null);
 			return convertDtoListToEntityList(pacientesFullDTO);
 		} catch (SQLException e) {
 			throw e;

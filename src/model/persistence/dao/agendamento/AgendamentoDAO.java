@@ -30,7 +30,7 @@ public class AgendamentoDAO extends GenericDAO<AgendamentoDTO> implements ICommo
 		int paciente_id = resultSet.getInt("paciente_id");
 		String medicoSolicitante = resultSet.getString("medicoSolicitante");
 		int statusAgendamento = resultSet.getInt("statusAgendamento");
-		int tipoExame = resultSet.getInt(statusAgendamento);
+		int tipoExame = resultSet.getInt("tipoExame");
 
 		return new AgendamentoDTO(id, dataEhorario, paciente_id, medicoSolicitante, statusAgendamento, tipoExame);
 	}

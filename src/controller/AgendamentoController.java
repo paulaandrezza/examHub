@@ -34,7 +34,7 @@ public class AgendamentoController implements IController<AgendamentoDTO, Agenda
 	public List<Agendamento> searchByField(String fieldName, Object fieldValue)
 			throws SQLException, EntityNotFoundException {
 		try {
-			List<AgendamentoDTO> agendamentoDTO = agendamentoDAO.findByField(fieldName, fieldValue);
+			List<AgendamentoDTO> agendamentoDTO = agendamentoDAO.findByField(fieldName, fieldValue, null);
 			return convertDtoListToEntityList(agendamentoDTO);
 		} catch (SQLException e) {
 			System.err.println("Erro ao buscar agendamentos: " + e.getMessage());
@@ -49,7 +49,7 @@ public class AgendamentoController implements IController<AgendamentoDTO, Agenda
 
 	@Override
 	public List<Agendamento> getAll() throws SQLException, EntityNotFoundException {
-		List<AgendamentoDTO> agendamentoDTO = agendamentoDAO.getAll();
+		List<AgendamentoDTO> agendamentoDTO = agendamentoDAO.getAll(null);
 
 		return convertDtoListToEntityList(agendamentoDTO);
 	}

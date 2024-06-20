@@ -1,26 +1,26 @@
 package model.entities.exames.tipos;
 
-import model.entities.BaseEntity;
+import model.entities.Funcionario;
+import model.entities.exames.Agendamento;
 import model.entities.exames.Exame;
 import model.enums.EnumDiagnostico;
 
-
-public class TesteErgometrico extends BaseEntity {
+public class TesteErgometrico extends Exame {
+	int idTesteErgometrico;
 	int ritmo;
 	int fc;
-	String detalhes;
-	String conclusoes;
-	EnumDiagnostico diagnosticoClinico;
-	Exame exame;
-	
-	public TesteErgometrico(int id, int ritmo, int fc, String detalhes, String conclusoes,
-			EnumDiagnostico diagnosticoClinico, Exame exame) {
-		super(id);
+
+	public TesteErgometrico(int id, float peso, Funcionario medicoResponsavel, String conclusoes, String detalhes,
+			EnumDiagnostico diagnosticoClinico, Agendamento agendamento, int idTesteErgometrico, int ritmo, int fc) {
+		super(id, peso, medicoResponsavel, conclusoes, detalhes, diagnosticoClinico, agendamento);
+		this.idTesteErgometrico = idTesteErgometrico;
 		this.ritmo = ritmo;
 		this.fc = fc;
-		this.detalhes = detalhes;
-		this.conclusoes = conclusoes;
-		this.diagnosticoClinico = diagnosticoClinico;
-		this.exame = exame;
 	}
+
+	@Override
+	public String toString() {
+		return "TesteErgometrico [idTesteErgometrico=" + idTesteErgometrico + ", ritmo=" + ritmo + ", fc=" + fc + "]\n";
+	}
+
 }
