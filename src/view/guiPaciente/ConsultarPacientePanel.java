@@ -208,7 +208,7 @@ public class ConsultarPacientePanel extends JInternalFrame {
 		public Object getCellEditorValue() {
 			if (isPushed) {
 				int selectedRow = table.getSelectedRow();
-				int patientId = (Integer) table.getValueAt(selectedRow, 6); // ID is in the 6th column
+				int patientId = (Integer) table.getValueAt(selectedRow, 6);
 				if (label.equals("Editar")) {
 					System.out.println("Botão Editar pressionado na linha: " + selectedRow + " com ID: " + patientId);
 					// Adicione a lógica para editar o paciente aqui
