@@ -1,5 +1,6 @@
 package view.guiMenu;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -84,7 +85,7 @@ public class MenuPanel extends JFrame {
 		JScrollPane scrollMenuLista = new JScrollPane(panelMenuLista);
 		scrollMenuLista.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollMenuLista.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollMenuLista.setMaximumSize(new java.awt.Dimension(800, Integer.MAX_VALUE));
+		scrollMenuLista.setMaximumSize(new java.awt.Dimension(500, Integer.MAX_VALUE));
 
 		Box boxVerticalMenuTitulo = Box.createVerticalBox();
 		panelMenuLista.add(boxVerticalMenuTitulo);
@@ -102,7 +103,7 @@ public class MenuPanel extends JFrame {
 		addMenuItem(panelMenuLista, "Consultar Agenda", e -> openInternalFrame(new AgendaPanel()));
 
 		desktopPanelMenuWindow.setBackground(SystemColor.activeCaption);
-		desktopPanelMenuWindow.setMaximumSize(new java.awt.Dimension(850, Integer.MAX_VALUE));
+		desktopPanelMenuWindow.setMaximumSize(new java.awt.Dimension(1050, Integer.MAX_VALUE));
 
 		Box box = Box.createHorizontalBox();
 		box.add(scrollMenuLista);
@@ -122,6 +123,9 @@ public class MenuPanel extends JFrame {
 		boxHorizontal.add(itemLabel);
 
 		JButton btnOpen = new JButton("Abrir");
+		btnOpen.setBackground(Color.WHITE);
+		btnOpen.setFont(new Font("Verdana", Font.PLAIN, 12));
+
 		btnOpen.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		btnOpen.addActionListener(actionListener);
 

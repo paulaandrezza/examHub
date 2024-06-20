@@ -35,7 +35,7 @@ public class ConsultarPacientePanel extends JInternalFrame {
 		getContentPane().setLayout(null);
 
 		Box tituloBoxVerticalListaPaciente = Box.createVerticalBox();
-		tituloBoxVerticalListaPaciente.setBounds(10, 10, 750, 45);
+		tituloBoxVerticalListaPaciente.setBounds(10, 10, 1000, 45);
 		getContentPane().add(tituloBoxVerticalListaPaciente);
 
 		JLabel labelListaPacienteTitulo = new JLabel("LISTA PACIENTE");
@@ -47,7 +47,7 @@ public class ConsultarPacientePanel extends JInternalFrame {
 		tituloBoxVerticalListaPaciente.add(hr_listapaciente_1);
 
 		Box boxVerticalListaPaciente = Box.createHorizontalBox();
-		boxVerticalListaPaciente.setBounds(10, 70, 750, 32);
+		boxVerticalListaPaciente.setBounds(125, 70, 750, 32);
 		getContentPane().add(boxVerticalListaPaciente);
 
 		JButton btnPesquisar = new JButton("Pesquisar");
@@ -63,7 +63,7 @@ public class ConsultarPacientePanel extends JInternalFrame {
 		table = new JTable();
 		table.setEnabled(false);
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(10, 120, 750, 650);
+		scrollPane.setBounds(10, 120, 1000, 650);
 		getContentPane().add(scrollPane);
 
 		String[] columnNames = { "Nome do Paciente", "RG", "CPF", "Plano" };

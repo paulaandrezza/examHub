@@ -60,7 +60,7 @@ public class ListaAgendaPanel extends JPanel {
 		setLayout(null);
 
 		Box tituloBoxVerticalListaAgenda = Box.createVerticalBox();
-		tituloBoxVerticalListaAgenda.setBounds(10, 10, 880, 45);
+		tituloBoxVerticalListaAgenda.setBounds(10, 10, 1000, 45);
 		add(tituloBoxVerticalListaAgenda);
 
 		JLabel labelListaAgendaTitulo = new JLabel("LISTA AGENDA");
@@ -83,7 +83,7 @@ public class ListaAgendaPanel extends JPanel {
 		table.setFont(new Font("Verdana", Font.PLAIN, 10));
 		table.setRowSelectionAllowed(false);
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(10, 70, 740, 650);
+		scrollPane.setBounds(10, 70, 1000, 650);
 		add(scrollPane);
 
 		String[] columnNames = { "Nome do Paciente", "Data", "Hora", "Exame", "Status", "Editar", "Deletar" };
