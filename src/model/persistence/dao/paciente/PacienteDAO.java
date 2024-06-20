@@ -50,8 +50,8 @@ public class PacienteDAO extends GenericDAO<PacienteFullDTO> implements IPacient
 
 	@Override
 	public PacienteFullDTO convertResultSetToEntityDTO(ResultSet resultSet) throws SQLException {
-		int idPaciente = resultSet.getInt("paciente_id");
 
+		int idPessoa = resultSet.getInt("pessoa_id");
 		String nome = resultSet.getString("nome");
 		String cpf = resultSet.getString("cpf");
 		String rg = resultSet.getString("rg");
@@ -62,6 +62,7 @@ public class PacienteDAO extends GenericDAO<PacienteFullDTO> implements IPacient
 		String email = resultSet.getString("email");
 		EnumGenero genero = EnumGenero.fromInt(resultSet.getInt("genero"));
 
+		int idEndereco = resultSet.getInt("endereco_id");
 		int cep = resultSet.getInt("cep");
 		String estado = resultSet.getString("estado");
 		String cidade = resultSet.getString("cidade");
@@ -70,20 +71,24 @@ public class PacienteDAO extends GenericDAO<PacienteFullDTO> implements IPacient
 		String numero = resultSet.getString("numero");
 		String complemento = resultSet.getString("complemento");
 
+		int idPaciente = resultSet.getInt("paciente_id");
 		float altura = resultSet.getFloat("altura");
 		boolean fumante = resultSet.getBoolean("fumante");
 		boolean marcaPasso = resultSet.getBoolean("marcaPasso");
 
+		int idConvenio = resultSet.getInt("convenio_id");
 		int numeroCarteirinha = resultSet.getInt("numeroCarteirinha");
 		String prestadora = resultSet.getString("prestadora");
 		String plano = resultSet.getString("plano");
 
+		int idHistoricoMedico = resultSet.getInt("historicoMedico_id");
 		String alergias = resultSet.getString("alergias");
 		String medicamentos = resultSet.getString("medicamentos");
 		String condicaoMedica = resultSet.getString("condicaoMedica");
 
-		return new PacienteFullDTO(idPaciente, nome, cpf, rg, dataNascimento, celular, telefone, email, genero, cep,
-				estado, cidade, bairro, rua, numero, complemento, altura, fumante, marcaPasso, numeroCarteirinha,
-				prestadora, plano, alergias, medicamentos, condicaoMedica);
+		return new PacienteFullDTO(idPessoa, nome, cpf, rg, dataNascimento, celular, telefone, email, genero,
+				idEndereco, cep, estado, cidade, bairro, rua, numero, complemento, idPaciente, altura, fumante,
+				marcaPasso, idConvenio, numeroCarteirinha, prestadora, plano, idHistoricoMedico, alergias, medicamentos,
+				condicaoMedica);
 	}
 }

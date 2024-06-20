@@ -1,12 +1,9 @@
-import java.time.LocalDateTime;
-
 import javax.swing.JOptionPane;
 
 import controller.AgendamentoController;
-import model.enums.EnumTipoExame;
+import controller.PacienteController;
 import model.persistence.DatabaseConnection;
-import model.persistence.dao.agendamento.AgendamentoDTO;
-import view.guiLogin.LoginPanel;
+import view.guiMenu.MenuPanel;
 
 public class Main {
 
@@ -14,11 +11,18 @@ public class Main {
 		DatabaseConnection dbConnection = new DatabaseConnection();
 		dbConnection.connectAndExecute();
 
+		PacienteController pacienteController = new PacienteController();
 		AgendamentoController agendamentoController = new AgendamentoController();
-		AgendamentoDTO agendamentoDTO = new AgendamentoDTO(LocalDateTime.parse("2024-06-06T10:30:00"), 1,
-				"Medica paulinha", EnumTipoExame.ECOCARDIOGRAMA.getValue());
+//		AgendamentoDTO agendamentoDTO = new AgendamentoDTO(LocalDateTime.parse("2024-06-06T10:30:00"), 1,
+//				"Medica paulinha2", EnumTipoExame.ECOCARDIOGRAMA.getValue());
 		try {
-			agendamentoController.create(agendamentoDTO);
+//			agendamentoController.create(agendamentoDTO);
+//			System.out.println(pacienteController.getAll());
+			System.out.println("id paciente: "
+					+ pacienteController.searchByField("cpf", "123.456.789-01").get(0).getPessoa().getId());
+			System.out
+					.println("id pessoa: " + pacienteController.searchByField("cpf", "123.456.789-01").get(0).getId());
+
 			System.out.println(agendamentoController.getAll());
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
@@ -26,7 +30,7 @@ public class Main {
 
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				LoginPanel tela = new LoginPanel();
+				MenuPanel tela = new MenuPanel();
 				tela.setVisible(true);
 			}
 		});

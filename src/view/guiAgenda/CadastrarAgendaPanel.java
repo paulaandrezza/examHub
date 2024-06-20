@@ -279,8 +279,9 @@ public class CadastrarAgendaPanel extends JPanel {
 						JOptionPane.showConfirmDialog(null, "Nenhum Paciente com esses dados foi encontrado", "Erro",
 								JOptionPane.DEFAULT_OPTION);
 
-//					TODO verificar porque o id retorna 0 ao invés de 1
-					int id = pacientes.get(0).getId() + 1;
+					int id = pacientes.get(0).getId();
+
+					System.out.println("\n\n id: " + id + "\n\n");
 
 					AgendamentoDTO agendamentoDTO = new AgendamentoDTO(dataEhorario, id, nomeMedico, exame);
 					agendamentoController.create(agendamentoDTO);

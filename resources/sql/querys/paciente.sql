@@ -1,6 +1,5 @@
 SELECT 
-    p.id AS paciente_id,
-
+    pe.id AS pessoa_id,
     pe.nome,
     pe.cpf,
     pe.rg,
@@ -10,6 +9,7 @@ SELECT
     pe.email,
     pe.genero,
 
+    e.id AS endereco_id,
     e.cep,
     e.estado,
     e.cidade,
@@ -18,14 +18,17 @@ SELECT
     e.numero,
     e.complemento,
 
+    p.id AS paciente_id,
     p.altura,
     p.fumante,
     p.marcaPasso,
 
+    c.id AS convenio_id,
     c.numeroCarteirinha,
     c.prestadora,
     c.plano,
 
+    h.id AS historicoMedico_id,
     h.alergias,
     h.medicamentos,
     h.condicaoMedica
